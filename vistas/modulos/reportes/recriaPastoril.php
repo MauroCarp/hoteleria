@@ -55,27 +55,27 @@
 
     $promedioDiasRP = round(($totalDiasRP / $totalAnimalesRP));
             
-    /*********
-                    KG INGRESO
-                                    ********/
+    // /*********
+    //                 KG INGRESO
+    //                                 ********/
     
-    $campo = 'kgIngresoRP';
-    $kilosIng = ControladorDatos::ctrSumarCampo($item,$valor,$campo);
+    // $campo = 'kgIngresoRP';
+    // $kilosIng = ControladorDatos::ctrSumarCampo($item,$valor,$campo);
 
-    $kilosIngRP = $kilosIng[0][0];
+    // $kilosIngRP = $kilosIng[0][0];
 
-    $promedioKgIngRP = number_format(($kilosIngRP / $totalAnimalesRP),2);
+    // $promedioKgIngRP = number_format(($kilosIngRP / $totalAnimalesRP),2);
 
-    /*********
-                    KG SALIDA
-                                    ********/
+    // /*********
+    //                 KG SALIDA
+    //                                 ********/
     
-    $campo = 'kgSalidaRP';
-    $kilosEgrPR = ControladorDatos::ctrSumarCampo($item,$valor,$campo);
+    // $campo = 'kgSalidaRP';
+    // $kilosEgrPR = ControladorDatos::ctrSumarCampo($item,$valor,$campo);
 
-    $kilosEgrPR = $kilosEgrPR[0][0];
+    // $kilosEgrPR = $kilosEgrPR[0][0];
 
-    $promedioKgEgrRP = number_format(($kilosEgrPR / $totalAnimalesRP),2);
+    // $promedioKgEgrRP = number_format(($kilosEgrPR / $totalAnimalesRP),2);
 
                                     
     /*********
@@ -161,7 +161,7 @@
           </div>
           <div class="box-body">
             <div class="chart">
-              <canvas id="barChart2RP" style="height:230px"></canvas>
+              <!-- <canvas id="barChart2RP" style="height:230px"></canvas> -->
             </div>
           </div>
 
@@ -178,7 +178,7 @@
           </div>
           <div class="box-body">
             <div class="chart">
-              <canvas id="barChart3RP" style="height:230px"></canvas>
+              <!-- <canvas id="barChart3RP" style="height:230px"></canvas> -->
             </div>
           </div>
 
@@ -321,43 +321,43 @@ var configDiasRP = {
 };
 
 
-var configKgIngRP = {
-  labels: [
-    'Kg Ingreso Prom.'
-  ],
-  datasets: [{
-    label: 'Kg Ingreso Prom.',
-    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    borderColor: window.chartColors.red,
-    borderWidth: 1, 
+// var configKgIngRP = {
+//   labels: [
+//     'Kg Ingreso Prom.'
+//   ],
+//   datasets: [{
+//     label: 'Kg Ingreso Prom.',
+//     backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+//     borderColor: window.chartColors.red,
+//     borderWidth: 1, 
 
-    data: [
-    <?php
-    echo $promedioKgIngRP;
-    ?>
-    ]
-  }]
+//     data: [
+//     <?php
+//     echo $promedioKgIngRP;
+//     ?>
+//     ]
+//   }]
 
-};
+// };
 
-var configKgEgrRP = {
-  labels: [
-    'Kg Salida Prom.'
-  ],
-  datasets: [{
-    label: 'Kg Salida Prom.',
-    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    borderColor: window.chartColors.red,
-    borderWidth: 1, 
+// var configKgEgrRP = {
+//   labels: [
+//     'Kg Salida Prom.'
+//   ],
+//   datasets: [{
+//     label: 'Kg Salida Prom.',
+//     backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+//     borderColor: window.chartColors.red,
+//     borderWidth: 1, 
 
-    data: [
-    <?php
-    echo $promedioKgEgrRP;
-    ?>
-    ]
-  }]
+//     data: [
+//     <?php
+//     echo $promedioKgEgrRP;
+//     ?>
+//     ]
+//   }]
 
-};
+// };
 
 var configKgProdRP = {
   labels: [

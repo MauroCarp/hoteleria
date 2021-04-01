@@ -243,45 +243,45 @@ if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor"){
         }
       });
 
-      var kgIngRP = document.getElementById('barChart2RP').getContext('2d');
-      var chartkgIngRPGeneral = new Chart(kgIngRP, {
-        type: 'bar',
-        data: configKgIngRP,
-        options: {
-          responsive: true,
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: false,
-          },
-          plugins: {
-            labels: {
-              render: 'value'
-            }
-          }
-        }
-      });
+      // var kgIngRP = document.getElementById('barChart2RP').getContext('2d');
+      // var chartkgIngRPGeneral = new Chart(kgIngRP, {
+      //   type: 'bar',
+      //   data: configKgIngRP,
+      //   options: {
+      //     responsive: true,
+      //     legend: {
+      //       position: 'top',
+      //     },
+      //     title: {
+      //       display: false,
+      //     },
+      //     plugins: {
+      //       labels: {
+      //         render: 'value'
+      //       }
+      //     }
+      //   }
+      // });
 
-      var kgEgrRP = document.getElementById('barChart3RP').getContext('2d');
-      var chartKgEgrRPGeneral = new Chart(kgEgrRP, {
-        type: 'bar',
-        data: configKgEgrRP,
-        options: {
-          responsive: true,
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: false,
-          },
-          plugins: {
-            labels: {
-              render: 'value'
-            }
-          }
-        }
-      });
+      // var kgEgrRP = document.getElementById('barChart3RP').getContext('2d');
+      // var chartKgEgrRPGeneral = new Chart(kgEgrRP, {
+      //   type: 'bar',
+      //   data: configKgEgrRP,
+      //   options: {
+      //     responsive: true,
+      //     legend: {
+      //       position: 'top',
+      //     },
+      //     title: {
+      //       display: false,
+      //     },
+      //     plugins: {
+      //       labels: {
+      //         render: 'value'
+      //       }
+      //     }
+      //   }
+      // });
 
       var kgProdRP = document.getElementById('barChart4RP').getContext('2d');
       var chartKgProdRPGeneral = new Chart(kgProdRP, {
@@ -366,45 +366,45 @@ if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor"){
         }
       });
 
-      var kgIngRC = document.getElementById('barChart2RC').getContext('2d');
-      var chartKgIngRCGeneral = new Chart(kgIngRC, {
-        type: 'bar',
-        data: configKgIngRC,
-        options: {
-          responsive: true,
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: false,
-          },
-          plugins: {
-            labels: {
-              render: 'value'
-            }
-          }
-        }
-      });
+      // var kgIngRC = document.getElementById('barChart2RC').getContext('2d');
+      // var chartKgIngRCGeneral = new Chart(kgIngRC, {
+      //   type: 'bar',
+      //   data: configKgIngRC,
+      //   options: {
+      //     responsive: true,
+      //     legend: {
+      //       position: 'top',
+      //     },
+      //     title: {
+      //       display: false,
+      //     },
+      //     plugins: {
+      //       labels: {
+      //         render: 'value'
+      //       }
+      //     }
+      //   }
+      // });
 
-      var kgEgrRC = document.getElementById('barChart3RC').getContext('2d');
-      var chartKgEgrRCGeneral = new Chart(kgEgrRC, {
-        type: 'bar',
-        data: configKgEgrRC,
-        options: {
-          responsive: true,
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: false,
-          },
-          plugins: {
-            labels: {
-              render: 'value'
-            }
-          }
-        }
-      });
+      // var kgEgrRC = document.getElementById('barChart3RC').getContext('2d');
+      // var chartKgEgrRCGeneral = new Chart(kgEgrRC, {
+      //   type: 'bar',
+      //   data: configKgEgrRC,
+      //   options: {
+      //     responsive: true,
+      //     legend: {
+      //       position: 'top',
+      //     },
+      //     title: {
+      //       display: false,
+      //     },
+      //     plugins: {
+      //       labels: {
+      //         render: 'value'
+      //       }
+      //     }
+      //   }
+      // });
 
       var kgProdRC = document.getElementById('barChart4RC').getContext('2d');
       var chartKgProdRCGeneral = new Chart(kgProdRC, {
@@ -488,45 +488,45 @@ if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor"){
         }
       });
 
-      var kgIngT = document.getElementById('barChart2T').getContext('2d');
-      var chartKgIngTGeneral = new Chart(kgIngT, {
-        type: 'bar',
-        data: configKgIngT,
-        options: {
-          responsive: true,
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: false,
-          },
-          plugins: {
-            labels: {
-              render: 'value'
-            }
-          }
-        }
-      });
+      // var kgIngT = document.getElementById('barChart2T').getContext('2d');
+      // var chartKgIngTGeneral = new Chart(kgIngT, {
+      //   type: 'bar',
+      //   data: configKgIngT,
+      //   options: {
+      //     responsive: true,
+      //     legend: {
+      //       position: 'top',
+      //     },
+      //     title: {
+      //       display: false,
+      //     },
+      //     plugins: {
+      //       labels: {
+      //         render: 'value'
+      //       }
+      //     }
+      //   }
+      // });
 
-      var kgEgrT = document.getElementById('barChart3T').getContext('2d');
-      var chartKgEgrTGeneral = new Chart(kgEgrT, {
-        type: 'bar',
-        data: configKgEgrT,
-        options: {
-          responsive: true,
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: false,
-          },
-          plugins: {
-            labels: {
-              render: 'value'
-            }
-          }
-        }
-      });
+      // var kgEgrT = document.getElementById('barChart3T').getContext('2d');
+      // var chartKgEgrTGeneral = new Chart(kgEgrT, {
+      //   type: 'bar',
+      //   data: configKgEgrT,
+      //   options: {
+      //     responsive: true,
+      //     legend: {
+      //       position: 'top',
+      //     },
+      //     title: {
+      //       display: false,
+      //     },
+      //     plugins: {
+      //       labels: {
+      //         render: 'value'
+      //       }
+      //     }
+      //   }
+      // });
 
       var kgProdT = document.getElementById('barChart4T').getContext('2d');
       var chartKgProdTGeneral = new Chart(kgProdT, {

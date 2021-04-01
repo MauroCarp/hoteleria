@@ -57,25 +57,25 @@
             
     /*********
                     KG INGRESO
-                                    ********/
+    //                                 ********/
     
-    $campo = 'kgIngresoT';
-    $kilosIng = ControladorDatos::ctrSumarCampo($item,$valor,$campo);
+    // $campo = 'kgIngresoT';
+    // $kilosIng = ControladorDatos::ctrSumarCampo($item,$valor,$campo);
 
-    $kilosIngRR = $kilosIng[0][0];
+    // $kilosIngRR = $kilosIng[0][0];
 
-    $promedioKgIngT = number_format(($kilosIngRR / $totalAnimalesT),2);
+    // $promedioKgIngT = number_format(($kilosIngRR / $totalAnimalesT),2);
 
-    /*********
-                    KG SALIDA
-                                    ********/
+    // /*********
+    //                 KG SALIDA
+    //                                 ********/
     
-    $campo = 'kgSalidaT';
-    $kilosEgrPR = ControladorDatos::ctrSumarCampo($item,$valor,$campo);
+    // $campo = 'kgSalidaT';
+    // $kilosEgrPR = ControladorDatos::ctrSumarCampo($item,$valor,$campo);
 
-    $kilosEgrPR = $kilosEgrPR[0][0];
+    // $kilosEgrPR = $kilosEgrPR[0][0];
 
-    $promedioKgEgrT = number_format(($kilosEgrPR / $totalAnimalesT),2);
+    // $promedioKgEgrT = number_format(($kilosEgrPR / $totalAnimalesT),2);
 
                                     
     /*********
@@ -178,7 +178,7 @@
           </div>
           <div class="box-body">
             <div class="chart">
-              <canvas id="barChart3T" style="height:230px"></canvas>
+              <!-- <canvas id="barChart3T" style="height:230px"></canvas> -->
             </div>
           </div>
 
@@ -205,33 +205,6 @@
       </div>
 
 </div>
-<!-- <div class="row">
-      
-    <div class="col-md-4">  
-    -->
-        <!-- DONUT CHART -->
-    <!--    <div class="box box-danger">
-        
-            <div class="box-header with-border">
-            
-            <h3 class="box-title">Población según Sexo</h3>
-
-
-            </div>
-            
-            <div class="box-body">
-
-                <canvas id="pieChartT" style="height:100px"></canvas>
-              
-            </div>
-        
-        </div>
-
-    </div>
-
-          
-
-</div> -->
 
 
 <script>
@@ -349,43 +322,43 @@ var configDiasT = {
 };
 
 
-var configKgIngT = {
-  labels: [
-    'Kg Ingreso Prom.'
-  ],
-  datasets: [{
-    label: 'Kg Ingreso Prom.',
-    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    borderColor: window.chartColors.red,
-    borderWidth: 1, 
+// var configKgIngT = {
+//   labels: [
+//     'Kg Ingreso Prom.'
+//   ],
+//   datasets: [{
+//     label: 'Kg Ingreso Prom.',
+//     backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+//     borderColor: window.chartColors.red,
+//     borderWidth: 1, 
 
-    data: [
-    <?php
-    echo $promedioKgIngT;
-    ?>
-    ]
-  }]
+//     data: [
+//     <?php
+//     echo $promedioKgIngT;
+//     ?>
+//     ]
+//   }]
 
-};
+// };
 
-var configKgEgrT = {
-  labels: [
-    'Kg Salida Prom.'
-  ],
-  datasets: [{
-    label: 'Kg Salida Prom.',
-    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    borderColor: window.chartColors.red,
-    borderWidth: 1, 
+// var configKgEgrT = {
+//   labels: [
+//     'Kg Salida Prom.'
+//   ],
+//   datasets: [{
+//     label: 'Kg Salida Prom.',
+//     backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+//     borderColor: window.chartColors.red,
+//     borderWidth: 1, 
 
-    data: [
-    <?php
-    echo $promedioKgEgrT;
-    ?>
-    ]
-  }]
+//     data: [
+//     <?php
+//     echo $promedioKgEgrT;
+//     ?>
+//     ]
+//   }]
 
-};
+// };
 
 var configKgProdT = {
   labels: [

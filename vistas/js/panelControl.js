@@ -84,7 +84,15 @@ function getQueryVariable(variable) {
 GENERAR GRAFICO FINAMICO
 =============================================*/
 
-  function graficoDinamico(kilos){
+  function graficoDinamico(){
+    
+    var kilos = [];
+
+    $('.data-number').each(function(){
+  
+      kilos.push($(this).val());
+      
+    });
 
     var rango = getQueryVariable('rango');
 
@@ -122,17 +130,14 @@ GENERAR GRAFICO FINAMICO
 
  $('.data-number').blur(()=>{
 
-  var kilos = [];
+  graficoDinamico();
 
-  $('.data-number').each(function(){
+ });
 
-    kilos.push($(this).val());
-    
-  });
+ $('.data-number').change(()=>{
 
-  graficoDinamico(kilos);
+  graficoDinamico();
 
-  
  });
 
 

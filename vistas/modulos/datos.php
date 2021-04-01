@@ -10,6 +10,11 @@ $alertaValida = array_key_exists('alerta',$_GET);
 $errorValido = array_key_exists('errorFila',$_GET);
 
 if($alertaValida){
+
+  $alerta = $_GET['alerta'];
+
+  if($alerta == 'datosRepetidos')
+
   echo'<script>
 
 					swal({
@@ -26,17 +31,32 @@ if($alertaValida){
 								})
 
 					</script>';
-}
+  
+  if($alerta == 'cargadoCorrecto')
+  
+  echo'<script>
 
-if($errorValido){
+					swal({
+						  type: "success",
+						  title: "Los registros se han cargado correctamente.",
+						  showConfirmButton: true,
+						  confirmButtonText: "Cerrar"
+						  }).then(function(result) {
+									if (result.value) {
 
-  $rowNumber = $_GET['errorFila'];
+									window.location = "datos";
 
+									}
+								})
+
+					</script>';
+  
+  if($alerta == 'archivoIncorrecto')
   echo'<script>
 
   swal({
       type: "error",
-      title: "Hay un error en la fila Nº'.$rowNumber.' de la base de datos de Excel",
+      title: "El archivo que se quiere cargar, no pertenece a la sección VENTAS",
       showConfirmButton: true,
       confirmButtonText: "Cerrar"
       }).then(function(result) {
@@ -49,7 +69,31 @@ if($errorValido){
 
   </script>';
 
+  if($alerta == 'error'){
+
+    $rowNumber = $_GET['errorFila'];
+
+    echo'<script>
+
+    swal({
+        type: "error",
+        title: "Hay un error en la fila Nº'.$rowNumber.' de la base de datos de Excel",
+        showConfirmButton: true,
+        confirmButtonText: "Cerrar"
+        }).then(function(result) {
+            if (result.value) {
+
+            window.location = "datos";
+
+            }
+          })
+
+    </script>';
+    
+  }
+
 }
+
 
 ?>
 <div class="content-wrapper">

@@ -177,10 +177,11 @@ if( isset($_FILES["nuevosDatos"]) ){
 
     }
     
-    unlink("carga/".$_FILES['nuevosDatos']['name']);
+    // unlink("carga/".$_FILES['nuevosDatos']['name']);
 
     echo "<script>
     window.location.href = 'datos';
     </script>";
+    
 }
 ?>

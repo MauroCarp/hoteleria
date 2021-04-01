@@ -6,9 +6,13 @@ function formatearFecha($fecha){
 }
 
 $alertaValida = array_key_exists('alerta',$_GET);
-$errorValido = array_key_exists('errorFila',$_GET);
 
 if($alertaValida){
+
+  $alerta = $_GET['alerta'];
+
+  if($alerta == 'datosRepetidos')
+
   echo'<script>
 
 					swal({
@@ -25,32 +29,70 @@ if($alertaValida){
 								})
 
 					</script>';
+
+  if($alerta == 'cargadoCorrecto')  
+    echo'<script>
+
+            swal({
+                type: "success",
+                title: "Los registros se han cargado correctamente.",
+                showConfirmButton: true,
+                confirmButtonText: "Cerrar"
+                }).then(function(result) {
+                    if (result.value) {
+
+                    window.location = "datos-muertes";
+
+                    }
+                  })
+
+            </script>';
+
+  if($alerta == 'archivoIncorrecto')
+    echo'<script>
+
+    swal({
+        type: "error",
+        title: "El archivo que se quiere cargar, no pertenece a la sección MUERTES",
+        showConfirmButton: true,
+        confirmButtonText: "Cerrar"
+        }).then(function(result) {
+            if (result.value) {
+
+            window.location = "datos-muertes";
+
+            }
+          })
+
+    </script>';
+
+  if($alerta == 'errorFila'){
+
+    $rowNumber = $_GET['errorFila'];
+    
+    $errorColumna = $_GET['errorColumna'];
+
+    echo'<script>
+
+    swal({
+        type: "error",
+        title: "Hay un error en la fila Nº'.$rowNumber.', en la columna '.$errorColumna.' de la base de datos de Excel (Verificar formatos de la columna)",
+        showConfirmButton: true,
+        confirmButtonText: "Cerrar"
+        }).then(function(result) {
+            if (result.value) {
+
+            window.location = "datos";
+
+            }
+          })
+
+    </script>';
+    
+  }
+
 }
 
-if($errorValido){
-
-  $rowNumber = $_GET['errorFila'];
-
-  $errorColumna = $_GET['errorColumna'];
-
-  echo'<script>
-
-  swal({
-      type: "error",
-      title: "Hay un error en la fila Nº'.$rowNumber.', en la columna '.$errorColumna.' de la base de datos de Excel (Verificar formatos de la columna)",
-      showConfirmButton: true,
-      confirmButtonText: "Cerrar"
-      }).then(function(result) {
-          if (result.value) {
-
-          window.location = "datos-muertes";
-
-          }
-        })
-
-  </script>';
-
-}
 
 ?>
 <div class="content-wrapper">

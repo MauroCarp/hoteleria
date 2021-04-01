@@ -56,26 +56,26 @@
     $promedioDiasRC = round(($totalDiasRC / $totalAnimalesRC));
             
     /*********
-                    KG INGRESO
-                                    ********/
+    //                 KG INGRESO
+    //                                 ********/
     
-    $campo = 'kgIngresoRC';
-    $kilosIng = ControladorDatos::ctrSumarCampo($item,$valor,$campo);
+    // $campo = 'kgIngresoRC';
+    // $kilosIng = ControladorDatos::ctrSumarCampo($item,$valor,$campo);
 
-    $kilosIngRR = $kilosIng[0][0];
+    // $kilosIngRR = $kilosIng[0][0];
 
-    $promedioKgIngRC = number_format(($kilosIngRR / $totalAnimalesRC),2);
+    // $promedioKgIngRC = number_format(($kilosIngRR / $totalAnimalesRC),2);
 
-    /*********
-                    KG SALIDA
-                                    ********/
+    // /*********
+    //                 KG SALIDA
+    //                                 ********/
     
-    $campo = 'kgSalidaRC';
-    $kilosEgrPR = ControladorDatos::ctrSumarCampo($item,$valor,$campo);
+    // $campo = 'kgSalidaRC';
+    // $kilosEgrPR = ControladorDatos::ctrSumarCampo($item,$valor,$campo);
 
-    $kilosEgrPR = $kilosEgrPR[0][0];
+    // $kilosEgrPR = $kilosEgrPR[0][0];
 
-    $promedioKgEgrRC = number_format(($kilosEgrPR / $totalAnimalesRC),2);
+    // $promedioKgEgrRC = number_format(($kilosEgrPR / $totalAnimalesRC),2);
 
                                     
     /*********
@@ -164,7 +164,7 @@
           </div>
           <div class="box-body">
             <div class="chart">
-              <canvas id="barChart2RC" style="height:230px"></canvas>
+              <!-- <canvas id="barChart2RC" style="height:230px"></canvas> -->
             </div>
           </div>
 
@@ -181,7 +181,7 @@
           </div>
           <div class="box-body">
             <div class="chart">
-              <canvas id="barChart3RC" style="height:230px"></canvas>
+              <!-- <canvas id="barChart3RC" style="height:230px"></canvas> -->
             </div>
           </div>
 
@@ -324,43 +324,43 @@ var configDiasRC = {
 };
 
 
-var configKgIngRC = {
-  labels: [
-    'Kg Ingreso Prom.'
-  ],
-  datasets: [{
-    label: 'Kg Ingreso Prom.',
-    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    borderColor: window.chartColors.red,
-    borderWidth: 1, 
+// var configKgIngRC = {
+//   labels: [
+//     'Kg Ingreso Prom.'
+//   ],
+//   datasets: [{
+//     label: 'Kg Ingreso Prom.',
+//     backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+//     borderColor: window.chartColors.red,
+//     borderWidth: 1, 
 
-    data: [
-    <?php
-    echo $promedioKgIngRC;
-    ?>
-    ]
-  }]
+//     data: [
+//     <?php
+//     echo $promedioKgIngRC;
+//     ?>
+//     ]
+//   }]
 
-};
+// };
 
-var configKgEgrRC = {
-  labels: [
-    'Kg Salida Prom.'
-  ],
-  datasets: [{
-    label: 'Kg Salida Prom.',
-    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    borderColor: window.chartColors.red,
-    borderWidth: 1, 
+// var configKgEgrRC = {
+//   labels: [
+//     'Kg Salida Prom.'
+//   ],
+//   datasets: [{
+//     label: 'Kg Salida Prom.',
+//     backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+//     borderColor: window.chartColors.red,
+//     borderWidth: 1, 
 
-    data: [
-    <?php
-    echo $promedioKgEgrRC;
-    ?>
-    ]
-  }]
+//     data: [
+//     <?php
+//     echo $promedioKgEgrRC;
+//     ?>
+//     ]
+//   }]
 
-};
+// };
 
 var configKgProdRC = {
   labels: [

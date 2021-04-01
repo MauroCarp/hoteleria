@@ -6,50 +6,87 @@ function formatearFecha($fecha){
 }
 
 $alertaValida = array_key_exists('alerta',$_GET);
-$errorValido = array_key_exists('errorFila',$_GET);
 
 if($alertaValida){
 
-  echo'<script>
+  $alerta = $_GET['alerta'];
 
-					swal({
-						  type: "error",
-						  title: "Los registros del mes y año que se quisieron cargar, ya estan cargados.",
-						  showConfirmButton: true,
-						  confirmButtonText: "Cerrar"
-						  }).then(function(result) {
-									if (result.value) {
+  if($alerta == 'datosRepetidos')
+    echo'<script>
 
-									window.location = "datos-compras";
+            swal({
+                type: "error",
+                title: "Los registros del mes y año que se quisieron cargar, ya estan cargados.",
+                showConfirmButton: true,
+                confirmButtonText: "Cerrar"
+                }).then(function(result) {
+                    if (result.value) {
 
-									}
-								})
+                    window.location = "datos-compras";
 
-					</script>';
-}
+                    }
+                  })
 
-if($errorValido){
+            </script>';
+  
+  if($alerta == 'cargadoCorrecto')
+    echo'<script>
 
-  $rowNumber = $_GET['errorFila'];
+            swal({
+                type: "success",
+                title: "Los registros se han cargado correctamente.",
+                showConfirmButton: true,
+                confirmButtonText: "Cerrar"
+                }).then(function(result) {
+                    if (result.value) {
 
-  $errorColumna = $_GET['errorColumna'];
+                    window.location = "datos-compras";
 
-  echo'<script>
+                    }
+                  })
 
-  swal({
-      type: "error",
-      title: "Hay un error en la fila Nº'.$rowNumber.', en la columna '.$errorColumna.' de la base de datos de Excel (Verificar formatos de la columna)",
-      showConfirmButton: true,
-      confirmButtonText: "Cerrar"
-      }).then(function(result) {
-          if (result.value) {
+            </script>';
+  
+  if($alerta == 'archivoIncorrecto')
+    echo'<script>
 
-          
+    swal({
+        type: "error",
+        title: "El archivo que se quiere cargar, no pertenece a la sección COMPRAS",
+        showConfirmButton: true,
+        confirmButtonText: "Cerrar"
+        }).then(function(result) {
+            if (result.value) {
 
-          }
-        })
+            window.location = "datos-compras";
 
-  </script>';
+            }
+          })
+
+    </script>';
+
+  if($alerta == 'error'){
+
+    $rowNumber = $_GET['errorFila'];
+
+    echo'<script>
+
+    swal({
+        type: "error",
+        title: "Hay un error en la fila Nº'.$rowNumber.' de la base de datos de Excel",
+        showConfirmButton: true,
+        confirmButtonText: "Cerrar"
+        }).then(function(result) {
+            if (result.value) {
+
+            window.location = "datos-compras";
+
+            }
+          })
+
+    </script>';
+    
+  }
 
 }
 

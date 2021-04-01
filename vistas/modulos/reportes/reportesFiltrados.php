@@ -746,104 +746,104 @@ $(function () {
 
         // KG ING
 
-          //CC
-          var configKgIngCC = {
-            labels: [
-              'Kg Prom.'
-            ],
-            datasets:[
-              <?php 
-                echo $kgIngCC;
-              ?> 
-            ]
-          };
+            //CC
+            var configKgIngCC = {
+              labels: [
+                'Kg Prom.'
+              ],
+              datasets:[
+                <?php 
+                  echo $kgIngCC;
+                ?> 
+              ]
+            };
 
-          //RP
-          var configKgIngRP = {
-            labels: [
-              'Kg Prom.'
-            ],
-            datasets:[
-              <?php 
-                echo $kgIngRP;
-              ?> 
-            ]
-          };
+            // //RP
+            // var configKgIngRP = {
+            //   labels: [
+            //     'Kg Prom.'
+            //   ],
+            //   datasets:[
+            //     <?php 
+            //       echo $kgIngRP;
+            //     ?> 
+            //   ]
+            // };
 
-          //RC
-          var configKgIngRC = {
-            labels: [
-              'Kg Prom.'
-            ],
-            datasets:[
-              <?php 
-                echo $kgIngRC;
-              ?> 
-            ]
-          };
+            // //RC
+            // var configKgIngRC = {
+            //   labels: [
+            //     'Kg Prom.'
+            //   ],
+            //   datasets:[
+            //     <?php 
+            //       echo $kgIngRC;
+            //     ?> 
+            //   ]
+            // };
 
-          //T
-          var configKgIngT = {
-            labels: [
-              'Kg Prom.'
-            ],
-            datasets:[
-              <?php 
-                echo $kgIngT;
-              ?> 
-            ]
-          };
+            // //T
+            // var configKgIngT = {
+            //   labels: [
+            //     'Kg Prom.'
+            //   ],
+            //   datasets:[
+            //     <?php 
+            //       echo $kgIngT;
+            //     ?> 
+            //   ]
+            // };
 
 
         // KG EGR 
 
-          //CC
-          var configKgEgrCC = {
-            labels: [
-              'Kg Prom.'
-            ],
-            datasets:[
-              <?php 
-                echo $kgEgrCC;
-              ?> 
-            ]
-          };
+            //CC
+            var configKgEgrCC = {
+              labels: [
+                'Kg Prom.'
+              ],
+              datasets:[
+                <?php 
+                  echo $kgEgrCC;
+                ?> 
+              ]
+            };
 
-          //RP
-          var configKgEgrRP = {
-            labels: [
-              'Kg Prom.'
-            ],
-            datasets:[
-              <?php 
-                echo $kgEgrRP;
-              ?> 
-            ]
-          };
+            // //RP
+            // var configKgEgrRP = {
+            //   labels: [
+            //     'Kg Prom.'
+            //   ],
+            //   datasets:[
+            //     <?php 
+            //       echo $kgEgrRP;
+            //     ?> 
+            //   ]
+            // };
 
-          //RC
-          var configKgEgrRC = {
-            labels: [
-              'Kg Prom.'
-            ],
-            datasets:[
-              <?php 
-                echo $kgEgrRC;
-              ?> 
-            ]
-          };
+            // //RC
+            // var configKgEgrRC = {
+            //   labels: [
+            //     'Kg Prom.'
+            //   ],
+            //   datasets:[
+            //     <?php 
+            //       echo $kgEgrRC;
+            //     ?> 
+            //   ]
+            // };
 
-          //T
-          var configKgEgrT = {
-            labels: [
-              'Kg Prom.'
-            ],
-            datasets:[
-              <?php 
-                echo $kgEgrT;
-              ?> 
-            ]
-          };
+            // //T
+            // var configKgEgrT = {
+            //   labels: [
+            //     'Kg Prom.'
+            //   ],
+            //   datasets:[
+            //     <?php 
+            //       echo $kgEgrT;
+            //     ?> 
+            //   ]
+            // };
 
 
         // KG PROD 
@@ -927,27 +927,27 @@ $(function () {
           var barChart2Filtrado = document.getElementById('barChart2Filtrado').getContext('2d');      
           var kgIngCC = new Chart(barChart2Filtrado, opciones(configKgIngCC) );
 
-          var barChart2RPFiltrado = document.getElementById('barChart2RPFiltrado').getContext('2d');
-          var kgIngRP = new Chart(barChart2RPFiltrado, opciones(configKgIngRP) );
+          // var barChart2RPFiltrado = document.getElementById('barChart2RPFiltrado').getContext('2d');
+          // var kgIngRP = new Chart(barChart2RPFiltrado, opciones(configKgIngRP) );
 
-          var barChart2RCFiltrado = document.getElementById('barChart2RCFiltrado').getContext('2d');
-          var kgIngRC = new Chart(barChart2RCFiltrado, opciones(configKgIngRC) );
+          // var barChart2RCFiltrado = document.getElementById('barChart2RCFiltrado').getContext('2d');
+          // var kgIngRC = new Chart(barChart2RCFiltrado, opciones(configKgIngRC) );
 
-          var barChart2TFiltrado = document.getElementById('barChart2TFiltrado').getContext('2d');
-          var kgIngT = new Chart(barChart2TFiltrado, opciones(configKgIngT) );
+          // var barChart2TFiltrado = document.getElementById('barChart2TFiltrado').getContext('2d');
+          // var kgIngT = new Chart(barChart2TFiltrado, opciones(configKgIngT) );
         
         // GRAFICOS KG EGR
           var barChart3Filtrado = document.getElementById('barChart3Filtrado').getContext('2d');      
           var kgEgrCC = new Chart(barChart3Filtrado, opciones(configKgEgrCC) );
 
-          var barChart3RPFiltrado = document.getElementById('barChart3RPFiltrado').getContext('2d');
-          var kgEgrRP = new Chart(barChart3RPFiltrado, opciones(configKgEgrRP) );
+          // var barChart3RPFiltrado = document.getElementById('barChart3RPFiltrado').getContext('2d');
+          // var kgEgrRP = new Chart(barChart3RPFiltrado, opciones(configKgEgrRP) );
 
-          var barChart3RCFiltrado = document.getElementById('barChart3RCFiltrado').getContext('2d');
-          var kgEgrRC = new Chart(barChart3RCFiltrado, opciones(configKgEgrRC) );
+          // var barChart3RCFiltrado = document.getElementById('barChart3RCFiltrado').getContext('2d');
+          // var kgEgrRC = new Chart(barChart3RCFiltrado, opciones(configKgEgrRC) );
 
-          var barChart3TFiltrado = document.getElementById('barChart3TFiltrado').getContext('2d');
-          var kgEgrT = new Chart(barChart3TFiltrado, opciones(configKgEgrT) );
+          // var barChart3TFiltrado = document.getElementById('barChart3TFiltrado').getContext('2d');
+          // var kgEgrT = new Chart(barChart3TFiltrado, opciones(configKgEgrT) );
 
         // GRAFICOS KG PROD
           var barChart4Filtrado = document.getElementById('barChart4Filtrado').getContext('2d');      

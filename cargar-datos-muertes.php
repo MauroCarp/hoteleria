@@ -21,22 +21,49 @@ if( isset($_FILES["nuevosDatos"]) ){
 	$allowedFileType = ['application/vnd.ms-excel','text/xls','text/xlsx','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
 
 	if(in_array($_FILES["nuevosDatos"]["type"],$allowedFileType)){
+
 		$ruta = "carga/" . $_FILES['nuevosDatos']['name'];
+
 		move_uploaded_file($_FILES['nuevosDatos']['tmp_name'], $ruta);
+
         $nombreArchivo = str_replace(' ', '',$_FILES['nuevosDatos']['name']);
-        $rowValida = 1;
+
         $rowNumber = 0;
+
+		$rowValida = FALSE;
+        
+        $rowValidaTemp = FALSE;
 
 
 		$Reader = new SpreadsheetReader($ruta);	
+
 		$sheetCount = count($Reader->sheets());
+
 		for($i=0;$i<$sheetCount;$i++){
+
 			$Reader->ChangeSheet($i);
+
 				foreach ($Reader as $Row){
                     
                     $rowNumber++;
 
-                    if($rowCont > 8){   
+                    if(($Row[0] == 'Hotelero' AND $Row[1] == 'Fecha') OR ($Row[0] == 'Hotelero' AND $Row[1] == 'Caravana')){
+                      
+                        unlink("carga/".$_FILES['nuevosDatos']['name']);
+                        
+                        echo "<script>
+                        
+                        window.location.href = 'index.php?ruta=datos-muertes&alerta=archivoIncorrecto';
+                        
+                        </script>"; 
+                        
+                        die();
+                    
+                    }
+                    
+
+                    if($rowValida == TRUE){   
+
                         $caravana    		= $Row[0];
                         $transaccion 		= $Row[1];
                         $hotelero 	 		= $Row[2];
@@ -56,7 +83,7 @@ if( isset($_FILES["nuevosDatos"]) ){
                         $origen         	= $Row[29];
                         $tipoActividad  	= $Row[30];
 
-                        if ($rowCont == 9) {
+                        if ($rowValidaTemp == FALSE) {
                             
                             $fechaSeparada = explode('-',$fecha);
                             $anio = $fechaSeparada[0];
@@ -83,7 +110,9 @@ if( isset($_FILES["nuevosDatos"]) ){
 
                             }
                         
-                        }   
+                        }  
+                        
+                        $rowValidaTemp = TRUE;
                         
                         $sql = "INSERT INTO muertes(archivo,caravana,transaccion,hotelero,tropa,fechaMuerte,dias,corral,proveedor,consignatario,categoria,macho,hembra,kilosEgreso,diagnostico,motivo,tratado,origen,tipoActividad) 
                         VALUES('$nombreArchivo','$caravana','$transaccion','$hotelero','$tropa','$fecha','$dias','$corral','$proveedor','$consignatario','$categoria','$machos','$hembras','$kgEgreso','$diagnostico','$motivo','$tratado','$origen','$tipoActividad')";
@@ -105,7 +134,7 @@ if( isset($_FILES["nuevosDatos"]) ){
                             
                             echo "<script>
                             
-                                window.location.href = 'index.php?ruta=datos-muertes&errorFila=".$rowNumber."&errorColumna=".$errorColumna."';
+                                window.location.href = 'index.php?ruta=datos-muertes&alerta=error&errorFila=".$rowNumber."&errorColumna=".$errorColumna."';
                             
                             
                             </script>";
@@ -115,18 +144,25 @@ if( isset($_FILES["nuevosDatos"]) ){
 
                     }
                     
-					$rowCont++;
+                    if ($Row[0] == 'Caravana'){
+                        
+                        $rowValida = TRUE;
+                    
+                    }
 
 				}		
         }
 
     }
     
-    // unlink("carga/".$_FILES['nuevosDatos']['name']);
     
     echo "<script>
-    window.location.href = 'datos-muertes';
+    window.location.href = 'index.php?ruta=datos-muertes&alerta=cargadoCorrecto';
     </script>";
-// die();
+
+    echo "<script>
+    window.location.href = 'index.php?ruta=datos-muertes&alerta=cargadoCorrecto';
+    </script>";
+
 }
 ?>

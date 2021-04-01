@@ -31,6 +31,8 @@ $fechaInicial = $fechaRango[0];
 
 $fechaFinal = $fechaRango[1];
 ?>
+
+
 <div class="content-wrapper">
 <table>
       
@@ -260,45 +262,45 @@ $fechaFinal = $fechaRango[1];
         }
       });
 
-      var kgIngRP = document.getElementById('barChart2RP').getContext('2d');
-      var chartkgIngRPGeneral = new Chart(kgIngRP, {
-        type: 'bar',
-        data: configKgIngRP,
-        options: {
-          responsive: true,
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: false,
-          },
-          plugins: {
-            labels: {
-              render: 'value'
-            }
-          }
-        }
-      });
+      // var kgIngRP = document.getElementById('barChart2RP').getContext('2d');
+      // var chartkgIngRPGeneral = new Chart(kgIngRP, {
+      //   type: 'bar',
+      //   data: configKgIngRP,
+      //   options: {
+      //     responsive: true,
+      //     legend: {
+      //       position: 'top',
+      //     },
+      //     title: {
+      //       display: false,
+      //     },
+      //     plugins: {
+      //       labels: {
+      //         render: 'value'
+      //       }
+      //     }
+      //   }
+      // });
 
-      var kgEgrRP = document.getElementById('barChart3RP').getContext('2d');
-      var chartKgEgrRPGeneral = new Chart(kgEgrRP, {
-        type: 'bar',
-        data: configKgEgrRP,
-        options: {
-          responsive: true,
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: false,
-          },
-          plugins: {
-            labels: {
-              render: 'value'
-            }
-          }
-        }
-      });
+      // var kgEgrRP = document.getElementById('barChart3RP').getContext('2d');
+      // var chartKgEgrRPGeneral = new Chart(kgEgrRP, {
+      //   type: 'bar',
+      //   data: configKgEgrRP,
+      //   options: {
+      //     responsive: true,
+      //     legend: {
+      //       position: 'top',
+      //     },
+      //     title: {
+      //       display: false,
+      //     },
+      //     plugins: {
+      //       labels: {
+      //         render: 'value'
+      //       }
+      //     }
+      //   }
+      // });
 
       var kgProdRP = document.getElementById('barChart4RP').getContext('2d');
       var chartKgProdRPGeneral = new Chart(kgProdRP, {
@@ -383,45 +385,45 @@ $fechaFinal = $fechaRango[1];
         }
       });
 
-      var kgIngRC = document.getElementById('barChart2RC').getContext('2d');
-      var chartKgIngRCGeneral = new Chart(kgIngRC, {
-        type: 'bar',
-        data: configKgIngRC,
-        options: {
-          responsive: true,
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: false,
-          },
-          plugins: {
-            labels: {
-              render: 'value'
-            }
-          }
-        }
-      });
+      // var kgIngRC = document.getElementById('barChart2RC').getContext('2d');
+      // var chartKgIngRCGeneral = new Chart(kgIngRC, {
+      //   type: 'bar',
+      //   data: configKgIngRC,
+      //   options: {
+      //     responsive: true,
+      //     legend: {
+      //       position: 'top',
+      //     },
+      //     title: {
+      //       display: false,
+      //     },
+      //     plugins: {
+      //       labels: {
+      //         render: 'value'
+      //       }
+      //     }
+      //   }
+      // });
 
-      var kgEgrRC = document.getElementById('barChart3RC').getContext('2d');
-      var chartKgEgrRCGeneral = new Chart(kgEgrRC, {
-        type: 'bar',
-        data: configKgEgrRC,
-        options: {
-          responsive: true,
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: false,
-          },
-          plugins: {
-            labels: {
-              render: 'value'
-            }
-          }
-        }
-      });
+      // var kgEgrRC = document.getElementById('barChart3RC').getContext('2d');
+      // var chartKgEgrRCGeneral = new Chart(kgEgrRC, {
+      //   type: 'bar',
+      //   data: configKgEgrRC,
+      //   options: {
+      //     responsive: true,
+      //     legend: {
+      //       position: 'top',
+      //     },
+      //     title: {
+      //       display: false,
+      //     },
+      //     plugins: {
+      //       labels: {
+      //         render: 'value'
+      //       }
+      //     }
+      //   }
+      // });
 
       var kgProdRC = document.getElementById('barChart4RC').getContext('2d');
       var chartKgProdRCGeneral = new Chart(kgProdRC, {
@@ -505,25 +507,25 @@ $fechaFinal = $fechaRango[1];
         }
       });
 
-      var kgIngT = document.getElementById('barChart2T').getContext('2d');
-      var chartKgIngTGeneral = new Chart(kgIngT, {
-        type: 'bar',
-        data: configKgIngT,
-        options: {
-          responsive: true,
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: false,
-          },
-          plugins: {
-            labels: {
-              render: 'value'
-            }
-          }
-        }
-      });
+      // var kgIngT = document.getElementById('barChart2T').getContext('2d');
+      // var chartKgIngTGeneral = new Chart(kgIngT, {
+      //   type: 'bar',
+      //   data: configKgIngT,
+      //   options: {
+      //     responsive: true,
+      //     legend: {
+      //       position: 'top',
+      //     },
+      //     title: {
+      //       display: false,
+      //     },
+      //     plugins: {
+      //       labels: {
+      //         render: 'value'
+      //       }
+      //     }
+      //   }
+      // });
 
       var kgEgrT = document.getElementById('barChart3T').getContext('2d');
       var chartKgEgrTGeneral = new Chart(kgEgrT, {

@@ -28,7 +28,9 @@ if( isset($_FILES["nuevosDatos"]) ){
         $nombreArchivo = str_replace(' ', '',$_FILES['nuevosDatos']['name']);
 
 		$rowValida = FALSE;
-
+        
+        $rowValidaTemp = FALSE;
+        
         $rowNumber = 0;
 
 		$Reader = new SpreadsheetReader($ruta);	
@@ -43,11 +45,27 @@ if( isset($_FILES["nuevosDatos"]) ){
                     
                     $rowNumber++;
 
+                    if($Row[0] == 'Caravana' OR ($Row[0] == 'Hotelero' AND $Row[1] == 'Caravana')){
+                      
+                        unlink("carga/".$_FILES['nuevosDatos']['name']);
+                        
+                        echo "<script>
+                        
+                        window.location.href = 'index.php?ruta=datos-compras&alerta=archivoIncorrecto';
+                        
+                        </script>"; 
+                        
+                        die();
+                    
+                    }
+
+                    
                     if($rowValida == TRUE){   
                         
                         if($Row[1] == ''){
                             break;
                         }
+                        
 
                         $hotelero 	 		= $Row[0];
                         $fecha      	 	= fechaExcel($Row[1]);
@@ -69,7 +87,6 @@ if( isset($_FILES["nuevosDatos"]) ){
                         $transportista		= $Row[24];
                         $camionero	 		= $Row[25];
                         
-
                         if ($rowValidaTemp == FALSE) {
 
                             $fechaSeparada = explode('-',$fecha);
@@ -93,10 +110,11 @@ if( isset($_FILES["nuevosDatos"]) ){
                             if ($resultado['valido'] != 0) {
                                 
                                 unlink("carga/".$_FILES['nuevosDatos']['name']);
-
+                                
                                 echo "<script>
                                 window.location.href = 'index.php?ruta=datos-compras&alerta=datosRepetidos';
                                 </script>";
+                                
                                 die();
 
                             }
@@ -104,6 +122,7 @@ if( isset($_FILES["nuevosDatos"]) ){
                         } 
 
                         $rowValidaTemp = TRUE;
+
 
                         $sql = "INSERT INTO compras(archivo,fecha,hotelero,consignatario,proveedor,tropa,cantidad,categoria,machos,hembras,kgIng,kgComprado,kgProcedencia,precioTotalKg,precioKg,localidad,corral,transportista,camionero) 
                         VALUES('$nombreArchivo','$fecha','$hotelero','$consignatario','$proveedor','$tropa','$cantidad','$categoria','$machos','$hembras','$kgIngreso','$kgComprado','$kgProcedencia','$precioTotalKg','$precioKg','$localidad','$corral','$transportista','$camionero')";
@@ -125,18 +144,23 @@ if( isset($_FILES["nuevosDatos"]) ){
 
                             echo "<script>
 
-                                window.location.href = 'index.php?ruta=datos-compras&errorFila=".$rowNumber."&errorColumna=".$errorColumna."';
+                                window.location.href = 'index.php?ruta=datos-compras&alerta=error&errorFila=".$rowNumber."&errorColumna=".$errorColumna."';
 
                             </script>";
+
+                            die();
                             
                         }
 
+
                     }
 
-					if ($Row[0] == 'Hotelero') {
-
-                            $rowValida = TRUE;
-
+                    
+                    
+                    if ($Row[0] == 'Hotelero' AND $Row[1] == 'Fecha'){
+                        
+                        $rowValida = TRUE;
+                    
                     }
 
 				}		
@@ -144,9 +168,12 @@ if( isset($_FILES["nuevosDatos"]) ){
 
     }
 
-    unlink("carga/".$_FILES['nuevosDatos']['name']);
     echo "<script>
-    window.location.href = 'datos-compras';
+    window.location.href = 'index.php?ruta=datos-compras&alerta=cargadoCorrecto';
+    </script>";
+    
+    echo "<script>
+    window.location.href = 'index.php?ruta=datos-compras&alerta=cargadoCorrecto';
     </script>";
 
 }

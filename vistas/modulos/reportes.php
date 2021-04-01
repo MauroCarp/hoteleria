@@ -437,14 +437,9 @@ MODAL FILTROS
 
     ////// RECRIA PASTORIL ///////
 
-      // var poblacionSexoRP = document.getElementById('pieChartRP').getContext('2d');
-      // window.myPie = new Chart(poblacionSexoRP, configPSSRP);
-
-
       var porcentajePoblacionRP = document.getElementById('pieChart1RP').getContext('2d');
       window.myPie = new Chart(porcentajePoblacionRP, configPPRP);
-      
-
+    
       
       var adpvRP = document.getElementById('barChartRP').getContext('2d');
       var chartAdpvRPGeneral = new Chart(adpvRP, {
@@ -496,45 +491,45 @@ MODAL FILTROS
         }
       });
 
-      var kgIngRP = document.getElementById('barChart2RP').getContext('2d');
-      var chartkgIngRPGeneral = new Chart(kgIngRP, {
-        type: 'bar',
-        data: configKgIngRP,
-        options: {
-          responsive: true,
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: false,
-          },
-          plugins: {
-            labels: {
-              render: 'value'
-            }
-          }
-        }
-      });
+      // var kgIngRP = document.getElementById('barChart2RP').getContext('2d');
+      // var chartkgIngRPGeneral = new Chart(kgIngRP, {
+      //   type: 'bar',
+      //   data: configKgIngRP,
+      //   options: {
+      //     responsive: true,
+      //     legend: {
+      //       position: 'top',
+      //     },
+      //     title: {
+      //       display: false,
+      //     },
+      //     plugins: {
+      //       labels: {
+      //         render: 'value'
+      //       }
+      //     }
+      //   }
+      // });
 
-      var kgEgrRP = document.getElementById('barChart3RP').getContext('2d');
-      var chartKgEgrRPGeneral = new Chart(kgEgrRP, {
-        type: 'bar',
-        data: configKgEgrRP,
-        options: {
-          responsive: true,
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: false,
-          },
-          plugins: {
-            labels: {
-              render: 'value'
-            }
-          }
-        }
-      });
+      // var kgEgrRP = document.getElementById('barChart3RP').getContext('2d');
+      // var chartKgEgrRPGeneral = new Chart(kgEgrRP, {
+      //   type: 'bar',
+      //   data: configKgEgrRP,
+      //   options: {
+      //     responsive: true,
+      //     legend: {
+      //       position: 'top',
+      //     },
+      //     title: {
+      //       display: false,
+      //     },
+      //     plugins: {
+      //       labels: {
+      //         render: 'value'
+      //       }
+      //     }
+      //   }
+      // });
 
       var kgProdRP = document.getElementById('barChart4RP').getContext('2d');
       var chartKgProdRPGeneral = new Chart(kgProdRP, {
@@ -619,45 +614,45 @@ MODAL FILTROS
         }
       });
 
-      var kgIngRC = document.getElementById('barChart2RC').getContext('2d');
-      var chartKgIngRCGeneral = new Chart(kgIngRC, {
-        type: 'bar',
-        data: configKgIngRC,
-        options: {
-          responsive: true,
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: false,
-          },
-          plugins: {
-            labels: {
-              render: 'value'
-            }
-          }
-        }
-      });
+      // var kgIngRC = document.getElementById('barChart2RC').getContext('2d');
+      // var chartKgIngRCGeneral = new Chart(kgIngRC, {
+      //   type: 'bar',
+      //   data: configKgIngRC,
+      //   options: {
+      //     responsive: true,
+      //     legend: {
+      //       position: 'top',
+      //     },
+      //     title: {
+      //       display: false,
+      //     },
+      //     plugins: {
+      //       labels: {
+      //         render: 'value'
+      //       }
+      //     }
+      //   }
+      // });
 
-      var kgEgrRC = document.getElementById('barChart3RC').getContext('2d');
-      var chartKgEgrRCGeneral = new Chart(kgEgrRC, {
-        type: 'bar',
-        data: configKgEgrRC,
-        options: {
-          responsive: true,
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: false,
-          },
-          plugins: {
-            labels: {
-              render: 'value'
-            }
-          }
-        }
-      });
+      // var kgEgrRC = document.getElementById('barChart3RC').getContext('2d');
+      // var chartKgEgrRCGeneral = new Chart(kgEgrRC, {
+      //   type: 'bar',
+      //   data: configKgEgrRC,
+      //   options: {
+      //     responsive: true,
+      //     legend: {
+      //       position: 'top',
+      //     },
+      //     title: {
+      //       display: false,
+      //     },
+      //     plugins: {
+      //       labels: {
+      //         render: 'value'
+      //       }
+      //     }
+      //   }
+      // });
 
       var kgProdRC = document.getElementById('barChart4RC').getContext('2d');
       var chartKgProdRCGeneral = new Chart(kgProdRC, {
@@ -741,45 +736,45 @@ MODAL FILTROS
         }
       });
 
-      var kgIngT = document.getElementById('barChart2T').getContext('2d');
-      var chartKgIngTGeneral = new Chart(kgIngT, {
-        type: 'bar',
-        data: configKgIngT,
-        options: {
-          responsive: true,
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: false,
-          },
-          plugins: {
-            labels: {
-              render: 'value'
-            }
-          }
-        }
-      });
+      // var kgIngT = document.getElementById('barChart2T').getContext('2d');
+      // var chartKgIngTGeneral = new Chart(kgIngT, {
+      //   type: 'bar',
+      //   data: configKgIngT,
+      //   options: {
+      //     responsive: true,
+      //     legend: {
+      //       position: 'top',
+      //     },
+      //     title: {
+      //       display: false,
+      //     },
+      //     plugins: {
+      //       labels: {
+      //         render: 'value'
+      //       }
+      //     }
+      //   }
+      // });
 
-      var kgEgrT = document.getElementById('barChart3T').getContext('2d');
-      var chartKgEgrTGeneral = new Chart(kgEgrT, {
-        type: 'bar',
-        data: configKgEgrT,
-        options: {
-          responsive: true,
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: false,
-          },
-          plugins: {
-            labels: {
-              render: 'value'
-            }
-          }
-        }
-      });
+      // var kgEgrT = document.getElementById('barChart3T').getContext('2d');
+      // var chartKgEgrTGeneral = new Chart(kgEgrT, {
+      //   type: 'bar',
+      //   data: configKgEgrT,
+      //   options: {
+      //     responsive: true,
+      //     legend: {
+      //       position: 'top',
+      //     },
+      //     title: {
+      //       display: false,
+      //     },
+      //     plugins: {
+      //       labels: {
+      //         render: 'value'
+      //       }
+      //     }
+      //   }
+      // });
 
       var kgProdT = document.getElementById('barChart4T').getContext('2d');
       var chartKgProdTGeneral = new Chart(kgProdT, {
