@@ -134,119 +134,119 @@
 
 
 <script>
+function configuracionPieMuertes(data,color,label,position,value){
 
-var color = Chart.helpers.color;
+let configuracion = {
+type: 'pie',
+    data: {
+      datasets: [{
+        data: data,
+        backgroundColor: color,
+      }],
+    labels: 
+    label
+      
+  },
+    options: {
+      responsive: true,
+      title: {
+        display: false,
+  },
+  plugins:{
+    labels:{
+    render: value
+    }
+  },
+  legend: {
+    labels: {
+      boxWidth: 5
+    },
+    position:position
 
-var configMuertesCausa = {
-			type: 'pie',
-			data: {
-				datasets: [{
-					data: [<?php echo $muertesCausas?>],
-					backgroundColor: [<?php echo $colorsPieStr; ?>],
-			  }],
-		  labels: [
-          <?php echo $labelsCausas;?>,
-				]
-      },
-			options: {
-				responsive: true,
-				title: {
-					display: false,
-        },
-        plugins:{
-          labels:{
-            render: 'value'
-          }
-        },
-        legend: {
-          labels: {
-              boxWidth: 5
-          },
-          position:'left'
-
-        }
-			}
-};
-
-var configPorcentajeMuertesCausa = {
-			type: 'pie',
-			data: {
-				datasets: [{
-					data: [<?php echo $muertesCausas?>],
-					backgroundColor: [<?php echo $colorsPieStr; ?>],
-			  }],
-		  labels: [
-          <?php echo $labelsCausas;?>,
-				]
-      },
-			options: {
-				responsive: true,
-				title: {
-					display: false,
-        },
-        legend: {
-          labels: {
-              boxWidth: 5
-          },
-          position:'left'
-        }
-			}
-};
-   
-
-var confMuertesConsignatario = {
-  labels: [
-    'Consignatarios'
-  ],
-  datasets: [
-    <?php
-       echo $chartDataConsignatarios;
-      ?>
-
-  ]
-};
-
-var confMuertesProveedor = {
-  labels: [<?php echo $proveedoresResum;?>],
-  datasets: [
-    {
-        label: 'Muertes por Proveedor',
-        backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
-        borderColor: window.chartColors.blue,
-        borderWidth: 1,
-        data: [<?php echo $dataProveedor;?>]
-        
+  }
     }
 
+}
+
+return configuracion;
+
+}
+
+function configuracionBar(label,data){
+        
+let configuracion = {
+  labels: [
+    label
+  ],
+  datasets:
+    data 
+  
+};
+
+return configuracion;
+
+}
+    
+
+function configuracionBarMuertes(labels,data,labels2){
+
+let configuracion = {
+  labels: labels,
+  datasets: [
+    {
+      label: labels2,
+      backgroundColor: color(window.chartColors.blue).alpha(0.5).rgbString(),
+      borderColor: window.chartColors.blue,
+      borderWidth: 1,
+      data: data
+      
+    }
+    
   ]
 };
 
-var configMuertesSexo = {
-			type: 'pie',
-			data: {
-				datasets: [{
-					data: [<?php echo $muertesSexo?>],
-					backgroundColor: [<?php echo "'#7FB3D5','#F5B7B1'"; ?>],
-			  }],
-		  labels: [
-          'Machos','Hembras',
-				]
-      },
-			options: {
-				responsive: true,
-				title: {
-					display: false,
-        },
-        legend: {
-          labels: {
-              boxWidth: 5
-          },
-          position:'left'
+return configuracion;
 
-        }
-			}
-};
+}
+var color = Chart.helpers.color;
 
+let data = [<?php echo $muertesCausas?>];
+
+let colors = [<?php echo $colorsPieStr; ?>];
+
+let labels = [<?php echo $labelsCausas;?>];
+
+let configMuertesCausa = configuracionPieMuertes(data,colors,labels,'left','value');
+
+data = [<?php echo $muertesCausas?>];
+
+colors = [<?php echo $colorsPieStr; ?>];
+
+labels = [<?php echo $labelsCausas;?>];
+
+let configPorcentajeMuertesCausa = configuracionPieMuertes(data,colors,labels,'left',null);
+
+data = [<?php echo $chartDataConsignatarios;?>];
+
+labels = ['Consignatarios'];
+
+let confMuertesConsignatario = configuracionBar(labels,data);
+          
+data = [<?php echo $dataProveedor;?>];
+
+labels = [<?php echo $proveedoresResum;?>];
+
+let labels2 = 'Muertes por Proveedor';
+
+let confMuertesProveedor = configuracionBarMuertes(labels,data,labels2);
+
+data = [<?php echo $muertesSexo?>];
+
+colors = [<?php echo "'#7FB3D5','#F5B7B1'";?>];
+
+labels = ['Machos','Hembras'];
+
+let configMuertesSexo = configuracionPieMuertes(data,colors,labels,'left',null);
 
 
 </script>

@@ -160,26 +160,25 @@
 
 <script>
 
-var confCantTotal = {
-			type: 'pie',
-			data: {
-				datasets: [{
-					data: [
-            <?php echo $cantidadTotal[0][0];?>
-					],
-					backgroundColor: [
-					window.chartColors.red,
-					],
-					label: 'Cantidad de Animales'
-				}],
-				labels: [
-				'Total'
-				]
-			},
-			options: {
-				responsive: true,
-				title: {
-					display: false,
+function configuracionPie(data,color,label,label2){
+          
+  let configuracion = {
+    type: 'pie',
+    data: {
+      datasets: [{
+        data: data,
+        backgroundColor:
+
+          color
+        ,
+        label: label2
+      }],
+      labels: label
+    },
+    options: {
+        responsive: true,
+        title: {
+          display: false,
         },
         plugins:{
           labels:{
@@ -191,74 +190,34 @@ var confCantTotal = {
               boxWidth: 5
           }
         }
+      }
+  };
+    
+  return configuracion;
 
-			}
 }
 
-var confCantCabezasSexo = {
-			type: 'pie',
-			data: {
-				datasets: [{
-					data: [
-            <?php echo $cantMachosHembras?>
-					],
-					backgroundColor: [
-					window.chartColors.blue,
-					window.chartColors.red,
-					],
-					label: 'Cantidad de Animales por Sexo'
-				}],
-				labels: [
-          'Macho','Hembra',
-				]
-			},
-			options: {
-				responsive: true,
-				title: {
-					display: false,
-        },
-        plugins:{
-          labels:{
-            render: 'value'
-          }
-        },
-        legend: {
-          labels: {
-              boxWidth: 5
-          }
-        }
-			}
-};
+let data = [<?php echo $cantidadTotal[0][0];?>];
 
-var confCantConsignatario = {
-			type: 'pie',
-			data: {
-				datasets: [{
-					data: [
-            <?php echo $animalesPorConsignatario  ;?>
-					],
-					backgroundColor: [
-            <?php echo $coloresConsignatario;?>  
-					],
-					label: 'Cantidad de Animales por Consignatario'
-				}],
-				labels: [
-          <?php echo $nombresPorConsignatario;?>,
-				]
-			},
-			options: {
-				responsive: true,
-				title: {
-					display: false,
-        },
-        legend: {
-          labels: {
-              boxWidth: 5
-          }
-        }
+let confCantTotal = configuracionPie(data,[window.chartColors.red],['Total'],'Cantidad de Animales');
 
-			}
-};
+data = [<?php echo $cantMachosHembras?>];
+
+let colors = [window.chartColors.blue,window.chartColors.red];
+
+let label = ['Macho','Hembra'];
+
+let confCantCabezasSexo = configuracionPie(data,colors,label,'Cantidad de Animales por Sexo');
+
+data =  [<?php echo $animalesPorConsignatario;?>];
+
+colors = [<?php echo $coloresConsignatario;?>];
+
+label = [<?php echo $nombresPorConsignatario;?>];
+
+let confCantConsignatario = configuracionPie(data,colors,label,'Cantidad de Animales por Consignatario');
+
+confCantConsignatario.options.plugins.labels.render = null;
 
 var color = Chart.helpers.color;
 

@@ -139,7 +139,7 @@
         
             <div class="box-header with-border">
             
-            <h3 class="box-title">% Población / Total: <?php echo $totalAnimalesRC;?> Animales</h3>
+            <h3 class="box-title">% Participación / Total: <?php echo $totalAnimalesRC;?> Animales</h3>
 
             </div>
             
@@ -211,176 +211,50 @@
 
 <script>
 
-var configPSSRC = {
-			type: 'pie',
-			data: {
-				datasets: [{
-					data: [
-					<?php
+// POBLACION
 
-					$resultado = $totalMachos[0].",".$totalHembras[0].",";
-					echo $resultado;
+  data = [<?php echo $totalMachos[0].",".$totalHembras[0].",";?>];
 
-					?>
-					],
-					backgroundColor: [
-					window.chartColors.red,
-					window.chartColors.orange,
-					],
-					label: 'Sexo'
-				}],
-				labels: [
-				'Macho',
-				'Hembra'
-				]
-			},
-			options: {
-				responsive: true,
-				title: {
-					display: false,
-                },
-                labels:{
-                    render:'value',
-                    fontSize: 14,
-                    fontStyle: 'bold',
-                    fontColor: '#000',
-                    fontFamily: '"Lucida Console", Monaco, monospace'
-                },
-                plugins:{
-                    labels:{
-                        render: 'value'
-                    }
-                }
+  label = ['Macho','Hembra'];
+          
+  let configPSSRC = configuracionPie(data,label);
 
-			}
-};
+// PARTICIPACION
 
-var configPPRC = {
-			type: 'pie',
-			data: {
-				datasets: [{
-					data: [
-                        <?php 
-                        echo $totalAnimalesRC.",".$restoAnimales.",";
-                        ?>
-					],
-					backgroundColor: [
-					window.chartColors.red,
-					window.chartColors.orange,
-					],
-					label: 'value'
-				}],
-				labels: [
-                    'Población RC','Resto Población'
-				]
-			},
-			options: {
-				responsive: true,
-				title: {
-					display: false,
-				}
+  data = [<?php echo $totalAnimalesRC.",".$restoAnimales.",";?>];
 
-			}
-};
+  label = ['Población RC','Resto Población'];
 
-var color = Chart.helpers.color;
+  let configPPRC = configuracionPie(data,label);
 
-var configADPVRC = {
-  labels: [
-    'Prom. Adpv'
-  ],
-  datasets: [{
-    label: 'Kg. Prom',
-    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    borderColor: window.chartColors.red,
-    borderWidth: 1, 
+// ADPV
 
-    data: [
-    <?php
-    echo $promedioAdpvRC;
-    ?>
-    ]
-  }]
+  var color = Chart.helpers.color;
 
-};
+  data = [ <?php echo $promedioAdpvRC;?> ];
 
-var configDiasRC = {
-  labels: [
-    'Prom. Dias'
-  ],
-  datasets: [{
-    label: 'Dias Prom.',
-    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    borderColor: window.chartColors.red,
-    borderWidth: 1, 
+  label = ['Prom. Adpv'];
 
-    data: [
-    <?php
-    echo $promedioDiasRC;
-    ?>
-    ]
-  }]
+  label2 = 'Kg. Prom';
 
-};
+  let configADPVRC = configuracionBar(label,data,label2);
 
+// DIAS
 
-// var configKgIngRC = {
-//   labels: [
-//     'Kg Ingreso Prom.'
-//   ],
-//   datasets: [{
-//     label: 'Kg Ingreso Prom.',
-//     backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-//     borderColor: window.chartColors.red,
-//     borderWidth: 1, 
+  label = ['Prom. Dias'];
 
-//     data: [
-//     <?php
-//     echo $promedioKgIngRC;
-//     ?>
-//     ]
-//   }]
+  label2 = 'Dias';
 
-// };
+  data = [<?php echo $promedioDiasRC;?>];
 
-// var configKgEgrRC = {
-//   labels: [
-//     'Kg Salida Prom.'
-//   ],
-//   datasets: [{
-//     label: 'Kg Salida Prom.',
-//     backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-//     borderColor: window.chartColors.red,
-//     borderWidth: 1, 
+  let configDiasRC = configuracionBar(label,data,label2);
 
-//     data: [
-//     <?php
-//     echo $promedioKgEgrRC;
-//     ?>
-//     ]
-//   }]
+// KG PROD
 
-// };
+  label = ['Prom. Kg Produc.'];
 
-var configKgProdRC = {
-  labels: [
-    'Kg Produc. Promedio'
-  ],
-  datasets: [{
-    label: 'Kg Produc. Promedio',
-    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    borderColor: window.chartColors.red,
-    borderWidth: 1, 
+  data = [<?php echo $promedioKgProdRC;?>];
 
-    data: [
-    <?php
-    echo $promedioKgProdRC;
-    ?>
-    ]
-  }]
-
-};
-
-
+  let configKgProdRC = configuracionBar(label,data,label2);
 
 </script>

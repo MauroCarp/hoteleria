@@ -209,175 +209,97 @@
 
 <script>
 
-var configPSSRP = {
-			type: 'pie',
-			data: {
-				datasets: [{
-					data: [
-					<?php
+function configuracionPie(data,color,label,label2){
+  
+  let configuracion = {
+    type: 'pie',
+    data: {
+      datasets: [{
+        data: data,
+        backgroundColor:
 
-					$resultado = $totalMachos[0].",".$totalHembras[0].",";
-					echo $resultado;
+          color
+        ,
+        label: label2
+      }],
+      labels: label
+    },
+    options: {
+        responsive: true,
+        title: {
+          display: false,
+        },
+        plugins:{
+          labels:{
+            render: 'value'
+          }
+        },
+        legend: {
+          labels: {
+              boxWidth: 5
+          }
+        }
+      }
+  };
+    
+  return configuracion;
 
-					?>
-					],
-					backgroundColor: [
-					window.chartColors.red,
-					window.chartColors.orange,
-					],
-					label: 'Sexo'
-				}],
-				labels: [
-				'Macho',
-				'Hembra'
-				]
-			},
-			options: {
-				responsive: true,
-				title: {
-					display: false,
-                },
-                labels:{
-                    render:'value',
-                    fontSize: 14,
-                    fontStyle: 'bold',
-                    fontColor: '#000',
-                    fontFamily: '"Lucida Console", Monaco, monospace'
-                },
-                plugins:{
-                    labels:{
-                        render: 'value'
-                    }
-                }
+}
+        
+        
+function configuracionBar(labels,data,labels2){
 
-			}
-};
+  let configuracion = {
+    labels: labels,
+    datasets: [{
+      label: labels2,
+      backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+      borderColor: window.chartColors.red,
+      borderWidth: 1, 
 
-var configPPRP = {
-			type: 'pie',
-			data: {
-				datasets: [{
-					data: [
-                        <?php 
-                        echo $totalAnimalesRP.",".$restoAnimales.",";
-                        ?>
-					],
-					backgroundColor: [
-					window.chartColors.red,
-					window.chartColors.orange,
-					],
-					label: 'value'
-				}],
-				labels: [
-                    'Población RP','Resto Población'
-				]
-			},
-			options: {
-				responsive: true,
-				title: {
-					display: false,
-				}
+      data: data
+    }]
 
-			}
-};
+  }
+
+  return configuracion;
+
+}
+
+data = [<?php $totalMachos[0].",".$totalHembras[0].",";?>];
+
+colors = [window.chartColors.red,window.chartColors.orange];
+
+labels = ['Macho','Hembra'];
+
+let configPSSRP = configuracionPie(data,colors,labels,'Sexo');
+
+
+data = [<?php echo $totalAnimalesRP.",".$restoAnimales.",";?>];
+
+labels = ['Población RP','Resto Población'];
+
+let configPPRP = configuracionPie(data,colors,labels,'value');
 
 var color = Chart.helpers.color;
 
-var configADPVRP = {
-  labels: [
-    'Prom. Adpv'
-  ],
-  datasets: [{
-    label: 'Kg. Prom',
-    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    borderColor: window.chartColors.red,
-    borderWidth: 1, 
+data = [<?php echo $promedioAdpvRP;?>];
 
-    data: [
-    <?php
-    echo $promedioAdpvRP;
-    ?>
-    ]
-  }]
+labels = ['Prom. Adpv'];
 
-};
+let configADPVRP = configuracionBar(labels,data,'Kg. Prom');
 
-var configDiasRP = {
-  labels: [
-    'Prom. Dias'
-  ],
-  datasets: [{
-    label: 'Dias Prom.',
-    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    borderColor: window.chartColors.red,
-    borderWidth: 1, 
+data = [<?php echo $promedioDiasRP;?>];
 
-    data: [
-    <?php
-    echo $promedioDiasRP;
-    ?>
-    ]
-  }]
+labels = ['Prom. Dias'];
 
-};
+let configDiasRP = configuracionBar(labels,data,'Dias Prom.');
 
+data = [<?php echo $promedioKgProdRP;?>];
 
-var configKgIngRP = {
-  labels: [
-    'Kg Ingreso Prom.'
-  ],
-  datasets: [{
-    label: 'Kg Ingreso Prom.',
-    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    borderColor: window.chartColors.red,
-    borderWidth: 1, 
+labels = ['Kg Produc. Promedio'];
 
-    data: [
-    <?php
-    echo $promedioKgIngRP;
-    ?>
-    ]
-  }]
-
-};
-
-var configKgEgrRP = {
-  labels: [
-    'Kg Salida Prom.'
-  ],
-  datasets: [{
-    label: 'Kg Salida Prom.',
-    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    borderColor: window.chartColors.red,
-    borderWidth: 1, 
-
-    data: [
-    <?php
-    echo $promedioKgEgrRP;
-    ?>
-    ]
-  }]
-
-};
-
-var configKgProdRP = {
-  labels: [
-    'Kg Produc. Promedio'
-  ],
-  datasets: [{
-    label: 'Kg Produc. Promedio',
-    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    borderColor: window.chartColors.red,
-    borderWidth: 1, 
-
-    data: [
-    <?php
-    echo $promedioKgProdRP;
-    ?>
-    ]
-  }]
-
-};
+let configKgProdRP = configuracionBar(labels,data,'Kg Produc. Promedio');
 
 
 

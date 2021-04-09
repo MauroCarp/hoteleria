@@ -455,96 +455,15 @@ MODAL GRAFICO  MUERTES TRATADAS
 
    localStorage.setItem("consignatarios", consignatarios);
 
-   function opciones(configuracion){
-    var opciones = {
-      type: 'bar',
-        data: configuracion,
-        options: {
-          responsive: true,
-          legend: {
-            position: 'top',
-            labels: {
-                boxWidth: 5
-            }
-          },
-          title: {
-            display: false,
-          },
-          plugins: {
-            labels: {
-              render: 'value'
-            }
-          },
-          scaleShowValues: true,
-
-          scales: {
-              xAxes: [{
-                ticks: {
-                  autoSkip: false
-                }
-              }],
-              yAxes: [{
-                  ticks: {
-                      suggestedMin: 0,
-                  }
-              }]
-          }
-        }
-      }
-    return opciones;
-  }
-
-  
-      var muertesSexo = document.getElementById('muertesSexo').getContext('2d');
-      var chartMuertesSexo = new Chart(muertesSexo, configMuertesSexo);
-
-      var muertesMotivo = document.getElementById('muertesMotivo').getContext('2d');
-      var chartMuertesMotivo = new Chart(muertesMotivo, configMuertesCausa);
-
-      var porcentajeMotivo = document.getElementById('porcentajeMotivo').getContext('2d');
-      var chartPorcentajeMotivo = new Chart(porcentajeMotivo, configPorcentajeMuertesCausa);
-
-  
-      var muertesConsignatario = document.getElementById('muertesConsignatario').getContext('2d');
-      var chartMuertesConsignatario = new Chart(muertesConsignatario, opciones(confMuertesConsignatario));
-     
-      var muertesProveedor = document.getElementById('muertesProveedor').getContext('2d');
-      var chartMuertesProveedor = new Chart(muertesProveedor, {
-        type: 'bar',
-        data: confMuertesProveedor,
-        options: {
-          responsive: true,
-          legend: {
-            position: 'top',
-            labels: {
-                boxWidth: 5
-            }
-          },
-          title: {
-            display: false,
-          },
-          plugins: {
-            labels: {
-              render: 'value'
-            }
-          },
-          scaleShowValues: true,
-
-          scales: {
-              xAxes: [{
-                ticks: {
-                  autoSkip: false
-                }
-              }],
-              yAxes: [{
-                  ticks: {
-                      suggestedMin: 0,
-                  }
-              }]
-          }
-        }
-      });
-
+      generarGraficoPie('muertesMotivo',configMuertesCausa);
+      
+      generarGraficoPie('porcentajeMotivo',configPorcentajeMuertesCausa);
+        
+      generarGraficoPie('muertesSexo',configMuertesSexo);
+    
+      generarGraficoBar('muertesConsignatario',confMuertesConsignatario,'atZero');
+    
+      generarGraficoBar('muertesProveedor',confMuertesProveedor,'skipFalse');
 
       
       var datos = <?php echo $datosJson;?>;

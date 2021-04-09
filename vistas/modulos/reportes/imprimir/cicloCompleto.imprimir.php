@@ -209,165 +209,104 @@
 </div>
 
 
-
 <script>
-var configPSS = {
-			type: 'pie',
-			data: {
-				datasets: [{
-					data: [
-					<?php
+function configuracionPie(data,color,label,label2){
+          
+  let configuracion = {
+    type: 'pie',
+    data: {
+      datasets: [{
+        data: data,
+        backgroundColor:
 
-					$resultado = $totalMachos[0].",".$totalHembras[0].",";
-					echo $resultado;
-
-					?>
-					],
-					backgroundColor: [
-					window.chartColors.red,
-					window.chartColors.orange,
-					],
-					label: 'Sexo'
-				}],
-				labels: [
-				'Macho',
-				'Hembra'
-				]
-			},
-			options: {
-				responsive: true,
-				title: {
-					display: false,
+          color
+        ,
+        label: label2
+      }],
+      labels: label
+    },
+    options: {
+        responsive: true,
+        title: {
+          display: false,
         },
         plugins:{
           labels:{
             render: 'value'
           }
+        },
+        legend: {
+          labels: {
+              boxWidth: 5
+          }
         }
+      }
+  };
+    
+  return configuracion;
 
-			}
-};
+}
 
-var configPP = {
-			type: 'pie',
-			data: {
-				datasets: [{
-					data: [
-            <?php echo $totalAnimalesCC;?>
-          ],
-					backgroundColor: [
-					window.chartColors.red,
-					window.chartColors.orange,
-					],
-					label: 'Porcentaje'
-				}],
-				labels: [
-          'Población'
-				]
-			},
-			options: {
-				responsive: true,
-				title: {
-					display: false,
-        }
 
-			}
-};
+function configuracionBar(labels,data,labels2){
+
+  let configuracion = {
+    labels: labels,
+    datasets: [{
+      label: labels2,
+      backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+      borderColor: window.chartColors.red,
+      borderWidth: 1, 
+
+      data: data
+    }]
+
+  }
+
+  return configuracion;
+
+}
+
+let data = [<?php echo $totalMachos[0].",".$totalHembras[0];?>];
+
+let colors = [window.chartColors.red,window.chartColors.orange];
+
+let labels = ['Macho','Hembra'];
+
+let configPSS = configuracionPie(data,colors,labels,'Sexo');
+
+
 
 var color = Chart.helpers.color;
 
-var configADPV = {
-  labels: [
-    'Prom. Adpv'
-  ],
-  datasets: [{
-    label: 'Kg. Prom',
-    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    borderColor: window.chartColors.red,
-    borderWidth: 1, 
-    data: [
-    <?php
-    echo $promedioAdpvCC;
-    ?>
-    ]
-  }]
+data = [<?php echo $promedioAdpvCC;?>];
 
-};
+labels = ['Prom. Adpv'];
 
-var configDias = {
-  labels: [
-    'Prom. Dias'
-  ],
-  datasets: [{
-    label: 'Dias',
-    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    borderColor: window.chartColors.red,
-    borderWidth: 1, 
-    data: [
-    <?php
-    echo $promedioDiasCC;
-    ?>
-    ]
-  }]
+let configADPV = configuracionBar(labels,data,'Kg. Prom');
 
-};
+data = [<?php echo $promedioDiasCC;?>];
 
-var configKgIng = {
-  labels: [
-    'Prom. Kg Ingreso'
-  ],
-  datasets: [{
-    label: 'Kg',
-    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    borderColor: window.chartColors.red,
-    borderWidth: 1, 
-    data: [
-    <?php
-    echo $promedioKgIngCC;
-    ?>
-    ]
-  }]
+labels = ['Prom. Dias'];
 
-};
+let configDias = configuracionBar(labels,data,'Dias Prom.');
 
-var configKgEgr = {
-  labels: [
-    'Prom. Kg Egreso'
-  ],
-  datasets: [{
-    label: 'Kg',
-    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    borderColor: window.chartColors.red,
-    borderWidth: 1, 
-    data: [
-    <?php
-    echo $promedioKgEgrCC;
-    ?>
-    ]
-  }]
+data = [<?php echo $promedioKgIngCC;?>];
 
-};
+labels = ['Kg Ing. Promedio'];
 
-var configKgProd = {
-  labels: [
-    'Prom. Kg Produc.'
-  ],
-  datasets: [{
-    label: 'Kg',
-    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    borderColor: window.chartColors.red,
-    borderWidth: 1, 
-    data: [
-    <?php
-    echo $promedioKgProdCC;
-    ?>
-    ]
-  }]
+let configKgIng = configuracionBar(labels,data,'Kg Ing. Promedio');
 
-};
+data = [<?php echo $promedioKgEgrCC;?>];
 
+labels = ['Kg Egr. Promedio'];
 
+let configKgEgr = configuracionBar(labels,data,'Kg Egr. Promedio');
 
+data = [<?php echo $promedioKgProdCC;?>];
 
+labels = ['Kg Produc. Promedio'];
 
+let configKgProd = configuracionBar(labels,data,'Kg Produc. Promedio');
+    
 </script>

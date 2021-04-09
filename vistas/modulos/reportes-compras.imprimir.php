@@ -27,7 +27,7 @@ function porcentaje($dato,$total){
 }
 
 include 'ajax/datosReporteCompras.ajax.php';
-
+include 'ajax/datosReporteComprasCostos.ajax.php';
 
 ?>
 <div class="content-wrapper">
@@ -132,24 +132,21 @@ include 'ajax/datosReporteCompras.ajax.php';
     $('.main-footer').hide();
 
     var dataConsignatario = <?php echo $dataAnimalesConsignatario?>;
-
-
-    var cantTotal = document.getElementById('cantCabezas').getContext('2d');
-    window.myPie = new Chart(cantTotal, confCantTotal);   
-
-    var cantCabezasSexo = document.getElementById('cantCabezasSexo').getContext('2d');
-    window.myPie = new Chart(cantCabezasSexo, confCantCabezasSexo);     
-
+    
+    generarGraficoPie('cantCabezas',confCantTotal);
+    
+    generarGraficoPie('cantCabezasSexo',confCantCabezasSexo);
  
-    var costoCantidadConsignatario = document.getElementById('precioCantidaConsignatario').getContext('2d');
-	  new Chart(costoCantidadConsignatario, {
+
+    let configPrecioKiloCons = {
+
       type: 'bar',
       data: {
         labels: [<?php echo $nombresPorConsignatarioResumidos;?>],
         datasets: [
         {
           type: 'line',
-          label: 'Precio Promedio de la Cabeza',
+          label: '$/Kg Precio Promedio del Kilo',
           borderColor: window.chartColors.red,
           fill:false,
           yAxisID: 'A',
@@ -184,18 +181,11 @@ include 'ajax/datosReporteCompras.ajax.php';
               id: 'A',
               type: 'linear',
               position: 'left',
-              // ticks: {
-              //   suggestedMin: 500000,
-              //   suggestedMax: 2000000
-              // }
+            
             }, {
               id: 'B',
               type: 'linear', // BARCHART CON LA CANTIDAD DE KILOS PROMEDIO
               position: 'right',
-              // ticks: {
-              // max: 250,
-              // min: 0
-              // }
             }]
           },
           plugins:{
@@ -209,15 +199,14 @@ include 'ajax/datosReporteCompras.ajax.php';
             }
           }
         }
-    });
+    };
+
+    generarGraficoBar('precioCantidaConsignatario',configPrecioKiloCons,'noOption');
 
 
-    var cantConsignatario = document.getElementById('cantConsignatario').getContext('2d');
-    window.myPie = new Chart(cantConsignatario, confCantConsignatario);   
+    generarGraficoPie('cantConsignatario',confCantConsignatario);
 
-    var cantConsignatarioSexo = document.getElementById('cantConsignatarioSexo').getContext('2d');
-
-		window.myBar = new Chart(cantConsignatarioSexo, {
+    let confCantConsSexo = {
 				type: 'bar',
 				data: confCantConsignatarioSexo,
 				options: {
@@ -258,47 +247,50 @@ include 'ajax/datosReporteCompras.ajax.php';
             }]
           }
 				}
-    });
-    
-    var cantProveedor = document.getElementById('cantProveedor').getContext('2d');
-			window.myBar = new Chart(cantProveedor, {
-				type: 'bar',
-				data: confCantProveedor,
-				options: {
-					responsive: true,
-					legend: {
-            position: 'top',
-            labels: {
-                boxWidth: 5
-            }
-					},
-					title: {
-						display: false,
-						text: 'Cabezas por Proveedor'
-          },
-          plugins: {
-            labels: {
-              render: 'value'
-            }
-          },
-          scales: {
-            xAxes: [{
-              display:false,
-						}],
-              yAxes: [{
-                  ticks: {
-                      suggestedMin: 0,
-                      suggestedMax: 100
-                  }
-              }]
+    };
+
+    generarGraficoBar('cantConsignatarioSexo',confCantConsSexo,'noOption');
+
+    let confCantProv = {
+      type: 'bar',
+      data: confCantProveedor,
+      options: {
+        responsive: true,
+        legend: {
+          position: 'top',
+          labels: {
+              boxWidth: 5
           }
-				}
-			});
+        },
+        title: {
+          display: false,
+          text: 'Cabezas por Proveedor'
+        },
+        plugins: {
+          labels: {
+            render: 'value'
+          }
+        },
+        scales: {
+          xAxes: [{
+            display:false,
+          }],
+            yAxes: [{
+                ticks: {
+                    suggestedMin: 0,
+                    suggestedMax: 100
+                }
+            }]
+        }
+      }
+    };
+
+    generarGraficoBar('cantProveedor',confCantProv,'noOption');
 
 
-  setTimeout(function () { window.print(); }, 1300);
-  window.onfocus = function () { setTimeout('window.close();', .2);}
+    setTimeout(function () { window.print(); }, 1300);
+    window.onfocus = function () { setTimeout('window.close();', .2);}
   
-    })
+  })
 
 </script> 

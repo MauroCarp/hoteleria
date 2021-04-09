@@ -258,7 +258,7 @@
         CUERPO DEL MODAL
         ======================================-->
 
-        <div class="modal-body">
+        <div class="modal-body" style="padding-bottom:0">
 
           <div class="box-body">
             
@@ -271,6 +271,39 @@
                   <div class="col-md-12">
 
                     <button type="button" class="btn btn-default btn-lg btn-block" id="daterange-btnCompras">
+                    
+                      <span>
+                        <i class="fa fa-calendar"></i> 
+                          Rango de Fecha
+                      </span>
+
+                      <i class="fa fa-caret-down"></i>
+
+                    </button>
+
+                  </div>
+
+                </div>
+					
+				<br>
+				
+				<div class="row">
+
+					<div class="col-md-6">
+			  
+						<input type="checkbox" name="compararCompra" id="comprarCompra">
+						
+			  			<b>Comparar</b>
+					
+					</div>
+
+				</div>
+
+				<div class="row" style="display:none">
+
+                  <div class="col-md-12">
+
+                    <button type="button" class="btn btn-default btn-lg btn-block" id="daterange-btnComprasComparar">
                     
                       <span>
                         <i class="fa fa-calendar"></i> 

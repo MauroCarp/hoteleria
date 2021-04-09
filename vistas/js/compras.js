@@ -39,3 +39,5 @@ $('.tablaCompras').DataTable( {
 	}
 
 } );
+
+

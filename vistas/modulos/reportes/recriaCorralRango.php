@@ -219,175 +219,52 @@
 
 <script>
 
-var configPSSRC = {
-			type: 'pie',
-			data: {
-				datasets: [{
-					data: [
-					<?php
+// POBLACION
 
-					$resultado = $totalMachos[0].",".$totalHembras[0].",";
-					echo $resultado;
+data = [<?php echo $totalMachos[0].",".$totalHembras[0].",";?>];
 
-					?>
-					],
-					backgroundColor: [
-					window.chartColors.red,
-					window.chartColors.orange,
-					],
-					label: 'Sexo'
-				}],
-				labels: [
-				'Macho',
-				'Hembra'
-				]
-			},
-			options: {
-				responsive: true,
-				title: {
-					display: false,
-                },
-                labels:{
-                    render:'value',
-                    fontSize: 14,
-                    fontStyle: 'bold',
-                    fontColor: '#000',
-                    fontFamily: '"Lucida Console", Monaco, monospace'
-                },
-                plugins:{
-                    labels:{
-                        render: 'value'
-                    }
-                }
+label = ['Macho','Hembra'];
+        
+let configPSSRC = configuracionPie(data,label);
 
-			}
-};
+// PARTICIPACION
 
-var configPPRC = {
-			type: 'pie',
-			data: {
-				datasets: [{
-					data: [
-                        <?php 
-                        echo $totalAnimalesRC.",".$restoAnimales.",";
-                        ?>
-					],
-					backgroundColor: [
-					window.chartColors.red,
-					window.chartColors.orange,
-					],
-					label: 'value'
-				}],
-				labels: [
-                    'Población RC','Resto Población'
-				]
-			},
-			options: {
-				responsive: true,
-				title: {
-					display: false,
-				}
+data = [<?php echo $totalAnimalesRC.",".$restoAnimales.",";?>];
 
-			}
-};
+label = ['Población RC','Resto Población'];
+
+let configPPRC = configuracionPie(data,label);
+
+// ADPV
 
 var color = Chart.helpers.color;
 
-var configADPVRC = {
-  labels: [
-    'Prom. Adpv'
-  ],
-  datasets: [{
-    label: 'Kg. Prom',
-    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    borderColor: window.chartColors.red,
-    borderWidth: 1, 
+data = [ <?php echo $promedioAdpvRC;?> ];
 
-    data: [
-    <?php
-    echo $promedioAdpvRC;
-    ?>
-    ]
-  }]
+label = ['Prom. Adpv'];
 
-};
+label2 = 'Kg. Prom';
 
-var configDiasRC = {
-  labels: [
-    'Prom. Dias'
-  ],
-  datasets: [{
-    label: 'Dias Prom.',
-    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    borderColor: window.chartColors.red,
-    borderWidth: 1, 
+let configADPVRC = configuracionBar(label,data,label2);
 
-    data: [
-    <?php
-    echo $promedioDiasRC;
-    ?>
-    ]
-  }]
+// DIAS
 
-};
+label = ['Prom. Dias'];
 
+label2 = 'Dias';
 
-// var configKgIngRC = {
-//   labels: [
-//     'Kg Ingreso Prom.'
-//   ],
-//   datasets: [{
-//     label: 'Kg Ingreso Prom.',
-//     backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-//     borderColor: window.chartColors.red,
-//     borderWidth: 1, 
+data = [<?php echo $promedioDiasRC;?>];
 
-//     data: [
-//     <?php
-//     echo $promedioKgIngRC;
-//     ?>
-//     ]
-//   }]
+let configDiasRC = configuracionBar(label,data,label2);
 
-// };
+// KG PROD
 
-// var configKgEgrRC = {
-//   labels: [
-//     'Kg Salida Prom.'
-//   ],
-//   datasets: [{
-//     label: 'Kg Salida Prom.',
-//     backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-//     borderColor: window.chartColors.red,
-//     borderWidth: 1, 
+label = ['Prom. Kg Produc.'];
 
-//     data: [
-//     <?php
-//     echo $promedioKgEgrRC;
-//     ?>
-//     ]
-//   }]
+data = [<?php echo $promedioKgProdRC;?>];
 
-// };
+let configKgProdRC = configuracionBar(label,data,label2);
 
-var configKgProdRC = {
-  labels: [
-    'Kg Produc. Promedio'
-  ],
-  datasets: [{
-    label: 'Kg Produc. Promedio',
-    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    borderColor: window.chartColors.red,
-    borderWidth: 1, 
-
-    data: [
-    <?php
-    echo $promedioKgProdRC;
-    ?>
-    ]
-  }]
-
-};
 
 
 

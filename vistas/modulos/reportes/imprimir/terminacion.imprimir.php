@@ -205,207 +205,101 @@
       </div>
 
 </div>
-<!-- <div class="row">
-      
-    <div class="col-md-4">  
-    -->
-        <!-- DONUT CHART -->
-    <!--    <div class="box box-danger">
-        
-            <div class="box-header with-border">
-            
-            <h3 class="box-title">Población según Sexo</h3>
-
-
-            </div>
-            
-            <div class="box-body">
-
-                <canvas id="pieChartT" style="height:100px"></canvas>
-              
-            </div>
-        
-        </div>
-
-    </div>
-
-          
-
-</div> -->
-
 
 <script>
 
-var configPSST = {
-			type: 'pie',
-			data: {
-				datasets: [{
-					data: [
-					<?php
 
-					$resultado = $totalMachos[0].",".$totalHembras[0].",";
-					echo $resultado;
+function configuracionPie(data,color,label,label2){
+          
+  let configuracion = {
+    type: 'pie',
+    data: {
+      datasets: [{
+        data: data,
+        backgroundColor:
 
-					?>
-					],
-					backgroundColor: [
-					window.chartColors.red,
-					window.chartColors.orange,
-					],
-					label: 'Sexo'
-				}],
-				labels: [
-				'Macho',
-				'Hembra'
-				]
-			},
-			options: {
-				responsive: true,
-				title: {
-					display: false,
-                },
-                labels:{
-                    render:'value',
-                    fontSize: 14,
-                    fontStyle: 'bold',
-                    fontColor: '#000',
-                    fontFamily: '"Lucida Console", Monaco, monospace'
-                },
-                plugins:{
-                    labels:{
-                        render: 'value'
-                    }
-                }
+          color
+        ,
+        label: label2
+      }],
+      labels: label
+    },
+    options: {
+        responsive: true,
+        title: {
+          display: false,
+        },
+        plugins:{
+          labels:{
+            render: 'value'
+          }
+        },
+        legend: {
+          labels: {
+              boxWidth: 5
+          }
+        }
+      }
+  };
+    
+  return configuracion;
 
-			}
-};
+}
+        
+        
+function configuracionBar(labels,data,labels2){
 
-var configPPT = {
-			type: 'pie',
-			data: {
-				datasets: [{
-					data: [
-                        <?php 
-                        echo $totalAnimalesT.",".$restoAnimales.",";
-                        ?>
-					],
-					backgroundColor: [
-					window.chartColors.red,
-					window.chartColors.orange,
-					],
-					label: 'value'
-				}],
-				labels: [
-                    'Población T','Resto Población'
-				]
-			},
-			options: {
-				responsive: true,
-				title: {
-					display: false,
-				}
+  let configuracion = {
+    labels: labels,
+    datasets: [{
+      label: labels2,
+      backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+      borderColor: window.chartColors.red,
+      borderWidth: 1, 
 
-			}
-};
+      data: data
+    }]
+
+  }
+
+  return configuracion;
+
+}
+
+data = [<?php $totalMachos[0].",".$totalHembras[0].",";?>];
+
+colors = [window.chartColors.red,window.chartColors.orange];
+
+labels = ['Macho','Hembra'];
+
+let configPSST = configuracionPie(data,colors,labels,'Sexo');
+
+
+data = [<?php echo $totalAnimalesT.",".$restoAnimales.",";?>];
+
+labels = ['Población T','Resto Población'];
+
+let configPPT = configuracionPie(data,colors,labels,'value');
 
 var color = Chart.helpers.color;
 
-var configADPVT = {
-  labels: [
-    'Prom. Adpv'
-  ],
-  datasets: [{
-    label: 'Kg. Prom',
-    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    borderColor: window.chartColors.red,
-    borderWidth: 1, 
+data = [<?php echo $promedioAdpvT;?>];
 
-    data: [
-    <?php
-    echo $promedioAdpvT;
-    ?>
-    ]
-  }]
+labels = ['Prom. Adpv'];
 
-};
+let configADPVT = configuracionBar(labels,data,'Kg. Prom');
 
-var configDiasT = {
-  labels: [
-    'Prom. Dias'
-  ],
-  datasets: [{
-    label: 'Dias Prom.',
-    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    borderColor: window.chartColors.red,
-    borderWidth: 1, 
+data = [<?php echo $promedioDiasT;?>];
 
-    data: [
-    <?php
-    echo $promedioDiasT;
-    ?>
-    ]
-  }]
+labels = ['Prom. Dias'];
 
-};
+let configDiasT = configuracionBar(labels,data,'Dias Prom.');
 
+data = [<?php echo $promedioKgProdT;?>];
 
-var configKgIngT = {
-  labels: [
-    'Kg Ingreso Prom.'
-  ],
-  datasets: [{
-    label: 'Kg Ingreso Prom.',
-    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    borderColor: window.chartColors.red,
-    borderWidth: 1, 
+labels = ['Kg Produc. Promedio'];
 
-    data: [
-    <?php
-    echo $promedioKgIngT;
-    ?>
-    ]
-  }]
-
-};
-
-var configKgEgrT = {
-  labels: [
-    'Kg Salida Prom.'
-  ],
-  datasets: [{
-    label: 'Kg Salida Prom.',
-    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    borderColor: window.chartColors.red,
-    borderWidth: 1, 
-
-    data: [
-    <?php
-    echo $promedioKgEgrT;
-    ?>
-    ]
-  }]
-
-};
-
-var configKgProdT = {
-  labels: [
-    'Kg Produc. Promedio'
-  ],
-  datasets: [{
-    label: 'Kg Produc. Promedio',
-    backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-    borderColor: window.chartColors.red,
-    borderWidth: 1, 
-
-    data: [
-    <?php
-    echo $promedioKgProdT;
-    ?>
-    ]
-  }]
-
-};
-
+let configKgProdT = configuracionBar(labels,data,'Kg Produc. Promedio');
 
 
 </script>

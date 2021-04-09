@@ -145,16 +145,11 @@ include 'ajax/datosReporteComprasCostos.ajax.php';
 
     var dataConsignatario = <?php echo $dataAnimalesConsignatario?>;
 
+    generarGraficoPie('cantCabezas',confCantTotal);
 
-    var cantTotal = document.getElementById('cantCabezas').getContext('2d');
-    window.myPie = new Chart(cantTotal, confCantTotal);   
+    generarGraficoPie('cantCabezasSexo',confCantCabezasSexo);
 
-    var cantCabezasSexo = document.getElementById('cantCabezasSexo').getContext('2d');
-    window.myPie = new Chart(cantCabezasSexo, confCantCabezasSexo);     
-
- 
-    var costoCantidadConsignatario = document.getElementById('precioKiloConsignatario').getContext('2d');
-	  new Chart(costoCantidadConsignatario, {
+    let configPrecioKiloCons = {
       type: 'bar',
       data: {
         labels: [<?php echo $nombresPorConsignatarioResumidos;?>],
@@ -196,18 +191,11 @@ include 'ajax/datosReporteComprasCostos.ajax.php';
               id: 'A',
               type: 'linear',
               position: 'left',
-              // ticks: {
-              //   suggestedMin: 500000,
-              //   suggestedMax: 2000000
-              // }
+            
             }, {
               id: 'B',
               type: 'linear', // BARCHART CON LA CANTIDAD DE KILOS PROMEDIO
               position: 'right',
-              // ticks: {
-              // max: 250,
-              // min: 0
-              // }
             }]
           },
           plugins:{
@@ -221,15 +209,14 @@ include 'ajax/datosReporteComprasCostos.ajax.php';
             }
           }
         }
-    });
+    };
 
+    generarGraficoBar('precioKiloConsignatario',configPrecioKiloCons,'noOption');
+    
+    generarGraficoPie('cantConsignatario',confCantConsignatario);
+    
 
-    var cantConsignatario = document.getElementById('cantConsignatario').getContext('2d');
-    window.myPie = new Chart(cantConsignatario, confCantConsignatario);   
-
-    var cantConsignatarioSexo = document.getElementById('cantConsignatarioSexo').getContext('2d');
-
-		window.myBar = new Chart(cantConsignatarioSexo, {
+    let confCantConsSexo = {
 				type: 'bar',
 				data: confCantConsignatarioSexo,
 				options: {
@@ -270,43 +257,46 @@ include 'ajax/datosReporteComprasCostos.ajax.php';
             }]
           }
 				}
-    });
+    };
+
+    generarGraficoBar('cantConsignatarioSexo',confCantConsSexo,'noOption');
     
-    var cantProveedor = document.getElementById('cantProveedor').getContext('2d');
-			window.myBar = new Chart(cantProveedor, {
-				type: 'bar',
-				data: confCantProveedor,
-				options: {
-					responsive: true,
-					legend: {
-            position: 'top',
-            labels: {
-                boxWidth: 5
-            }
-					},
-					title: {
-						display: false,
-						text: 'Cabezas por Proveedor'
-          },
-          plugins: {
-            labels: {
-              render: 'value'
-            }
+    
+    let confCantProv = {
+      type: 'bar',
+      data: confCantProveedor,
+      options: {
+        responsive: true,
+        legend: {
+          position: 'top',
+          labels: {
+            boxWidth: 5
+          }
+        },
+        title: {
+          display: false,
+          text: 'Cabezas por Proveedor'
+        },
+        plugins: {
+          labels: {
+            render: 'value'
+          }
           },
           scales: {
             xAxes: [{
               display:false,
 						}],
-              yAxes: [{
-                  ticks: {
-                      suggestedMin: 0,
-                      suggestedMax: 100
-                  }
-              }]
+            yAxes: [{
+              ticks: {
+                suggestedMin: 0,
+                suggestedMax: 100
+              }
+            }]
           }
 				}
-			});
-
+      };
+      
+    generarGraficoBar('cantProveedor',confCantProv,'noOption');
 
   })
 

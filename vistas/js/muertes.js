@@ -39,3 +39,49 @@ $('.tablaMuertes').DataTable( {
 	}
 
 } );
+
+
+/*=============================================
+OPCIONES GRAFICOS
+=============================================*/
+
+function opcionesSkipFalse(configuracion){
+    var opciones = {
+      type: 'bar',
+        data: configuracion,
+        options: {
+          responsive: true,
+          legend: {
+            position: 'top',
+            labels: {
+                boxWidth: 5
+            }
+          },
+          title: {
+            display: false,
+          },
+          plugins: {
+            labels: {
+              render: 'value'
+            }
+          },
+          scaleShowValues: true,
+
+          scales: {
+              xAxes: [{
+                ticks: {
+                  autoSkip: false
+                }
+              }],
+              yAxes: [{
+                  ticks: {
+                      suggestedMin: 0,
+                  }
+              }]
+          }
+        }
+      }
+    return opciones;
+
+  }
+

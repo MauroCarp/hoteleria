@@ -146,6 +146,7 @@ include 'ajax/datosReporte.ajax.php';
 <script>
 
 $(function () {
+
         function stringToNumber(array){
           for (let index = 0; index < array.length; index++) {
               array[index] = parseFloat(array[index]);
@@ -164,54 +165,6 @@ $(function () {
         stringToNumber(kgConsumidos);
         stringToNumber(kgConsumidos);
         
-        function generarGraficoAlimento(idCanvas,adpvData,kgConsumidos,conversion){
-
-          var ctx = document.getElementById(idCanvas).getContext('2d');
-          new Chart(ctx, {
-            type: 'bar',
-            data: {
-            labels: ['Ciclo Completo','R. Pastoril', 'R. Corral', 'Terminacion'],
-            datasets: [{
-              type: 'line',
-              label: 'ADPV',
-              borderColor: window.chartColors.red,
-              fill:false,
-              yAxisID: 'A',
-              data: adpvData
-            },{
-              label: 'CONVERSIÓN MS',
-              type: 'bar',
-              yAxisID: 'A',
-              data: conversion,
-              fill:false,
-              borderColor: window.chartColors.blue,
-              backgroundColor: window.chartColors.blue,
-              borderWidth: 2
-
-            }]
-            },
-          options: {
-            scales: {
-            yAxes: [{
-              id: 'A',
-              type: 'linear',
-              position: 'left',
-              ticks: {
-                suggestedMin: 0,
-                suggestedMax: 2
-              }
-            }]
-            },
-            plugins:{
-              labels:{
-                render: 'value'
-              }
-            }
-          }
-          });
-
-        }
-
         generarGraficoAlimento('alimentoConsumidoGeneral',adpvGeneral,kgConsumidos,conversion);
         var contador = 1;
 
@@ -244,548 +197,181 @@ $(function () {
 
         var color = Chart.helpers.color;
 
-        function opciones(configuracion){
-          var opciones = {
-            type: 'bar',
-            data: configuracion,
-            options: {
-              responsive: true,
-              legend: {
-                position: 'top',
-              },
-              title: {
-                display: false,
-              },
-              plugins: {
-                labels: {
-                  render: 'value'
-                }
-              },
-              legend: {
-                labels: {
-                    boxWidth: 5
-                }
-              },
-              scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-            }
-          }
-          return opciones;
-        }
-
+      // CONFIGURACION
 
         //POBLACION
-        var configPCC = {
-          type: 'pie',
-          data: {
-            datasets: [{
-              data: [
-                <?php echo $poblacionCC;?>
-              ],
-              backgroundColor: [
-                <?php echo $coloresCC;?> 
-              ],
-              label: 'Porcentaje'
-            }],
-            labels: [
-              <?php   echo $label;?>
-            ]
-          },
-          options: {
-            responsive: true,
-            title: {
-              display: false,
-            },
-            legend: {
-              labels: {
-                  boxWidth: 5
-              }
-            }
-
-          }
-        };
-
-        var configPRP = {
-          type: 'pie',
-          data: {
-            datasets: [{
-              data: [
-                <?php echo $poblacionRP;?>
-              ],
-              backgroundColor: [
-                <?php echo $coloresRP;?> 
-              ],
-              label: 'Porcentaje'
-            }],
-            labels: [
-              <?php   echo $label;?>
-            ]
-          },
-          options: {
-            responsive: true,
-            title: {
-              display: false,
-            },
-            legend: {
-              labels: {
-                  boxWidth: 5
-              }
-            }
-
-          }
-        };
-
-        var configPRC = {
-          type: 'pie',
-          data: {
-            datasets: [{
-              data: [
-                <?php echo $poblacionRC;?>
-              ],
-              backgroundColor: [
-                <?php echo $coloresRC;?> 
-              ],
-              label: 'Porcentaje'
-            }],
-            labels: [
-              <?php   echo $label;?>
-            ]
-          },
-          options: {
-            responsive: true,
-            title: {
-              display: false,
-            },
-            legend: {
-              labels: {
-                  boxWidth: 5
-              }
-            }
-
-          }
-        };
-
-        var configPT = {
-          type: 'pie',
-          data: {
-            datasets: [{
-              data: [
-                <?php echo $poblacionT;?>
-              ],
-              backgroundColor: [
-                <?php echo $coloresT;?> 
-              ],
-              label: 'Porcentaje'
-            }],
-            labels: [
-              <?php   echo $label;?>
-            ]
-          },
-          options: {
-            responsive: true,
-            title: {
-              display: false,
-            },
-            legend: {
-              labels: {
-                  boxWidth: 5
-              }
-            }
-
-          }
-        };
-
-        // CANTIDAD
 
           //CC
-          var configCantidadCC = {
-            labels: [
-              'Animales'
-            ],
-            datasets:[
-              <?php 
-                echo $cantidadCC;
-              ?> 
-            ]
-          };
+          let label = [<?php echo $label.",'Resto'";?>];
 
+          let poblacionCC = [<?php echo $poblacionCC;?>];
+
+          let coloresCC = [<?php echo $coloresCC;?>];
+
+          let configPCC = configuracionPie(poblacionCC,coloresCC,label);
+          
           //RP
-          var configCantidadRP = {
-            labels: [
-              'Animales'
-            ],
-            datasets:[
-              <?php 
-                echo $cantidadRP;
-              ?> 
-            ]
-          };
 
+          let poblacionRP = [<?php echo $poblacionRP;?>];
+
+          let coloresRP = [<?php echo $coloresRP;?>];
+
+          let configPRP = configuracionPie(poblacionRP,coloresRP,label);
+          
+          
           //RC
-          var configCantidadRC = {
-            labels: [
-              'Animales'
-            ],
-            datasets:[
-              <?php 
-                echo $cantidadRC;
-              ?> 
-            ]
-          };
 
+          let poblacionRC = [<?php echo $poblacionRC;?>];
+
+          let coloresRC = [<?php echo $coloresRC;?>];
+
+          let configPRC = configuracionPie(poblacionRC,coloresRC,label);
+          
+          
           //T
-          var configCantidadT = {
-            labels: [
-              'Animales'
-            ],
-            datasets:[
-              <?php 
-                echo $cantidadT;
-              ?> 
-            ]
-          };
 
+          let poblacionT = [<?php echo $poblacionT;?>];
+
+          let coloresT = [<?php echo $coloresT;?>];
+
+          let configPT = configuracionPie(poblacionT,coloresT,label);
 
         // ADPV
-
+          
           //CC
-          var configAdpvCC = {
-            labels: [
-              'Kg Prom'
-            ],
-            datasets:[
-              <?php 
-                echo $adpvCC;
-              ?> 
-            ]
-          };
+          label = 'Kg Prom';
 
+          let adpvCC = [<?php echo $adpvCC;?>];
+
+          let configAdpvCC = configuracionBar(label,adpvCC);
+        
           //RP
-          var configAdpvRP = {
-            labels: [
-              'Kg Prom'
-            ],
-            datasets:[
-              <?php 
-                echo $adpvRP;
-              ?> 
-            ]
-          };
+          let adpvRP = [<?php echo $adpvRP;?>];
+
+          let configAdpvRP = configuracionBar(label,adpvRP);
 
           //RC
-          var configAdpvRC = {
-            labels: [
-              'Kg Prom'
-            ],
-            datasets:[
-              <?php 
-                echo $adpvRC;
-              ?> 
-            ]
-          };
+          let adpvRC = [<?php echo $adpvRC;?>];
+
+          let configAdpvRC = configuracionBar(label,adpvRC);
 
           //T
-          var configAdpvT = {
-            labels: [
-              'Kg Prom'
-            ],
-            datasets:[
-              <?php 
-                echo $adpvT;
-              ?> 
-            ]
-          };
+          let adpvT = [<?php echo $adpvT;?>];
 
+          let configAdpvT = configuracionBar(label,adpvT);
 
         // DIAS
 
           //CC
-          var configDiasCC = {
-            labels: [
-              'Días Prom.'
-            ],
-            datasets:[
-              <?php 
-                echo $diasCC;
-              ?> 
-            ]
-          };
+          
+          label = 'Días Prom.';
+
+          let diasCC = [<?php echo $diasCC;?>];
+
+          let configDiasCC = configuracionBar(label,diasCC);
 
           //RP
-          var configDiasRP = {
-            labels: [
-              'Días Prom.'
-            ],
-            datasets:[
-              <?php 
-                echo $diasRP;
-              ?> 
-            ]
-          };
+          
+          let diasRP = [<?php echo $diasRP;?>];
+
+          let configDiasRP = configuracionBar(label,diasRP);
 
           //RC
-          var configDiasRC = {
-            labels: [
-              'Días Prom.'
-            ],
-            datasets:[
-              <?php 
-                echo $diasRC;
-              ?> 
-            ]
-          };
+          
+          let diasRC = [<?php echo $diasRC;?>];
 
-          //T
-          var configDiasT = {
-            labels: [
-              'Días Prom.'
-            ],
-            datasets:[
-              <?php 
-                echo $diasT;
-              ?> 
-            ]
-          };
+          let configDiasRC = configuracionBar(label,diasRC);
 
+          //RC
+          
+          let diasT = [<?php echo $diasT;?>];
 
-        
-        
+          let configDiasT = configuracionBar(label,diasT);       
 
         // KG ING
 
           //CC
-            var configKgIngCC = {
-              labels: [
-                'Kg Prom.'
-              ],
-              datasets:[
-                <?php 
-                  echo $kgIngCC;
-                ?> 
-              ]
-            };
 
-          //   //RP
-          //   var configKgIngRP = {
-          //     labels: [
-          //       'Kg Prom.'
-          //     ],
-          //     datasets:[
-          //       <?php 
-          //         echo $kgIngRP;
-          //       ?> 
-          //     ]
-          //   };
+          label = 'Kg Prom.';
 
-          //   //RC
-          //   var configKgIngRC = {
-          //     labels: [
-          //       'Kg Prom.'
-          //     ],
-          //     datasets:[
-          //       <?php 
-          //         echo $kgIngRC;
-          //       ?> 
-          //     ]
-          //   };
+          let kgIngCC = [<?php echo $kgIngCC;?>];
 
-          //   //T
-          //   var configKgIngT = {
-          //     labels: [
-          //       'Kg Prom.'
-          //     ],
-          //     datasets:[
-          //       <?php 
-          //         echo $kgIngT;
-          //       ?> 
-          //     ]
-          //   };
-
+          let configKgIngCC = configuracionBar(label,kgIngCC);
 
         // KG EGR 
+          
+          //CC
+        
+          let kgEgrCC = [<?php echo $kgEgrCC;?>];
 
-            //CC
-            var configKgEgrCC = {
-              labels: [
-                'Kg Prom.'
-              ],
-              datasets:[
-                <?php 
-                  echo $kgEgrCC;
-                ?> 
-              ]
-            };
-
-            // //RP
-            // var configKgEgrRP = {
-            //   labels: [
-            //     'Kg Prom.'
-            //   ],
-            //   datasets:[
-            //     <?php 
-            //       echo $kgEgrRP;
-            //     ?> 
-            //   ]
-            // };
-
-            // //RC
-            // var configKgEgrRC = {
-            //   labels: [
-            //     'Kg Prom.'
-            //   ],
-            //   datasets:[
-            //     <?php 
-            //       echo $kgEgrRC;
-            //     ?> 
-            //   ]
-            // };
-
-            // //T
-            // var configKgEgrT = {
-            //   labels: [
-            //     'Kg Prom.'
-            //   ],
-            //   datasets:[
-            //     <?php 
-            //       echo $kgEgrT;
-            //     ?> 
-            //   ]
-            // };
-
+          let configKgEgrCC = configuracionBar(label,kgEgrCC);
 
         // KG PROD 
 
           //CC
-          var configKgProdCC = {
-            labels: [
-              'Kg Prom.'
-            ],
-            datasets:[
-              <?php 
-                echo $kgProdCC;
-              ?> 
-            ]
-          };
+        
+          let kgProdCC = [<?php echo $kgProdCC;?>];
+
+          let configKgProdCC = configuracionBar(label,kgProdCC);
 
           //RP
-          var configKgProdRP = {
-            labels: [
-              'Kg Prom.'
-            ],
-            datasets:[
-              <?php 
-                echo $kgProdRP;
-              ?> 
-            ]
-          };
+        
+          let kgProdRP = [<?php echo $kgProdRP;?>];
+
+          let configKgProdRP = configuracionBar(label,kgProdRP);
 
           //RC
-          var configKgProdRC = {
-            labels: [
-              'Kg Prom.'
-            ],
-            datasets:[
-              <?php 
-                echo $kgProdRC;
-              ?> 
-            ]
-          };
+        
+          let kgProdRC = [<?php echo $kgProdRC;?>];
+
+          let configKgProdRC = configuracionBar(label,kgProdRC);
 
           //T
-          var configKgProdT = {
-            labels: [
-              'Kg Prom.'
-            ],
-            datasets:[
-              <?php 
-                echo $kgProdT;
-              ?> 
-            ]
-          };
+        
+          let kgProdT = [<?php echo $kgProdT;?>];
 
+          let configKgProdT = configuracionBar(label,kgProdT);
+         
+
+      //GRAFICOS 
+      
         // GRAFICOS ADPV
-          var barChartFiltrado = document.getElementById('barChartFiltrado').getContext('2d');      
-          var adpvCC = new Chart(barChartFiltrado, opciones(configAdpvCC) );
-
-          var barChartRPFiltrado = document.getElementById('barChartRPFiltrado').getContext('2d');
-          var adpvRP = new Chart(barChartRPFiltrado, opciones(configAdpvRP) );
-
-          var barChartRCFiltrado = document.getElementById('barChartRCFiltrado').getContext('2d');
-          var adpvRC = new Chart(barChartRCFiltrado, opciones(configAdpvRC) );
-
-          var barChartTFiltrado = document.getElementById('barChartTFiltrado').getContext('2d');
-          var adpvT = new Chart(barChartTFiltrado, opciones(configAdpvT) );
-
-       
+          generarGraficoBar('barChartFiltrado',configAdpvCC);
+          generarGraficoBar('barChartRPFiltrado',configAdpvRP);
+          generarGraficoBar('barChartRCFiltrado',configAdpvRC);
+          generarGraficoBar('barChartTFiltrado',configAdpvT);
+        
         // GRAFICOS DIAS
-          var barChart1Filtrado = document.getElementById('barChart1Filtrado').getContext('2d');      
-          var diasCC = new Chart(barChart1Filtrado, opciones(configDiasCC) );
 
-          var barChart1RPFiltrado = document.getElementById('barChart1RPFiltrado').getContext('2d');
-          var diasRP = new Chart(barChart1RPFiltrado, opciones(configDiasRP) );
-
-          var barChart1RCFiltrado = document.getElementById('barChart1RCFiltrado').getContext('2d');
-          var diasRC = new Chart(barChart1RCFiltrado, opciones(configDiasRC) );
-
-          var barChart1TFiltrado = document.getElementById('barChart1TFiltrado').getContext('2d');
-          var diasT = new Chart(barChart1TFiltrado, opciones(configDiasT) );
-
+          generarGraficoBar('barChart1Filtrado',configDiasCC);
+          generarGraficoBar('barChart1RPFiltrado',configDiasRP);
+          generarGraficoBar('barChart1RCFiltrado',configDiasRC);
+          generarGraficoBar('barChart1TFiltrado',configDiasT);
+        
         // GRAFICOS KG ING
-          var barChart2Filtrado = document.getElementById('barChart2Filtrado').getContext('2d');      
-          var kgIngCC = new Chart(barChart2Filtrado, opciones(configKgIngCC) );
-
-          // var barChart2RPFiltrado = document.getElementById('barChart2RPFiltrado').getContext('2d');
-          // var kgIngRP = new Chart(barChart2RPFiltrado, opciones(configKgIngRP) );
-
-          // var barChart2RCFiltrado = document.getElementById('barChart2RCFiltrado').getContext('2d');
-          // var kgIngRC = new Chart(barChart2RCFiltrado, opciones(configKgIngRC) );
-
-          // var barChart2TFiltrado = document.getElementById('barChart2TFiltrado').getContext('2d');
-          // var kgIngT = new Chart(barChart2TFiltrado, opciones(configKgIngT) );
+        
+          generarGraficoBar('barChart2Filtrado',configKgIngCC);
         
         // GRAFICOS KG EGR
-          var barChart3Filtrado = document.getElementById('barChart3Filtrado').getContext('2d');      
-          var kgEgrCC = new Chart(barChart3Filtrado, opciones(configKgEgrCC) );
 
-          // var barChart3RPFiltrado = document.getElementById('barChart3RPFiltrado').getContext('2d');
-          // var kgEgrRP = new Chart(barChart3RPFiltrado, opciones(configKgEgrRP) );
-
-          // var barChart3RCFiltrado = document.getElementById('barChart3RCFiltrado').getContext('2d');
-          // var kgEgrRC = new Chart(barChart3RCFiltrado, opciones(configKgEgrRC) );
-
-          // var barChart3TFiltrado = document.getElementById('barChart3TFiltrado').getContext('2d');
-          // var kgEgrT = new Chart(barChart3TFiltrado, opciones(configKgEgrT) );
+          generarGraficoBar('barChart3Filtrado',configKgEgrCC);
 
         // GRAFICOS KG PROD
-          var barChart4Filtrado = document.getElementById('barChart4Filtrado').getContext('2d');      
-          var kgProdCC = new Chart(barChart4Filtrado, opciones(configKgProdCC) );
 
-          var barChart4RPFiltrado = document.getElementById('barChart4RPFiltrado').getContext('2d');
-          var kgProdRP = new Chart(barChart4RPFiltrado, opciones(configKgProdRP) );
-
-          var barChart4RCFiltrado = document.getElementById('barChart4RCFiltrado').getContext('2d');
-          var kgProdRC = new Chart(barChart4RCFiltrado, opciones(configKgProdRC) );
-
-          var barChart4TFiltrado = document.getElementById('barChart4TFiltrado').getContext('2d');
-          var kgProdT = new Chart(barChart4TFiltrado, opciones(configKgProdT) );
+          generarGraficoBar('barChart4Filtrado',configKgProdCC);
+          generarGraficoBar('barChart4RPFiltrado',configKgProdRP);
+          generarGraficoBar('barChart4RCFiltrado',configKgProdRC);
+          generarGraficoBar('barChart4TFiltrado',configKgProdT);
 
         // GRAFICOS POBLACION
-          var porcentajePoblacion = document.getElementById('pieChart1Filtrado').getContext('2d');
-          var poblacionCC = new Chart(porcentajePoblacion, configPCC);
+          
+          generarGraficoPie('pieChart1Filtrado',configPCC);
+          generarGraficoPie('pieChart1RPFiltrado',configPRP);
+          generarGraficoPie('pieChart1RCFiltrado',configPRC);
+          generarGraficoPie('pieChart1TFiltrado',configPT);
 
-          var porcentajePoblacionRP = document.getElementById('pieChart1RPFiltrado').getContext('2d');
-          var poblacionRP = new Chart(porcentajePoblacionRP, configPRP);
 
-          var porcentajePoblacionRC = document.getElementById('pieChart1RCFiltrado').getContext('2d');
-          var poblacionRC = new Chart(porcentajePoblacionRC, configPRC);
 
-          var porcentajePoblacionT = document.getElementById('pieChart1TFiltrado').getContext('2d');
-          var poblacionT = new Chart(porcentajePoblacionT, configPT);
 
           $('.main-footer').hide();
 

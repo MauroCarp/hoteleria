@@ -250,6 +250,229 @@ function generarGraficos(chart,data,titulo,label,canvas){
 
 }
 
+function generarGraficoBar(idDiv,configuracion,opcion){
+
+  let barChart = document.getElementById(idDiv).getContext('2d');      
+  
+
+  let grafico;
+
+  switch (opcion) {
+    case null:
+
+      grafico = new Chart(barChart, opciones(configuracion))
+      
+      break;
+      
+    case 'atZero':
+      
+      grafico = new Chart(barChart, opcionesAtZero(configuracion))
+      
+      break;
+        
+    case 'skipFalse':
+        
+        grafico = new Chart(barChart, opcionesSkipFalse(configuracion))
+        
+        break;
+    
+    case 'noOption':
+        
+        grafico = new Chart(barChart, configuracion)
+        
+        break;
+        
+    default:
+      
+      grafico = new Chart(barChart, opciones(configuracion))
+    
+      break;
+
+  }
+
+  return grafico;
+
+}
+
+function generarGraficoPie(idDiv,configuracion){
+
+  let pieChart = document.getElementById(idDiv).getContext('2d');      
+  let grafico = new Chart(pieChart, configuracion);
+
+  return grafico;
+
+}
+
+/*=============================================
+OPCIONES GRAFICOS
+=============================================*/
+
+function opcionesAtZero(configuracion){
+  var opciones = {
+    type: 'bar',
+    data: configuracion,
+    options: {
+      responsive: true,
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: false,
+      },
+      plugins: {
+        labels: {
+          render: 'value'
+        }
+      },
+      legend: {
+        labels: {
+            boxWidth: 5
+        }
+      },
+      scales: {
+        yAxes: [{
+            ticks: {
+                beginAtZero: true
+            }
+        }]
+      }
+    }
+
+  }
+
+  return opciones;
+}
+
+function opciones(configuracion){
+  var opciones = {
+    type: 'bar',
+    data: configuracion,
+    options: {
+      responsive: true,
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: false,
+      },
+      plugins: {
+        labels: {
+          render: 'value'
+        }
+      },
+      legend: {
+        labels: {
+            boxWidth: 5
+        }
+      }
+    }
+
+  }
+
+  return opciones;
+}
+
+/*=============================================
+CONFIGURACION GRAFICOS
+=============================================*/
+
+function configuracionPie(data,color,label){
+          
+  let configuracion = {
+    type: 'pie',
+    data: {
+      datasets: [{
+        data: data,
+        backgroundColor:
+
+          color
+        ,
+        label: 'Porcentaje'
+      }],
+      labels: label
+    },
+    options: {
+      responsive: true,
+      title: {
+        display: false,
+      },
+      legend: {
+        labels: {
+            boxWidth: 5
+        }
+      }
+
+    }
+  };
+   
+  return configuracion;
+
+}
+
+
+function configuracionBar(label,data){
+          
+  let configuracion = {
+    labels: [
+      label
+    ],
+    datasets:
+      data 
+    
+  };
+
+  return configuracion;
+
+}
+
+function generarGraficoAlimento(idCanvas,adpvData,kgConsumidos,conversion){
+
+  var ctx = document.getElementById(idCanvas).getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+    labels: ['Ciclo Completo','R. Pastoril', 'R. Corral', 'Terminacion'],
+    datasets: [{
+      type: 'line',
+      label: 'ADPV',
+      borderColor: window.chartColors.red,
+      fill:false,
+      yAxisID: 'A',
+      data: adpvData
+    },{
+      label: 'CONVERSIÓN MS',
+      type: 'bar',
+      yAxisID: 'A',
+      data: conversion,
+      fill:false,
+      borderColor: window.chartColors.blue,
+      backgroundColor: window.chartColors.blue,
+      borderWidth: 2
+
+    }]
+    },
+  options: {
+    scales: {
+    yAxes: [{
+      id: 'A',
+      type: 'linear',
+      position: 'left',
+      ticks: {
+        suggestedMin: 0,
+        suggestedMax: 2
+      }
+    }]
+    },
+    plugins:{
+      labels:{
+        render: 'value'
+      }
+    }
+  }
+  });
+
+}
+
 /*=============================================
 BLOQUEAR PROVEEDOR Y CONSIG
 =============================================*/

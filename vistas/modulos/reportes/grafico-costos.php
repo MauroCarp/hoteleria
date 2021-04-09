@@ -12,7 +12,7 @@ GRÁFICO DE COSTOS
 
 
 <!-- BAR CHART -->
-<div class="box box-success">
+<div class="box box-succes">
 
   <div class="box-body">
 
@@ -33,6 +33,7 @@ GRÁFICO DE COSTOS
 ?>
 <script>
 // AGREGAR COLORES 
+
 var canvas = document.getElementById('canvas');
 
 new Chart(canvas, {
