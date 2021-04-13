@@ -17,6 +17,7 @@ $valor = null;
 
 $item2 = 'fechaSalida';
 
+
 $cantidadAnimales = ControladorDatos::ctrContarAnimalesRango($item, $valor,$item2,$fechaInicial,$fechaFinal);
 
 $cantidadAnimales = $cantidadAnimales[0][0];
@@ -67,8 +68,46 @@ $pesoMaximo = $pesoMaximo[0][0];
 
   </section>
 
+
   <section class="content">
     
+    <?php
+            
+      if($cantidadAnimales == 0){
+
+          echo "<br>
+          <div class='row'>
+            
+            <div class='col-md-9'>
+
+              <div class='info-box' style='padding-bottom:20px;padding-left:10px;padding-top:10px;box-shadow:0px 0px 15px 5px rgba(0, 0, 0, 0.2);'>
+                
+                <span class='info-box-icon bg-info' style='border-radius:10px;background-color:#dc3545;'>
+                  
+                  <i class='fa fa-times' style='color:white'></i>
+                
+                </span>
+
+                <div class='info-box-content'>
+                  
+                  <h1>No se encontraron registros que coincidan con el rango de fechas buscado.</h1>
+
+                </div>
+              
+                </div>
+              
+              </div>
+            
+            </div>
+
+          </div>
+          </div>";
+
+          return;
+      }
+    
+    ?>
+
     <div class="row">
 
       <div class="col-md-4">
@@ -147,7 +186,7 @@ $pesoMaximo = $pesoMaximo[0][0];
 
     </div>
 
-  <br>
+    <br>
 
     <div class="row">
 
@@ -237,6 +276,8 @@ $pesoMaximo = $pesoMaximo[0][0];
         </div>
 
       </div>
+      
+    </div>
 
   </section>
 
@@ -257,9 +298,10 @@ $pesoMaximo = $pesoMaximo[0][0];
         </ul>
 
         <div class="tab-content">
+
           <div class="tab-pane active" id="consumos">
             <h1>Consumos</h1>
-            <?php ////include('reportes/cicloCompleto.php'); ?>
+            <?php include('reportes/consumosPC.php'); ?>
           
           </div>
 
@@ -284,5 +326,6 @@ $pesoMaximo = $pesoMaximo[0][0];
     </div>
   
   </div>
+
 </div>
 

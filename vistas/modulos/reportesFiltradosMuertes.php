@@ -22,7 +22,7 @@ include 'ajax/datosReporteMuertes.ajax.php';
   <div class="box">
    
     <section class="content" style="padding-top:0;">
-
+    
           <!-- // FILTROS -->
           <button class="btn btn-secondary" style="margin-top:10px;margin-bottom:10px;" id="btn-filtros" data-toggle="modal" data-target="#modalFiltros">
             <b>Filtros </b><i class="fa fa-filter" style="color:#3c8dbc;font-size:1.2em;"></i>

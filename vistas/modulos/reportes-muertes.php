@@ -22,6 +22,16 @@ include 'ajax/datosReporteMuertes.ajax.php';
   <div class="box">
    
     <section class="content" style="padding-top:0;">
+      <?php
+
+      if(!$datosJson){
+            echo "<h2>No hay registros</h2>
+            </div></div></div></div>";
+
+            return;
+        }
+      
+      ?>
 
           <!-- // FILTROS -->
           <button class="btn btn-secondary" style="margin-top:10px;margin-bottom:10px;" id="btn-filtrosMuertes" data-toggle="modal" data-target="#modalFiltros">

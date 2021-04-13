@@ -50,7 +50,42 @@ include 'ajax/datosReporteMuertesRango.ajax.php';
   <div class="box">
    
     <section class="content" style="padding-top:0;">
+          <?php
+          
+            if($totalMacho == 0 AND $totalHembra == 0){
 
+                echo "<br>
+                <div class='row'>
+                  
+                  <div class='col-md-9'>
+
+                    <div class='info-box' style='padding-bottom:20px;padding-left:10px;padding-top:10px;box-shadow:0px 0px 15px 5px rgba(0, 0, 0, 0.2);'>
+                      
+                      <span class='info-box-icon bg-info' style='border-radius:10px;background-color:#dc3545;'>
+                        
+                        <i class='fa fa-times' style='color:white'></i>
+                      
+                      </span>
+
+                      <div class='info-box-content'>
+                        
+                        <h1>No se encontraron registros que coincidan con el rango de fechas buscado.</h1>
+
+                      </div>
+                    
+                      </div>
+                    
+                    </div>
+                  
+                  </div>
+
+                </div>
+                </div>";
+
+                return;
+            }
+          
+          ?>
           <!-- // FILTROS -->
           <button class="btn btn-secondary" style="margin-top:10px;margin-bottom:10px;" id="btn-filtrosMuertes" data-toggle="modal" data-target="#modalFiltros">
 

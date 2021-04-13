@@ -57,6 +57,41 @@ include 'ajax/datosReporteComprasCostos.ajax.php';
     <section class="content" style="padding-top:10px;">
       <div class="row">
         <div class="col-md-6">
+        <?php
+        
+          if(!$dataAnimalesConsignatario){
+            
+            echo "<br>
+            <div class='row'>
+              
+              <div class='col-md-12'>
+
+                <div class='info-box' style='padding-bottom:35px;padding-left:10px;padding-top:10px;box-shadow:0px 0px 15px 5px rgba(0, 0, 0, 0.2);'>
+                  
+                  <span class='info-box-icon bg-info' style='border-radius:10px;background-color:#dc3545;'>
+                    
+                    <i class='fa fa-times' style='color:white'></i>
+                  
+                  </span>
+
+                  <div class='info-box-content'>
+                    
+                    <h3>No se encontraron registros que coincidan con el rango de fechas buscado.</h3>
+
+                  </div>
+                
+                  </div>
+                
+                </div>
+              
+              </div>
+
+            </div>
+            </div></div></div>";
+
+              return;
+          }
+        ?>
           <button class="btn btn-secondary" style="margin-top:10px;margin-bottom:10px;" id="btn-costos" data-toggle="modal" data-target="#modalCostos">
                   <b>Costos &nbsp </b><i class="fa fa-usd" style="color:#3c8dbc;font-size:1.2em;"></i>
           </button>
