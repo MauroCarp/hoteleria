@@ -24,6 +24,9 @@ session_start();
 
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="vistas/bower_components/bootstrap/dist/css/bootstrap.min.css">
+ 
+  <!-- ESTILOS PERSONALES -->
+  <link rel="stylesheet" href="vistas/dist/css/style.css">
 
   <!-- Icomoon -->
   <link rel="stylesheet" href="vistas/bower_components/icomoon/css/icomoon.css">

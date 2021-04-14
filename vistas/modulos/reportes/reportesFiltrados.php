@@ -334,6 +334,8 @@ include 'ajax/datosReporte.ajax.php';
 <script>
 
 $(function () {
+
+  
         function stringToNumber(array){
           for (let index = 0; index < array.length; index++) {
               array[index] = parseFloat(array[index]);
