@@ -2,23 +2,14 @@
 /*=============================================
 AGREGAR FILTROS
 =============================================*/
-var contador = 2;
-$('#comparar').click(function(){
-  
-  var URLactual = window.location;
-  
-  URLactual = URLactual.href;
-
-  var tabla = (URLactual.includes('muertes') || URLactual.includes('reportesFiltradosMuertes')) ? 'muertes' : 'animales';
-  
-  var item = (URLactual.includes('muertes') || URLactual.includes('reportesFiltradosMuertes')) ? 'fechaMuerte' : 'fechaSalida';
+function agregarFiltro(contador,URLactual,tabla,item,comparar){
 
   var contenido = '';
   contenido += '<hr>';
   contenido +=      '<div class="row">';
   contenido +=      '<div class="col-md-4">';
   contenido +=        '<div class="form-group"><label>Consignatario</label>';
-  contenido +=          '<select class="form-control consignatarios" id="consignatario' + contador + '" onchange="(generarProveedores(this.id,\''+ tabla +'\'))">';
+  contenido +=          '<select class="form-control consignatarios' + comparar + '" id="consignatario' + contador + comparar + '" onchange="(generarProveedores(this.id,\''+ tabla +'\'))">';
   contenido +=            '<option value="Consignatario">Consignatario</option>';
 
   var rango = localStorage.getItem('rango');
@@ -33,7 +24,7 @@ $('#comparar').click(function(){
   
   if(rango != null){
 
-    cargarSelectSegunFecha(contador,rango,tabla,campo,item);
+    cargarSelectSegunFecha(contador,rango,tabla,campo,item,comparar);
   
   }else{
 
@@ -49,13 +40,13 @@ $('#comparar').click(function(){
   contenido +=        '</div></div>';  
   contenido +=      '<div class="col-md-4">';
   contenido +=        '<div class="form-group"><label>Proveedor</label>';
-  contenido +=          '<select class="form-control tropas" id="proveedor' + contador + '" onchange="(generarTropas(this.id,\''+ tabla +'\'))">';
+  contenido +=          '<select class="form-control proveedores' + comparar + '" id="proveedor' + contador + comparar + '" onchange="(generarTropas(this.id,\''+ tabla +'\'))">';
   contenido +=            '<option value="Proveedor">Proveedor</option>';
 
   campo = 'proveedor';
   if(rango != null){
 
-  cargarSelectSegunFecha(contador,rango,tabla,campo,item);
+  cargarSelectSegunFecha(contador,rango,tabla,campo,item,comparar);
   
   }else{
 
@@ -70,14 +61,14 @@ $('#comparar').click(function(){
   contenido +=        '</div></div>';  
   contenido +=      '<div class="col-md-4">';
   contenido +=        '<div class="form-group"><label>Tropa</label>';
-  contenido +=          '<select class="form-control tropas" id="tropa' + contador + '" onchange="(bloquearProveedor(this.id))">';
+  contenido +=          '<select class="form-control tropas' + comparar + '" id="tropa' + contador + comparar + '" onchange="(bloquearProveedor(this.id))">';
   contenido +=            '<option value="Tropa">Tropa</option>';
 
   campo = 'tropa';
 
   if(rango != null){
 
-  cargarSelectSegunFecha(contador,rango,tabla,campo,item);
+  cargarSelectSegunFecha(contador,rango,tabla,campo,item,comparar);
   
   }else{
     
@@ -89,15 +80,72 @@ $('#comparar').click(function(){
 
   }
   
-   
+  
   contenido +=          '</select>';
   contenido +=        '</div></div>';  
   contenido +=      '</div>';
   contenido +=     '</div>';
 
+  return contenido;
+
+}
+
+var contador = 2;
+
+var URLactual = window.location;
+
+URLactual = URLactual.href;
+
+var tabla = (URLactual.includes('muertes') || URLactual.includes('reportesFiltradosMuertes')) ? 'muertes' : 'animales';
+
+var item = (URLactual.includes('muertes') || URLactual.includes('reportesFiltradosMuertes')) ? 'fechaMuerte' : 'fechaSalida';
+
+$('#comparar').click(function(){
+
+  let contenido = agregarFiltro(contador,URLactual,tabla,item,'');
+
   $("#btn-plus").before(contenido);
 
   contador++;
+
+});
+
+$('#compararValido').change(function(){
+
+  let compararValido = $(this).is(':checked');
+
+  if(compararValido){
+
+    $('#modalComparar').show(1000);
+
+    $('#modalPrincipal').css('left','-250px');
+    
+    $('#modalPrincipal').css('transition','left 1s');
+    
+    
+  }else{
+    
+    $('#modalComparar').hide(800);
+
+    $('#modalPrincipal').css('left','0');
+    
+    $('#modalPrincipal').css('transition','left 1s');
+
+  }
+
+
+});
+
+var contadorComparar = 2;
+
+$('#compararComp').click(function(){
+  console.log('gadsg');
+
+  let contenidoComp = agregarFiltro(contadorComparar,URLactual,tabla,item,'Comp');
+
+  $("#btn-plusComp").before(contenidoComp);
+
+  contadorComparar++;
 
 });
 
@@ -107,7 +155,6 @@ GENERAR REPORTE
 =============================================*/
 
 $('#generarReporte').click(()=>{
-
 
     var contador = 1;
     var datosConsignatarios = "";
@@ -148,8 +195,6 @@ $('#generarReporte').click(()=>{
         consignatarioValido = (consignatario != 'Consignatario') ? true : false;
         
       } 
-
-        
         
         if(!proveedorValido){
           
@@ -157,24 +202,18 @@ $('#generarReporte').click(()=>{
           
         } 
         
-        
-            
-        
-        
         if(!tropaValido){
           
           tropaValido = (tropa != 'Tropa' ) ? true : false; 
           
         } 
-              
-            
 
       formularioValido = (consignatarioValido || proveedorValido || tropaValido) ? true : false;
 
       arrayValidacion.push(formularioValido);
 
-
       contador++;
+
     });
 
     datosTropas = datosTropas.slice(0, -1);
@@ -595,7 +634,7 @@ function generarProveedores(id,tabla){
 CARGAR SELECTS FILTRO SEGUN FECHA
 =============================================*/
 
-function cargarSelectSegunFecha(numeroId,rango,tabla,campo,item){
+function cargarSelectSegunFecha(numeroId,rango,tabla,campo,item,comparar){
     
   // AJAX
   var datos = 'tabla=' + tabla + '&rango=' + rango + '&campo=' + campo + '&item=' + item;
@@ -611,14 +650,13 @@ function cargarSelectSegunFecha(numeroId,rango,tabla,campo,item){
     
     beforeSend: function () {
 
-      $('.' + campo + 's').append("<option value=''><i>Cargando</i></option>");
+      $('.' + campo + 's' + comparar).append("<option value=''><i>Cargando</i></option>");
 
     },
 
     success: function(respuesta){
 
-      console.log(respuesta);
-      $('#' + campo + numeroId).html(respuesta);
+      $('#' + campo + numeroId + comparar).html(respuesta);
 
     }
 
@@ -644,8 +682,6 @@ if(localStorage.getItem("capturarRango") != null){
 /*=============================================
 RANGO DE FECHAS
 =============================================*/
-
-
 
 $('#daterange-btn').daterangepicker(
   {
@@ -676,33 +712,6 @@ $('#daterange-btn').daterangepicker(
 
 )
 
-$('#daterange-btnCompras').daterangepicker(
-  {
-    ranges   : {
-
-    },
-    startDate: moment(),
-    endDate  : moment()
-  },
-  function (start, end) {
-    $('#daterange-btnCompras span').html(start.format('d/m/Y') + ' - ' + end.format('DD/MM/YYYY'));
-
-    var fechaInicial = start.format('YYYY-MM-d');
-
-    var fechaFinal = end.format('YYYY-MM-d');
-
-    localStorage.setItem('rangoCompras', fechaInicial + '/' + fechaFinal);
-
-    var capturarRango = $("#daterange-btnCompras span").html();
-
-    cargarSelectSegunFecha('1',capturarRango,'compras','consignatario','fecha');
-    
-    cargarSelectSegunFecha('1',capturarRango,'compras','proveedor','fecha');
-    
-    cargarSelectSegunFecha('1',capturarRango,'compras','tropa','fecha');
-  }
-
-)
 
 /*=============================================
 CANCELAR RANGO DE FECHAS

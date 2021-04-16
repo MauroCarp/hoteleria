@@ -49,7 +49,7 @@
 
 					<li>
 
-						<a href="#" data-toggle="modal" data-target="#modalCompras">
+						<a href="#" data-toggle="modal" data-target="#ventanaModalFechaCompra">
 							
 							<i class="fa fa-bar-chart"></i>
 							<span>Generar Reportes</span>
@@ -177,7 +177,7 @@
 
 					<li>
 
-						<a href="#" data-toggle="modal" data-target="#modalPanelControl">
+						<a href="#" data-toggle="modal" data-target="#ventanaModalFechaPanelControl">
 							
 							<i class="fa fa-bar-chart"></i>
 							<span>Generar Reportes</span>
@@ -234,191 +234,112 @@
 	 </section>
 
 </aside>
-
-<div id="modalCompras" class="modal fade" role="dialog" >
-  
-  <div class="modal-dialog" style="width:300px;">
-
-    <div class="modal-content">
+<?php
 
 
-        <!--=====================================
-        CABEZA DEL MODAL
-        ======================================-->
+function generarContentModal($idModal,$idCalendar,$comparar,$seccion){
+	
+	$estilo = ($comparar != '') ? "display:none;width:300px;position:absolute;top:0;left:110px;" : "left:0" ; 
 
-        <div class="modal-header" style="background:#3c8dbc; color:white;">
+    echo "
+	<div class='modal-content' id='".$idModal."' style='".$estilo."'>
 
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <div class='modal-header' style='background:#3c8dbc; color:white;'>
 
-          <h4 class="modal-title">Reporte de Compras</h4>
+          <button type='button' class='close' data-dismiss='modal'>&times;</button>
+
+          <h4 class='modal-title'>Reporte de Compras</h4>
 
         </div>
+	<div class='modal-body' style='padding-bottom:0'>
 
-        <!--=====================================
-        CUERPO DEL MODAL
-        ======================================-->
+    <div class='box-body'>
+      
+      <div class='box-header with-border'>
+      
+        <div class='input-group'>
+          
+          <div class='row'>
 
-        <div class="modal-body" style="padding-bottom:0">
+            <div class='col-md-12'>
 
-          <div class="box-body">
-            
-            <div class="box-header with-border">
-            
-              <div class="input-group">
-                
-                <div class="row">
+              <button type='button' class='btn btn-default btn-lg btn-block' id='".$idCalendar.$comparar."'>
+              
+                <span>
+                  <i class='fa fa-calendar'></i> 
+                    Rango de Fecha
+                </span>
 
-                  <div class="col-md-12">
+                <i class='fa fa-caret-down'></i>
 
-                    <button type="button" class="btn btn-default btn-lg btn-block" id="daterange-btnCompras">
-                    
-                      <span>
-                        <i class="fa fa-calendar"></i> 
-                          Rango de Fecha
-                      </span>
-
-                      <i class="fa fa-caret-down"></i>
-
-                    </button>
-
-                  </div>
-
-                </div>
-					
-				<br>
-				
-				<div class="row">
-
-					<div class="col-md-6">
-			  
-						<input type="checkbox" name="compararCompra" id="comprarCompra">
-						
-			  			<b>Comparar</b>
-					
-					</div>
-
-				</div>
-
-				<div class="row" style="display:none">
-
-                  <div class="col-md-12">
-
-                    <button type="button" class="btn btn-default btn-lg btn-block" id="daterange-btnComprasComparar">
-                    
-                      <span>
-                        <i class="fa fa-calendar"></i> 
-                          Rango de Fecha
-                      </span>
-
-                      <i class="fa fa-caret-down"></i>
-
-                    </button>
-
-                  </div>
-
-                </div>
-
-              </div>
+              </button>
 
             </div>
 
           </div>
+              
+          <br>";
+          
+          if($comparar == ''){
+          echo "
+          <div class='row'>
 
-        </div>
+              <div class='col-md-6 botonComparar'>
 
-        <!--=====================================
-        PIE DEL MODAL
-        ======================================-->
+              <input type='checkbox' name='compararValidoFecha' id='compararValidoFecha".$seccion."'>
 
-        <div class="modal-footer">
-
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-
-          <button type="submit" class="btn btn-primary" id="generarReporteCompras">Generar Reporte</button>
-
-        </div>
-
-    </div>
-
-  </div>
-
-</div>
-
-<div id="modalPanelControl" class="modal fade" role="dialog" >
-  
-  <div class="modal-dialog" style="width:300px;">
-
-    <div class="modal-content">
-
-
-        <!--=====================================
-        CABEZA DEL MODAL
-        ======================================-->
-
-        <div class="modal-header" style="background:#3c8dbc; color:white;">
-
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-          <h4 class="modal-title">Panel de Control</h4>
-
-        </div>
-
-        <!--=====================================
-        CUERPO DEL MODAL
-        ======================================-->
-
-		<div class="modal-body">
-
-          <div class="box-body">
-            
-            <div class="box-header with-border">
-
-			<div class="input-group">
-                
-                <div class="row">
-
-                  <div class="col-md-12">
-
-                    <button type="button" class="btn btn-default btn-lg btn-block" id="daterange-btnPanel">
-                    
-                      <span>
-                        <i class="fa fa-calendar"></i> 
-                          Rango de Fecha
-                      </span>
-
-                      <i class="fa fa-caret-down"></i>
-
-                    </button>
-
-                  </div>
-
-                </div>
+              <b>&nbsp;Comparar</b>
 
               </div>
+              
+          </div>";
 
-            </div>
-
-          </div>
-
+          }
+    
+    echo "
         </div>
 
-        <!--=====================================
-        PIE DEL MODAL
-        ======================================-->
-
-        <div class="modal-footer">
-
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-
-          <button type="submit" class="btn btn-primary" id="generarPanelControl">Generar Reporte</button>
-
-        </div>
+      </div>
 
     </div>
 
-  </div>
+  </div>";
 
-</div>
+
+}
+
+// $modalSeccion es el ID del modal GENERAL de cada SECCION
+
+// $idModal es el ID del Modal, puede ser el principial o el Comparar
+
+// $seccion es la seccion que pertenece el modal
+
+
+$modalSeccion = 'ventanaModalFechaCompra';
+
+$idCalendar = 'daterange-btnCompras';
+
+$idGenerar = 'generarReporteCompras';
+
+$idModal = 'modalFechaCompra';
+
+$seccion = 'Compras';
+
+include 'modales/filtroFecha.modal.php';
+
+$modalSeccion = 'ventanaModalFechaPanelControl';
+
+$idCalendar = 'daterange-btnPanel';
+
+$seccion = 'PanelControl';
+
+$idModal = 'modalFechaPanelControl';
+
+$idGenerar = 'generarPanelControl';
+
+include 'modales/filtroFecha.modal.php';
+
+?>
 
 <div id="modalCargarPanelControl" class="modal fade" role="dialog">
   

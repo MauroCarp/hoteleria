@@ -41,3 +41,87 @@ $('.tablaCompras').DataTable( {
 } );
 
 
+$('#compararValidoFechaCompras').change(function(){
+	
+	let compararValido = $(this).is(':checked');
+	
+	console.log(compararValido);
+
+	if(compararValido){
+  
+	  $('#modalFechaComprasComparar').show(1000);
+  
+	  $('#modalFechaCompra').css('left','-250px');
+	  
+	  $('#modalFechaCompra').css('transition','left 1s');
+	  
+	  
+	}else{
+	  
+	  $('#modalFechaComprasComparar').hide(800);
+  
+	  $('#modalFechaCompra').css('left','0');
+	  
+	  $('#modalFechaCompra').css('transition','left 1s');
+  
+	}
+  
+  
+  });
+
+  $('#daterange-btnCompras').daterangepicker(
+	{
+	  ranges   : {
+  
+	  },
+	  startDate: moment(),
+	  endDate  : moment()
+	},
+	function (start, end) {
+	  $('#daterange-btnCompras span').html(start.format('d/m/Y') + ' - ' + end.format('DD/MM/YYYY'));
+  
+	  var fechaInicial = start.format('YYYY-MM-d');
+  
+	  var fechaFinal = end.format('YYYY-MM-d');
+  
+	  localStorage.setItem('rangoCompras', fechaInicial + '/' + fechaFinal);
+  
+	  var capturarRango = $("#daterange-btnCompras span").html();
+  
+	  cargarSelectSegunFecha('1',capturarRango,'compras','consignatario','fecha');
+	  
+	  cargarSelectSegunFecha('1',capturarRango,'compras','proveedor','fecha');
+	  
+	  cargarSelectSegunFecha('1',capturarRango,'compras','tropa','fecha');
+	}
+  
+  );
+
+  $('#daterange-btnComprasComp').daterangepicker(
+	{
+	  ranges   : {
+  
+	  },
+	  startDate: moment(),
+	  endDate  : moment()
+	},
+	function (start, end) {
+	  $('#daterange-btnComprasComp span').html(start.format('d/m/Y') + ' - ' + end.format('DD/MM/YYYY'));
+  
+	  var fechaInicial = start.format('YYYY-MM-d');
+  
+	  var fechaFinal = end.format('YYYY-MM-d');
+  
+	  localStorage.setItem('rangoComprasComp', fechaInicial + '/' + fechaFinal);
+  
+	  var capturarRango = $("#daterange-btnComprasComp span").html();
+  
+	  cargarSelectSegunFecha('1',capturarRango,'compras','consignatario','fecha');
+	  
+	  cargarSelectSegunFecha('1',capturarRango,'compras','proveedor','fecha');
+	  
+	  cargarSelectSegunFecha('1',capturarRango,'compras','tropa','fecha');
+	}
+  
+  );
+  

@@ -75,171 +75,17 @@ if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor"){
 
 </div>
 
-<!--=====================================
-MODAL FILTROS
-======================================-->
+<?php
 
-<div id="modalFiltros" class="modal fade" role="dialog">
+  $idCalendar = 'daterange-btn';
+
+  $tabla = 'animales';
+
+  $idGenerar = 'generarReporte';
   
-  <div class="modal-dialog">
+  include 'modales/filtros.modal.php';
 
-    <div class="modal-content">
-
-
-        <!--=====================================
-        CABEZA DEL MODAL
-        ======================================-->
-
-        <div class="modal-header" style="background:#3c8dbc; color:white">
-
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-          <h4 class="modal-title">Filtros de reportes</h4>
-
-        </div>
-
-        <!--=====================================
-        CUERPO DEL MODAL
-        ======================================-->
-
-        <div class="modal-body">
-
-          <div class="box-body">
-
-            <!-- Filtros -->
-
-            
-            <div class="box-header with-border" id="filtros">
-            
-              <div class="input-group">
-                
-                <div class="row">
-
-                  <div class="col-md-8">
-                    <label>Rango de Fechas - General -</label>
-
-                    <button type="button" class="btn btn-default" id="daterange-btn">
-                    
-                      <span>
-                        <i class="fa fa-calendar"></i> 
-                          Rango de Fecha
-                      </span>
-
-                      <i class="fa fa-caret-down"></i>
-
-                    </button>
-
-                  </div>
-
-                </div>
-
-              </div>
-              <br>
-              <div class="row">
-                
-                <div class="col-md-4">
-
-                  <div class="form-group">
-                    <label>Consignatario</label>
-                    <select class="form-control consignatarios" name="consignatario1" id="consignatario1" onchange=(generarProveedores(this.id,'animales'))>
-                      <option value='Consignatario'>Consignatario</option>";
-
-                    <?php
-                      $item = null;
-                      $valor = null;
-                      $variable = 'consignatario';
-                      $consignatarios = ControladorDatos::ctrMostrarTropas($variable,$item,$valor);
-                      asort($consignatarios);
-                      foreach ($consignatarios as $key => $value) {
-                      echo "<option value='".utf8_decode($value[0])."'>".utf8_decode($value[0])."</option>";
-                      }
-                    ?>
-                    </select>
-
-                  </div>
-
-                </div>
-
-                  <div class="col-md-4">
-
-                    <div class="form-group">
-                      <label>Proveedor</label>
-                      <select class="form-control proveedores" name="proveedor1" id="proveedor1" onchange=(generarTropas(this.id,'animales'))>
-                      <option value='Proveedor'>Proveedor</option>";
-                        <?php
-                          
-                          $item = null;
-                          $valor = null;
-                          $variable = 'proveedor';
-                          $proveedores = ControladorDatos::ctrMostrarTropas($variable,$item,$valor);
-                          asort($proveedores);
-                          foreach ($proveedores as $key => $value) {
-                          echo "<option value='".$value[0]."'>".$value[0]."</option>";
-                          }
-                          
-                        ?>
-                      </select>
-
-                    </div>
-
-                  </div>
-
-                  <div class="col-md-4">
-
-                    <div class="form-group">
-                      <label>Tropa</label>
-                      <select class="form-control tropas" name="tropa1" id="tropa1" onchange=(bloquearProveedor(this.id))>
-                      <option value='Tropa'>Tropa</option>";
-                        <?php
-                          
-                          $item = null;
-                          $valor = null;
-                          $variable = 'tropa';
-                          $tropas = ControladorDatos::ctrMostrarTropas($variable,$item,$valor);
-                          asort($tropas);
-                          foreach ($tropas as $key => $value) {
-                          echo "<option value='".$value[0]."'>".$value[0]."</option>";
-                          }
-                          
-                        ?>
-                      </select>
-
-                    </div>
-
-                  </div>
-
-              </div>
-
-              <div class="row" id="btn-plus">
-                <div class="col-md-1">
-                  <button type="button" class="btn btn-info" id="comparar"><i class="fa fa-plus"></i></button>
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <!--=====================================
-        PIE DEL MODAL
-        ======================================-->
-
-        <div class="modal-footer">
-
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-
-          <button type="submit" class="btn btn-primary" id="generarReporte">Generar Reporte</button>
-
-        </div>
-
-    </div>
-
-  </div>
-
-</div>
- 
+?>
 
 <script>
   $(function () {

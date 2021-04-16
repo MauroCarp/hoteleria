@@ -12,6 +12,34 @@ $('#generarPanelControl').click(()=>{
 
 });
 
+$('#compararValidoFechaPanelControl').change(function(){
+	
+	let compararValido = $(this).is(':checked');
+	
+	console.log(compararValido);
+
+	if(compararValido){
+  
+	  $('#modalFechaPanelControlComparar').show(1000);
+  
+	  $('#modalFechaPanelControl').css('left','-250px');
+	  
+	  $('#modalFechaPanelControl').css('transition','left 1s');
+	  
+	  
+	}else{
+	  
+	  $('#modalFechaPanelControlComparar').hide(800);
+  
+	  $('#modalFechaPanelControl').css('left','0');
+	  
+	  $('#modalFechaPanelControl').css('transition','left 1s');
+  
+	}
+  
+  
+  });
+
 /*=============================================
 AGREGAR FILTROS
 =============================================*/
@@ -38,6 +66,30 @@ $('#daterange-btnPanel').daterangepicker(
     }
   
   )
+  
+
+$('#daterange-btnPanelComp').daterangepicker(
+  {
+    ranges   : {
+
+    },
+    startDate: moment(),
+    endDate  : moment()
+  },
+  function (start, end) {
+    $('#daterange-btnPanel span').html(start.format('d/m/Y') + ' - ' + end.format('DD/MM/YYYY'));
+
+    var fechaInicial = start.format('YYYY-MM-DD');
+
+    var fechaFinal = end.format('YYYY-MM-DD');
+
+    localStorage.setItem('rangoPanel', fechaInicial + '/' + fechaFinal);
+
+    var capturarRango = $("#daterange-btnPanel span").html();
+
+  }
+
+)
   
 /*=============================================
 CANCELAR RANGO DE FECHAS
