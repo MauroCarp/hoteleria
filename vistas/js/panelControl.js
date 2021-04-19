@@ -1,3 +1,60 @@
+let date = new Date();
+let month = date.getMonth() + 1;
+
+month = (month < 10) ? '0' + month : month;
+
+let year = date.getFullYear();
+
+let monthValue = year + '-' + month
+
+/*=============================================
+AGREGAR PERIODO
+=============================================*/
+
+function agregarPeriodo(contador){
+
+
+      let contenido = '<div class="row">';
+      
+      contenido += '<div class="col-md-8">';
+      
+      contenido += '<label><h4><b>Periodo ' + contador + '</b></h4></label>';
+      
+      contenido += '</div>';
+      
+      contenido += '</div>';
+      
+      contenido += '<div class="row">';
+      
+      contenido += '<div class="col-md-12">';
+
+      contenido += '<input class="form-control months" type="month" id="periodoPC' + contador + '">';
+
+      contenido += '</div>';
+      
+      contenido += '</div>';
+
+  return contenido;
+
+}
+
+let contadorPC = 2;
+
+let contenido = '';
+
+$('#compararPC').click(()=>{
+
+  contenido = agregarPeriodo(contadorPC);
+  
+  $('#btn-plusPC').before(contenido);
+  
+  $('#btn-plusPC').before('<br>');
+  
+  $('#periodoPC' + contadorPC )[0].value = monthValue;
+  
+  contadorPC++;
+
+});
 
 /*=============================================
 GENERAR REPORTE
@@ -191,6 +248,8 @@ GENERAR GRAFICO FINAMICO
   graficoDinamico();
 
  });
+
+
 
 
   

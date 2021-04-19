@@ -125,6 +125,7 @@ function generarBodyModal($idCalendar,$tabla,$consignatarios,$proveedores,$tropa
 };
 
 ?>
+              
 <div id="modalFiltros" class="modal fade" role="dialog">
   <div class="modal-dialog">
 

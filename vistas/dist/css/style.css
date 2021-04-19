@@ -14,3 +14,7 @@
     background-color: azure;
     margin-left: 10px;
 }
+
+.selectPC{
+        display: grid;
+}
