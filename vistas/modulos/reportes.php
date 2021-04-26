@@ -82,6 +82,10 @@ if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor"){
   $tabla = 'animales';
 
   $idGenerar = 'generarReporte';
+
+  $idModal = 'modalPrincipalVentas';
+
+  $idModalComparar = 'modalCompararVentas';
   
   include 'modales/filtros.modal.php';
 

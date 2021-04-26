@@ -72,6 +72,10 @@ include 'ajax/datosReporteMuertes.ajax.php';
   $tabla = 'muertes';
 
   $idGenerar = 'generarReporteMuertes';
+
+  $idModal = 'modalPrincipalMuertes';
+
+  $idModalComparar = 'modalCompararMuertes';
   
   include 'modales/filtros.modal.php';
   

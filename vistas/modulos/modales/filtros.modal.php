@@ -129,7 +129,7 @@ function generarBodyModal($idCalendar,$tabla,$consignatarios,$proveedores,$tropa
 <div id="modalFiltros" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
-    <div class="modal-content" id="modalPrincipal" style="left:0">
+    <div class="modal-content" id="<?php echo $idModal;?>" style="left:0px">
 
 
         <!--=====================================
@@ -190,7 +190,7 @@ function generarBodyModal($idCalendar,$tabla,$consignatarios,$proveedores,$tropa
 
     </div>
 
-    <div class="modal-content" id="modalComparar" style="display:none;width:600px;position:absolute;top:0;left:380px;">
+    <div class="modal-content" id="<?php echo $idModalComparar;?>" style="display:none;width:600px;position:absolute;top:0;left:380px;">
 
 
         <!--=====================================
