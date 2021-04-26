@@ -83,5 +83,30 @@ function opcionesSkipFalse(configuracion){
       }
     return opciones;
 
+}
+
+$('#compararValidoMuertes').change(function(){
+
+  let compararValido = $(this).is(':checked');
+
+  if(compararValido){
+
+    $('#modalPrincipalMuertes').css('left','-250px');
+    
+    $('#modalPrincipalMuertes').css('transition','left 1s');
+
+    $('#modalCompararMuertes').show(1000);
+    
+    
+  }else{
+    
+    $('#modalCompararMuertes').hide(800);
+
+    $('#modalPrincipalMuertes').css('left','0');
+    
+    $('#modalPrincipalMuertes').css('transition','left 1s');
+
   }
 
+
+});

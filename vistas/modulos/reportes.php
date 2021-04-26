@@ -86,6 +86,8 @@ if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor"){
   $idModal = 'modalPrincipalVentas';
 
   $idModalComparar = 'modalCompararVentas';
+
+  $seccion = 'Ventas';
   
   include 'modales/filtros.modal.php';
 

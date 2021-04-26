@@ -1,6 +1,6 @@
 <?php
 
-function generarBodyModal($idCalendar,$tabla,$consignatarios,$proveedores,$tropas,$comparar){
+function generarBodyModal($idCalendar,$tabla,$consignatarios,$proveedores,$tropas,$comparar,$seccion){
 
   echo "
   <div class='modal-body' style='padding-bottom:0px;'>
@@ -107,7 +107,7 @@ function generarBodyModal($idCalendar,$tabla,$consignatarios,$proveedores,$tropa
               <div class='row'>
 
                 <div class='col-md-2 botonComparar'>
-                  <input type='checkbox' name='compararValido' id='compararValido'>
+                  <input type='checkbox' name='compararValido".$seccion."' id='compararValido".$seccion."'>
                   <b>&nbsp;Comparar</b>
                 </div>
                 
@@ -172,7 +172,7 @@ function generarBodyModal($idCalendar,$tabla,$consignatarios,$proveedores,$tropa
           
         asort($tropas);
 
-        generarBodyModal($idCalendar,$tabla,$consignatarios,$proveedores,$tropas,'');
+        generarBodyModal($idCalendar,$tabla,$consignatarios,$proveedores,$tropas,'',$seccion);
 
         ?>
 
@@ -209,7 +209,7 @@ function generarBodyModal($idCalendar,$tabla,$consignatarios,$proveedores,$tropa
 
         <?php
 
-        generarBodyModal($idCalendar,$tabla,$consignatarios,$proveedores,$tropas,'Comp');
+        generarBodyModal($idCalendar,$tabla,$consignatarios,$proveedores,$tropas,'Comp',$seccion);
 
         ?>      
 

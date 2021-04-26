@@ -101,6 +101,8 @@ include 'ajax/datosReporteMuertes.ajax.php';
   $idModal = 'modalPrincipalMuertes';
 
   $idModalComparar = 'modalCompararMuertes';
+
+  $seccion = 'Muertes';
   
   include 'vistas/modulos/modales/filtros.modal.php';
   
