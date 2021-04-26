@@ -51,6 +51,7 @@ if( isset($_FILES["nuevosDatos"]) ){
                         
 
                         switch ($rowNumber) {
+                            
                             case 9:
                                 
                                 $CSanCabPeriodo = $Row[1];
@@ -201,6 +202,18 @@ if( isset($_FILES["nuevosDatos"]) ){
                                 
                                 break;
 
+                            case 45:
+                                
+                                $consumoSoja = $Row[2];
+                                
+                                break;
+
+                            case 50:
+                                
+                                $consumoMaiz = $Row[2];
+                                
+                                break;
+
                             
                             default:
                                 
@@ -218,7 +231,7 @@ if( isset($_FILES["nuevosDatos"]) ){
 				}
                 
 
-                $sql = "INSERT INTO controlpanel(CSanCabPeriodo,CDiaAlimTCCab,CKgRacPromTC,CKgRacPromMS,consumTCPondCab,consumMSPondCab,converMSEstADPV,poblDiaPromPeriodo,totalCabSalida,muertosPeriodo,estadiaProm,cabTrazSalidas,pesoPromIngSalTraz,pesoPromEgrTraz,kilosGanPeriodoTraz,adpvGanDiaPeriodo,totalCabFaenadas,totalKgCarne,totalPesosFaena,rinde,valorKgObtRinde,porceDesbaste,CProdKgAlim,CProdKgAES,margenTecKgProd) VALUES('$CSanCabPeriodo','$CDiaAlimTCCab','$CKgRacPromTC','$CKgRacPromMS','$consumTCPondCab','$consumMSPondCab','$converMSEstADPV','$poblDiaPromPeriodo','$totalCabSalida','$muertosPeriodo','$estadiaProm','$cabTrazSalidas','$pesoPromIngSalTraz','$pesoPromEgrTraz','$kilosGanPeriodoTraz','$adpvGanDiaPeriodo','$totalCabFaenadas','$totalKgCarne','$totalPesosFaena','$rinde','$valorKgObtRinde','$porceDesbaste','$CProdKgAlim','$CProdKgAES','$margenTecKgProd')";
+                $sql = "INSERT INTO controlpanel(CSanCabPeriodo,CDiaAlimTCCab,CKgRacPromTC,CKgRacPromMS,consumTCPondCab,consumMSPondCab,converMSEstADPV,poblDiaPromPeriodo,totalCabSalida,muertosPeriodo,estadiaProm,cabTrazSalidas,pesoPromIngSalTraz,pesoPromEgrTraz,kilosGanPeriodoTraz,adpvGanDiaPeriodo,totalCabFaenadas,totalKgCarne,totalPesosFaena,rinde,valorKgObtRinde,porceDesbaste,CProdKgAlim,CProdKgAES,margenTecKgProd,consumoSoja,consumoMaiz) VALUES('$CSanCabPeriodo','$CDiaAlimTCCab','$CKgRacPromTC','$CKgRacPromMS','$consumTCPondCab','$consumMSPondCab','$converMSEstADPV','$poblDiaPromPeriodo','$totalCabSalida','$muertosPeriodo','$estadiaProm','$cabTrazSalidas','$pesoPromIngSalTraz','$pesoPromEgrTraz','$kilosGanPeriodoTraz','$adpvGanDiaPeriodo','$totalCabFaenadas','$totalKgCarne','$totalPesosFaena','$rinde','$valorKgObtRinde','$porceDesbaste','$CProdKgAlim','$CProdKgAES','$margenTecKgProd','$consumoSoja','$consumoMaiz')";
 
                 mysqli_query($conexion,$sql);
 
@@ -227,9 +240,10 @@ if( isset($_FILES["nuevosDatos"]) ){
             }
 
     }
- die();   
-    // echo "<script>
-    // window.location.href = 'index';
-    // </script>";
+
+    echo "<script>
+    window.location.href = 'panelControl';
+    </script>";
+
 }
 ?>

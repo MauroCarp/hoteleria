@@ -18,3 +18,9 @@
 .selectPC{
         display: grid;
 }
+
+.badge.bg-blue{
+
+    font-size: 15px;
+
+}

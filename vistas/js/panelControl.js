@@ -57,17 +57,29 @@ $('#compararPC').click(()=>{
 });
 
 /*=============================================
-GENERAR REPORTE
+BOTON GENERAR REPORTE
 =============================================*/
+
 $('#generarPanelControl').click(()=>{
 
-    var rango = localStorage.getItem('rangoPanel');
+    let periodos = [];
     
-    console.log(rango);
-    
-    window.location.href = 'index.php?ruta=panelControl&rango=' + rango, _self;
+    $('.months').each(function(){
+
+      periodos.push($(this).val());
+
+    });
+
+    periodos = periodos.join('/');
+
+    window.location.href = 'index.php?ruta=panelControl&periodos=' + periodos, _self;
 
 });
+
+
+/*=============================================
+MODAL MOSTRAR COMPARAR
+=============================================*/
 
 $('#compararValidoFechaPanelControl').change(function(){
 	
@@ -190,69 +202,98 @@ function getQueryVariable(variable) {
 }
 
 /*=============================================
-GENERAR GRAFICO FINAMICO
+GENERAR SOLAPA PERIODO
 =============================================*/
 
-  function graficoDinamico(){
-    
-    var kilos = [];
-
-    $('.data-number').each(function(){
-  
-      kilos.push($(this).val());
-      
-    });
-
-    var rango = getQueryVariable('rango');
-
-    var data = 'kgInicial=' + kilos[0] + '&kgFinal=' + kilos[1] + '&rango=' + rango;
-
-    var url = 'ajax/panelControl.ajax.php';
-    
-    $.ajax({
-
-      data: data,
-
-      url: url,
-
-      type: 'POST',
-      
-      success: function(respuesta){
-
-        var resultado = JSON.parse(respuesta);
-
-        $('#panelCantidad h3:first-child').html(resultado.cantidadAnimales);
-
-        $('#panelAdpv').html(resultado.adpv.toFixed(2));
-        
-        $('#panelEstadia').html(Math.round(resultado.estadia));
-
-        $('#panelParticipacion').html(resultado.participacion.toFixed(2));
-
-
-      }
-
-    });
-
-
-  }
-
- $('.data-number').blur(()=>{
-
-  graficoDinamico();
-
- });
-
- $('.data-number').change(()=>{
-
-  graficoDinamico();
-
- });
-
-
-
-
-  
+function generarCajas(contador){
  
-  
-  
+ let contenido = '<section class="content" style="min-height:0px">';
+    
+    contenido += ' <div class="row">';
+     contenido += '     <div class="col-lg-3 col-xs-6">';
+     contenido += '         <div class="small-box bg-yellow">';
+     contenido += '             <div class="inner">';
+     contenido += '             <h3>Poblaci&oacute;n Prom.</h3>'; 
+     contenido += '             <h3><span id="panelPoblacion' + contador + '"></span> Animales</h3>';                 
+     contenido += '             </div>'; 
+     contenido += '             <div class="icon" style="padding-top:10px;">';
+     contenido += '             <i class="icon-COW"></i>';                 
+     contenido += '             </div>'; 
+     contenido += '         </div>'; 
+     contenido += '     </div>'; 
+     contenido += '     <div class="col-lg-2 col-xs-4">';
+     contenido += '         <div class="small-box bg-yellow">';
+     contenido += '             <div class="inner">';
+     contenido += '                 <h3>Conversi&oacute;n</h3>'; 
+     contenido += '                 <h3><span id="panelConversion' + contador + '"></span></h3>'; 
+     contenido += '             </div>'; 
+     contenido += '             <div class="icon">';
+     contenido += '                 <i class="fa fa-refresh"></i>';                 
+     contenido += '             </div>'; 
+     contenido += '         </div>'; 
+     contenido += '     </div>'; 
+     contenido += '     <div class="col-lg-2 col-xs-4">';
+     contenido += '         <div class="small-box bg-aqua">';
+     contenido += '             <div class="inner">';
+     contenido += '                 <h3>ADPV</h3>'; 
+     contenido += '                 <h3><span id="panelAdpv' + contador + '"></span> Kg</h3>';                 
+     contenido += '             </div>'; 
+     contenido += '             <div class="icon">';
+     contenido += '                 <i class="fa fa-arrow-up"></i>';                 
+     contenido += '             </div>';                 
+     contenido += '         </div>'; 
+     contenido += '     </div>'; 
+     contenido += '     <div class="col-lg-2 col-xs-4">';
+     contenido += '         <div class="small-box bg-yellow">';
+     contenido += '             <div class="inner">';
+     contenido += '                 <h3>$ Kg Prod.</h3>'; 
+     contenido += '                 <h3>$ <span id="panelPrecioKiloProd' + contador + '"></span></h3>'; 
+     contenido += '             </div>';  
+     contenido += '             <div class="icon">';
+     contenido += '                 <i class="fa fa-dollar"></i>';                 
+     contenido += '             </div>'; 
+     contenido += '         </div>'; 
+     contenido += '     </div>'; 
+     contenido += '     <div class="col-lg-3 col-xs-6">';
+     contenido += '         <div class="small-box bg-green">';
+     contenido += '             <div class="inner">';
+     contenido += '                 <h3>Estadia</h3>'; 
+     contenido += '                 <h3><span id="panelEstadia' + contador + '"></span> D&iacute;as</h3>';             
+     contenido += '             </div>'; 
+     contenido += '             <div class="icon" style="padding-top:10px;">';
+     contenido += '                 <i class="icon-corral"></i>';                 
+     contenido += '             </div>';                 
+     contenido += '         </div>'; 
+     contenido += '     </div>'; 
+     contenido += ' </div>'; 
+     contenido += ' </section>';
+
+     return contenido;
+
+}
+
+function generarSolapasCPP(contador){
+
+  let contenido;
+  contenido = ' <div class="nav-tabs-custom">';
+  contenido += '   <ul class="nav nav-tabs" style="font-size:1.em;">';
+  contenido += '     <li class="tabs active"><a href="#tab_1' + contador + '" data-toggle="tab"><b>Consumos</b></a></li>';
+  contenido += '     <li class="tabs"><a href="#tab_2' + contador + '" data-toggle="tab"><b>Poblacion</b></a></li>';
+  contenido += '     <li class="tabs"><a href="#tab_3' + contador + '" data-toggle="tab"><b>Producci&oacute;n</b></a></li>';
+  contenido += '   </ul>';
+  contenido += '   <div class="tab-content">';
+  contenido += '     <div class="tab-pane active" id="tab_1' + contador + '">';
+  contenido += '       <h1>asdasdg</h1>';
+  contenido += '     </div>';
+  contenido += '     <div class="tab-pane poblacion" id="tab_2' + contador + '">';
+  contenido += '       <h1>poblacion</h1>';
+  contenido += '     </div>';
+  contenido += '     <div class="tab-pane produccion" id="tab_3' + contador + '">';
+  contenido += '       <h1>produccion</h1>';
+  contenido += '     </div>';
+  contenido += '   </div>';
+  contenido += ' </div>';
+
+  return contenido;
+
+}  
