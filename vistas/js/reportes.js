@@ -116,20 +116,20 @@ $('#compararValido').change(function(){
 
   if(compararValido){
 
-    $('#modalComparar').show(1000);
-
-    $('#modalPrincipal').css('left','-250px');
+    $('#modalPrincipalVentas').css('left','-250px');
     
-    $('#modalPrincipal').css('transition','left 1s');
+    $('#modalPrincipalVentas').css('transition','left 1s');
+
+    $('#modalCompararVentas').show(1000);
     
     
   }else{
     
-    $('#modalComparar').hide(800);
+    $('#modalCompararVentas').hide(800);
 
-    $('#modalPrincipal').css('left','0');
+    $('#modalPrincipalVentas').css('left','0');
     
-    $('#modalPrincipal').css('transition','left 1s');
+    $('#modalPrincipalVentas').css('transition','left 1s');
 
   }
 

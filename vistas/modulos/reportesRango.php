@@ -100,6 +100,10 @@ $fechaFinal = $fechas[1];
   $tabla = 'animales';
 
   $idGenerar = 'generarReporte';
+
+  $idModal = 'modalPrincipalVentas';
+
+  $idModalComparar = 'modalCompararVentas';
   
   include 'modales/filtros.modal.php';
 

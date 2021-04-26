@@ -45,8 +45,6 @@ $('#compararValidoFechaCompras').change(function(){
 	
 	let compararValido = $(this).is(':checked');
 	
-	console.log(compararValido);
-
 	if(compararValido){
   
 	  $('#modalFechaComprasComparar').show(1000);

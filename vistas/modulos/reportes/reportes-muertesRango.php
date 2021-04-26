@@ -136,6 +136,10 @@ include 'ajax/datosReporteMuertesRango.ajax.php';
   $tabla = 'muertes';
 
   $idGenerar = 'generarReporteMuertes';
+
+  $idModal = 'modalPrincipalMuertes';
+
+  $idModalComparar = 'modalCompararMuertes';
   
   include 'vistas/modulos/modales/filtros.modal.php';
   

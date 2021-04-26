@@ -93,6 +93,10 @@ include 'ajax/datosReporte.ajax.php';
   $tabla = 'animales';
 
   $idGenerar = 'generarReporte';
+
+  $idModal = 'modalPrincipalVentas';
+
+  $idModalComparar = 'modalCompararVentas';
   
   include 'vistas/modulos/modales/filtros.modal.php';
   
