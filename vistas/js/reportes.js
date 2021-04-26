@@ -110,7 +110,7 @@ $('#comparar').click(function(){
 
 });
 
-$('#compararValido').change(function(){
+$('#compararValidoVentas').change(function(){
 
   let compararValido = $(this).is(':checked');
 

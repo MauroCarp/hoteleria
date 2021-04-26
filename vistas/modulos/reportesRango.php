@@ -104,6 +104,8 @@ $fechaFinal = $fechas[1];
   $idModal = 'modalPrincipalVentas';
 
   $idModalComparar = 'modalCompararVentas';
+
+  $seccion = 'Ventas';
   
   include 'modales/filtros.modal.php';
 

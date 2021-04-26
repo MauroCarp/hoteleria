@@ -97,6 +97,8 @@ include 'ajax/datosReporte.ajax.php';
   $idModal = 'modalPrincipalVentas';
 
   $idModalComparar = 'modalCompararVentas';
+
+  $seccion = 'Ventas';
   
   include 'vistas/modulos/modales/filtros.modal.php';
   
