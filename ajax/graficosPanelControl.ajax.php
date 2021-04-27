@@ -11,6 +11,7 @@ $item = 'periodo';
 
 $valor = $periodo;
 
+var_dump($periodo);
 // CONVERSION
 
 $campo = 'converMSEstADPV';

@@ -43,7 +43,7 @@ class ModeloPanelControl{
 
 	static public function mdlMostrarUltimos($tabla,$campo,$cantidad){
 
-		$stmt = Conexion::conectar()->prepare("SELECT $campo FROM $tabla LIMIT $cantidad ");
+		$stmt = Conexion::conectar()->prepare("SELECT $campo FROM $tabla ORDER BY periodoTime ASC LIMIT $cantidad");
 
 		$stmt -> execute();
 
