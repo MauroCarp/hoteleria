@@ -15,276 +15,308 @@ function formatearNumero($number){
 
 }
 
+$accion = $_POST['accion'];
+
 $periodo = $_POST['periodo'];
 
-$item = 'periodo';
+if($accion == 'chequear'){
 
-$campo = '*';
+    $campo = 'chequeado';
 
-$valor = $periodo;
+    $condition = $periodo;
+    
+    $respuesta = ControladorPanelControl::ctrChequear($campo,$condition);
 
-$datos = ControladorPanelControl::ctrMostrarDato($campo,$item,$valor);
+    echo $respuesta;
+    
+}
 
-$respuesta = array();
+if($accion == 'data'){
 
-$respuesta['Consumo1'] = "
-    <tbody>
+    $item = 'periodo';
 
-        <tr>
-                                
-            <td>Costo de Sanidad por Cabeza Per&iacute;odo</td>
-            
-            <td><span class='badge bg-blue'>$ ".formatearNumero2($datos['CSanCabPeriodo'])."</span></td>
+    $campo = '*';
 
-        </tr>
+    $valor = $periodo;
 
-        <tr>
-                                
-            <td>Costo Diario en Alimentaci&oacute;n en Tal Cual por Cabeza</td>
-            
-            <td><span class='badge bg-blue'>$ ".formatearNumero2($datos['CDiaAlimTCCab'])."</span></td>
+    $datos = ControladorPanelControl::ctrMostrarDato($campo,$item,$valor);
 
-        </tr>
+    $respuesta = array();
 
-        <tr>
-                                
-            <td>Costo Kilo de Raci&oacute;n Prom. en TC</td>
-            
-            <td><span class='badge bg-blue'>$ ".formatearNumero2($datos['CKgRacPromTC'])."</span></td>
+    $respuesta['Consumo1'] = "
+        <tbody>
 
-        </tr>
+            <tr>
+                                    
+                <td>Costo de Sanidad por Cabeza Per&iacute;odo</td>
+                
+                <td><span class='badge bg-blue'>$ ".formatearNumero2($datos['CSanCabPeriodo'])."</span></td>
 
-        <tr>
-                                
-            <td>Costo Kilo de Raci&oacute;n Prom. en MS</td>
-            
-            <td><span class='badge bg-blue'>$ ".formatearNumero2($datos['CKgRacPromMS'])."</span></td>
+            </tr>
 
-        </tr>
+            <tr>
+                                    
+                <td>Costo Diario en Alimentaci&oacute;n en Tal Cual por Cabeza</td>
+                
+                <td><span class='badge bg-blue'>$ ".formatearNumero2($datos['CDiaAlimTCCab'])."</span></td>
 
-    </tbody>
-";
+            </tr>
 
-$respuesta['Consumo2'] = "
-    <tbody>
+            <tr>
+                                    
+                <td>Costo Kilo de Raci&oacute;n Prom. en TC</td>
+                
+                <td><span class='badge bg-blue'>$ ".formatearNumero2($datos['CKgRacPromTC'])."</span></td>
 
-        <tr>
-                                
-            <td>Consumo en TC PONDERADO por Cabeza</td>
-            
-            <td><span class='badge bg-blue'>".formatearNumero2($datos['consumTCPondCab'])." Kg</span></td>
+            </tr>
 
-        </tr>
+            <tr>
+                                    
+                <td>Costo Kilo de Raci&oacute;n Prom. en MS</td>
+                
+                <td><span class='badge bg-blue'>$ ".formatearNumero2($datos['CKgRacPromMS'])."</span></td>
 
-        <tr>
-                                
-            <td>Consumo en MS PONDERADO por Cabeza</td>
-            
-            <td><span class='badge bg-blue'>".formatearNumero2($datos['consumMSPondCab'])." Kg</span></td>
+            </tr>
 
-        </tr>
+        </tbody>
+    ";
 
-        <tr>
-                                
-            <td>Conversión MS ESTIMADA según última ADPV</td>
-            
-            <td><span class='badge bg-blue'>".formatearNumero2($datos['converMSEstADPV'])." Kg</span></td>
+    $respuesta['Consumo2'] = "
+        <tbody>
 
-        </tr>
-       
-        <tr>
-                                
-            <td>Consumo de Soja</td>
-            
-            <td><span class='badge bg-blue'>".formatearNumero($datos['consumoSoja'])." Kg</span></td>
+            <tr>
+                                    
+                <td>Consumo en TC PONDERADO por Cabeza</td>
+                
+                <td><span class='badge bg-blue'>".formatearNumero2($datos['consumTCPondCab'])." Kg</span></td>
 
-        </tr>
-       
-        <tr>
-                                
-            <td>Consumo de Maiz</td>
-            
-            <td><span class='badge bg-blue'>".formatearNumero($datos['consumoMaiz'])." Kg</span></td>
+            </tr>
 
-        </tr>
+            <tr>
+                                    
+                <td>Consumo en MS PONDERADO por Cabeza</td>
+                
+                <td><span class='badge bg-blue'>".formatearNumero2($datos['consumMSPondCab'])." Kg</span></td>
 
-    </tbody>
-";
+            </tr>
 
-$respuesta['Poblacion'] = "
-    <tbody>
+            <tr>
+                                    
+                <td>Conversión MS ESTIMADA según última ADPV</td>
+                
+                <td><span class='badge bg-blue'>".formatearNumero2($datos['converMSEstADPV'])." Kg</span></td>
 
-        <tr>
-                                
-            <td>Poblaci&oacute;n Diaria Prom. Per&iacute;odo</td>
-            
-            <td><span class='badge bg-blue'>".formatearNumero($datos['poblDiaPromPeriodo'])." Cabezas</span></td>
+            </tr>
+        
+            <tr>
+                                    
+                <td>Consumo de Soja</td>
+                
+                <td><span class='badge bg-blue'>".formatearNumero($datos['consumoSoja'])." Kg</span></td>
 
-        </tr>
+            </tr>
+        
+            <tr>
+                                    
+                <td>Consumo de Maiz</td>
+                
+                <td><span class='badge bg-blue'>".formatearNumero($datos['consumoMaiz'])." Kg</span></td>
 
-        <tr>
-                                
-            <td>Total Cabezas Salidas (No incluye Muertos)</td>
-            
-            <td><span class='badge bg-blue'>".formatearNumero($datos['totalCabSalida'])." Cabezas</span></td>
+            </tr>
 
-        </tr>
+        </tbody>
+    ";
 
-        <tr>
-                                
-            <td>Muertos en el Per&iacute;odo</td>
-            
-            <td><span class='badge bg-blue'>".formatearNumero($datos['muertosPeriodo'])." Cabezas</span></td>
+    $respuesta['Poblacion'] = "
+        <tbody>
 
-        </tr>
+            <tr>
+                                    
+                <td>Poblaci&oacute;n Diaria Prom. Per&iacute;odo</td>
+                
+                <td><span class='badge bg-blue'>".formatearNumero($datos['poblDiaPromPeriodo'])." Cabezas</span></td>
 
-        <tr>
-                                
-            <td>Estadia Promedio</td>
-            
-            <td><span class='badge bg-blue'>".Round($datos['estadiaProm'])." D&iacute;as</span></td>
+            </tr>
 
-        </tr>
+            <tr>
+                                    
+                <td>Total Cabezas Salidas (No incluye Muertos)</td>
+                
+                <td><span class='badge bg-blue'>".formatearNumero($datos['totalCabSalida'])." Cabezas</span></td>
 
-        <tr>
-                                
-            <td>Cabezas Trazadas Salidas (No incluye Muertos)</td>
-            
-            <td><span class='badge bg-blue'>".$datos['cabTrazSalidas']." Cabezas</span></td>
+            </tr>
 
-        </tr>
+            <tr>
+                                    
+                <td>Muertos en el Per&iacute;odo</td>
+                
+                <td><span class='badge bg-blue'>".formatearNumero($datos['muertosPeriodo'])." Cabezas</span></td>
 
-        <tr>
-                                
-            <td>Peso Promedio Ingreso/Salidos - Trazados	</td>
-            
-            <td><span class='badge bg-blue'>".$datos['pesoPromIngSalTraz']." Kg</span></td>
+            </tr>
 
-        </tr>
+            <tr>
+                                    
+                <td>Estadia Promedio</td>
+                
+                <td><span class='badge bg-blue'>".Round($datos['estadiaProm'])." D&iacute;as</span></td>
 
-        <tr>
-                                
-            <td>Peso Promedio Egresos -  Trazados</td>
-            
-            <td><span class='badge bg-blue'>".formatearNumero2($datos['pesoPromEgrTraz'])." Kg</span></td>
+            </tr>
 
-        </tr>
+            <tr>
+                                    
+                <td>Cabezas Trazadas Salidas (No incluye Muertos)</td>
+                
+                <td><span class='badge bg-blue'>".$datos['cabTrazSalidas']." Cabezas</span></td>
 
-        <tr>
-                                
-            <td>Kilos Ganados Periodo - Trazados</td>
-            
-            <td><span class='badge bg-blue'>".formatearNumero2($datos['kilosGanPeriodoTraz'])." Kg</span></td>
+            </tr>
 
-        </tr>
+            <tr>
+                                    
+                <td>Peso Promedio Ingreso/Salidos - Trazados	</td>
+                
+                <td><span class='badge bg-blue'>".$datos['pesoPromIngSalTraz']." Kg</span></td>
 
-        <tr>
-                                
-            <td>ADPV Ganancia Diaria en el Periodo</td>
-            
-            <td><span class='badge bg-blue'>".formatearNumero2($datos['adpvGanDiaPeriodo'])." Kg</span></td>
+            </tr>
 
-        </tr>
+            <tr>
+                                    
+                <td>Peso Promedio Egresos -  Trazados</td>
+                
+                <td><span class='badge bg-blue'>".formatearNumero2($datos['pesoPromEgrTraz'])." Kg</span></td>
 
-    </tbody>
-";
+            </tr>
 
-$respuesta['Produccion1'] = "
-    <tbody>
+            <tr>
+                                    
+                <td>Kilos Ganados Periodo - Trazados</td>
+                
+                <td><span class='badge bg-blue'>".formatearNumero2($datos['kilosGanPeriodoTraz'])." Kg</span></td>
 
-        <tr>
-                                
-            <td>Total Cabezas Faenadas</td>
-            
-            <td><span class='badge bg-blue'>".$datos['totalCabFaenadas']."</span></td>
+            </tr>
 
-        </tr>
+            <tr>
+                                    
+                <td>ADPV Ganancia Diaria en el Periodo</td>
+                
+                <td><span class='badge bg-blue'>".formatearNumero2($datos['adpvGanDiaPeriodo'])." Kg</span></td>
 
-        <tr>
-                                
-            <td>Total Kilos Carne (Faena)</td>
-            
-            <td><span class='badge bg-blue'>".formatearNumero2($datos['totalKgCarne'])." Kg</span></td>
+            </tr>
 
-        </tr>
+        </tbody>
+    ";
 
-        <tr>
-                                
-            <td>Total $ Faena (Sin Gastos)</td>
-            
-            <td><span class='badge bg-blue'>$ ".formatearNumero2($datos['totalPesosFaena'])."</span></td>
+    $respuesta['Produccion1'] = "
+        <tbody>
 
-        </tr>
+            <tr>
+                                    
+                <td>Total Cabezas Faenadas</td>
+                
+                <td><span class='badge bg-blue'>".$datos['totalCabFaenadas']."</span></td>
 
-        <tr>
-                                
-            <td>Rinde</td>
-            
-            <td><span class='badge bg-blue'>".$datos['rinde']." %</span></td>
+            </tr>
 
-        </tr>
+            <tr>
+                                    
+                <td>Total Kilos Carne (Faena)</td>
+                
+                <td><span class='badge bg-blue'>".formatearNumero2($datos['totalKgCarne'])." Kg</span></td>
 
-        <tr>
-                                
-            <td>Valor Kg Obtenido aplicando Rinde</td>
-            
-            <td><span class='badge bg-blue'>".formatearNumero2($datos['valorKgObtRinde'])." Kg</span></td>
+            </tr>
 
-        </tr>
+            <tr>
+                                    
+                <td>Total $ Faena (Sin Gastos)</td>
+                
+                <td><span class='badge bg-blue'>$ ".formatearNumero2($datos['totalPesosFaena'])."</span></td>
 
-        <tr>
-                                
-            <td>% Desbaste</td>
-            
-            <td><span class='badge bg-blue'>".formatearNumero2($datos['porceDesbaste'])." %</span></td>
-            
-        </tr>
+            </tr>
 
-    </tbody>
-";
+            <tr>
+                                    
+                <td>Rinde</td>
+                
+                <td><span class='badge bg-blue'>".$datos['rinde']." %</span></td>
 
-$respuesta['Produccion2'] = "
+            </tr>
 
-    <tbody>
+            <tr>
+                                    
+                <td>Valor Kg Obtenido aplicando Rinde</td>
+                
+                <td><span class='badge bg-blue'>".formatearNumero2($datos['valorKgObtRinde'])." Kg</span></td>
 
-        <tr>
-                                
-            <td>Costo Producción 1 Kg (Solo Alimentación)</td>
-            
-            <td><span class='badge bg-blue'>$ ".formatearNumero2($datos['CProdKgAlim'])."</span></td>
+            </tr>
 
-        </tr>
+            <tr>
+                                    
+                <td>% Desbaste</td>
+                
+                <td><span class='badge bg-blue'>".formatearNumero2($datos['porceDesbaste'])." %</span></td>
+                
+            </tr>
 
-        <tr>
-                                
-            <td>Costo Producción 1 Kg ( Alimentación+ Estructura + Sanidad )</td>
-            
-            <td><span class='badge bg-blue'>$ ".formatearNumero2($datos['CProdKgAES'])."</span></td>
+        </tbody>
+    ";
 
-        </tr>
+    $respuesta['Produccion2'] = "
 
-        <tr>
-                                
-            <td>Margen Técnico por Kilo Producido</td>
-            
-            <td><span class='badge bg-blue'>$ ".formatearNumero2($datos['margenTecKgProd'])."</span></td>
+        <tbody>
 
-        </tr>
+            <tr>
+                                    
+                <td>Costo Producción 1 Kg (Solo Alimentación)</td>
+                
+                <td><span class='badge bg-blue'>$ ".formatearNumero2($datos['CProdKgAlim'])."</span></td>
 
-    </tbody>
+            </tr>
 
-";
+            <tr>
+                                    
+                <td>Costo Producción 1 Kg ( Alimentación+ Estructura + Sanidad )</td>
+                
+                <td><span class='badge bg-blue'>$ ".formatearNumero2($datos['CProdKgAES'])."</span></td>
 
-$respuesta['CajaPoblacion'] = $datos['poblDiaPromPeriodo'];
+            </tr>
 
-$respuesta['CajaConversion'] = formatearNumero2($datos['converMSEstADPV']);
+            <tr>
+                                    
+                <td>Margen Técnico por Kilo Producido</td>
+                
+                <td><span class='badge bg-blue'>$ ".formatearNumero2($datos['margenTecKgProd'])."</span></td>
 
-$respuesta['CajaAdpv'] = formatearNumero2($datos['adpvGanDiaPeriodo']);
+            </tr>
 
-$respuesta['CajaKgProd'] = formatearNumero2($datos['CProdKgAES']);
+        </tbody>
 
-$respuesta['CajaEstadia'] = Round($datos['estadiaProm']);
+    ";
 
-echo json_encode($respuesta);
+    $respuesta['CajaPoblacion'] = $datos['poblDiaPromPeriodo'];
+
+    $respuesta['CajaConversion'] = formatearNumero2($datos['converMSEstADPV']);
+
+    $respuesta['CajaAdpv'] = formatearNumero2($datos['adpvGanDiaPeriodo']);
+
+    $respuesta['CajaKgProd'] = formatearNumero2($datos['CProdKgAES']);
+
+    $respuesta['CajaEstadia'] = Round($datos['estadiaProm']);
+
+    $respuesta['Chequeado'] = $datos['chequeado'];
+
+    echo json_encode($respuesta);
+}
+
+if($accion == 'valuesEditar'){
+
+    $item = 'periodo';
+
+    $campo = '*';
+
+    $valor = $periodo;
+
+    $datos = ControladorPanelControl::ctrMostrarDato($campo,$item,$valor);
+
+    echo json_encode($datos);
+}
 
 ?>

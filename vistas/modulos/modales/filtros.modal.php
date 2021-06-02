@@ -39,7 +39,7 @@ function generarBodyModal($idCalendar,$tabla,$consignatarios,$proveedores,$tropa
 
                   <div class='form-group'>
                     <label>Consignatario</label>
-                    <select class='form-control consignatarios' name='consignatario1".$comparar."' id='consignatario1".$comparar."' onchange=(generarProveedores(this.id,".$tabla."))>
+                    <select class='form-control consignatarios".$comparar."' name='consignatario1".$comparar."' id='consignatario1".$comparar."' onchange=(generarProveedores(this.id,'".$tabla."'))>
                       <option value='Consignatario'>Consignatario</option>";
 
                       foreach ($consignatarios as $key => $value) {
@@ -58,7 +58,7 @@ function generarBodyModal($idCalendar,$tabla,$consignatarios,$proveedores,$tropa
 
                     <div class='form-group'>
                       <label>Proveedor</label>
-                      <select class='form-control proveedores' name='proveedor1".$comparar."' id='proveedor1".$comparar."' onchange=(generarTropas(this.id,".$tabla."))>
+                      <select class='form-control proveedores".$comparar."' name='proveedor1".$comparar."' id='proveedor1".$comparar."' onchange=(generarTropas(this.id,'".$tabla."'))>
                       <option value='Proveedor'>Proveedor</option>";
                           
                           foreach ($proveedores as $key => $value) {
@@ -77,7 +77,7 @@ function generarBodyModal($idCalendar,$tabla,$consignatarios,$proveedores,$tropa
 
                     <div class='form-group'>
                       <label>Tropa</label>
-                      <select class='form-control tropas' name='tropa1".$comparar."' id='tropa1".$comparar."' onchange=(bloquearProveedor(this.id))>
+                      <select class='form-control tropas".$comparar."' name='tropa1".$comparar."' id='tropa1".$comparar."' onchange=(bloquearProveedor(this.id))>
                       <option value='Tropa'>Tropa</option>";
 
                         foreach ($tropas as $key => $value) {

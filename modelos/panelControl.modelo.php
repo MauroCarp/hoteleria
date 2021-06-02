@@ -71,6 +71,32 @@ class ModeloPanelControl{
 
 	}
 
-	
+	/*=============================================
+	CHEQUEAR PLANILLA
+	=============================================*/
+
+	static public function MdlChequear($tabla,$campo,$condition){
+
+		$condicion = 'periodo';
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $campo = 1 WHERE $condicion = :$condicion");
+
+		$stmt -> bindParam(":".$condicion, $condition, PDO::PARAM_STR);
+				
+		if($stmt -> execute()){
+		
+			return 'ok';
+		
+		}else{
+
+			return 'error';
+		
+		};
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
 
 }

@@ -5,7 +5,7 @@ month = (month < 10) ? '0' + month : month;
 
 let year = date.getFullYear();
 
-let monthValue = year + '-' + month
+let monthValue = year + '-' + month;
 
 /*=============================================
 AGREGAR PERIODO
@@ -297,3 +297,65 @@ function generarSolapasCPP(contador){
   return contenido;
 
 }  
+
+
+/*=============================================
+CHEQUEAR PLANILLA
+=============================================*/
+
+function chequearPlanilla(periodo,id,etiqueta){
+
+	swal({
+        title: `¿Planilla ${etiqueta} chequeada?`,
+        text: "¡Si no lo está puede cancelar la acción!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Si, planilla chequeada!'
+      }).then((result)=>{
+        
+        if (result.value) {
+          
+          let data = 'accion=chequear&periodo=' + periodo;
+
+          url = 'ajax/datosPanelControl.ajax.php';
+
+          $.ajax({
+            
+            method: 'POST',
+
+            url: url,
+
+            data: data,
+
+            success: function(response){
+
+              
+              if (response == 'ok') {
+                  
+                swal({
+
+                  type: "success",
+                  title: "¡La Planilla ha sido chequeada correctamente!",
+                  showConfirmButton: true,
+                  confirmButtonText: "Cerrar"
+
+                });
+
+                $('#solapaPeriodo' + id).css('background-color','white');
+
+                $('#btn-chequeado-' + id).html('');
+
+              }
+                        
+            }
+
+          })
+          
+        }
+
+  })
+
+}

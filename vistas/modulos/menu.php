@@ -34,7 +34,10 @@
 
 				</a>
 
-				<ul class="treeview-menu">
+				<ul class="treeview-menu">';
+				
+				if($_SESSION["perfil"] == "Master" OR $_SESSION["perfil"] == "Administrador"){
+					echo '
 					
 					<li>
 
@@ -45,8 +48,9 @@
 
 						</a>
 
-					</li>
-
+					</li>';
+				}
+					echo '
 					<li>
 
 						<a href="#" data-toggle="modal" data-target="#ventanaModalFechaCompra">
@@ -77,8 +81,10 @@
 
 				</a>
 
-				<ul class="treeview-menu">
-					
+				<ul class="treeview-menu">';
+				
+				if($_SESSION["perfil"] == "Master" OR $_SESSION["perfil"] == "Administrador"){
+					echo '
 					<li>
 
 						<a href="datos">
@@ -88,8 +94,9 @@
 
 						</a>
 
-					</li>
-
+					</li>';
+				}
+					echo '
 					<li>
 
 						<a href="reportes">
@@ -119,8 +126,11 @@
 
 				</a>
 
-				<ul class="treeview-menu">
+				<ul class="treeview-menu">';
+
+				if($_SESSION["perfil"] == "Master" OR $_SESSION["perfil"] == "Administrador"){
 					
+					echo '
 					<li>
 
 						<a href="datos-muertes">
@@ -130,9 +140,10 @@
 
 						</a>
 
-					</li>
+					</li>';
+				}
 
-					<li>
+					echo '<li>
 
 						<a href="reportes-muertes">
 							
@@ -162,8 +173,10 @@
 
 				</a>
 
-				<ul class="treeview-menu">
-					
+				<ul class="treeview-menu">';
+				
+				if($_SESSION["perfil"] == "Master" OR $_SESSION["perfil"] == "Administrador"){
+					echo '
 					<li>
 
 						<a href="#" data-toggle="modal" data-target="#modalCargarPanelControl">
@@ -173,9 +186,10 @@
 
 						</a>
 
-					</li>
+					</li>';
+				}
 
-					<li>
+			  echo '<li>
 
 						<a href="#" data-toggle="modal" data-target="#ventanaModalFechaPanelControl">
 							
@@ -185,6 +199,7 @@
 						</a>
 
 					</li>
+
 				</ul>
 
 			</li>
@@ -198,9 +213,7 @@
 
 				</a>
 
-			</li>'
-
-			;
+			</li>';
 			
 			if($_SESSION["perfil"] == "Master"){
 
@@ -213,19 +226,23 @@
 	
 					</a>
 	
-				</li>
-				<li>
-	
-					<a href="archivosCarga">
-	
-						<i class="fa fa-files-o"></i>
-						<span>Lista de Archivos Carga</span>
-	
-					</a>
-	
 				</li>';
+				
+			}
+			
+			
+			echo '
+				<li>
+				<a href="archivosCarga">
 
-			  }
+					<i class="fa fa-files-o"></i>
+					<span>Lista de Archivos Carga</span>
+
+				</a>
+
+			</li>';
+		
+
 
 		?>
 

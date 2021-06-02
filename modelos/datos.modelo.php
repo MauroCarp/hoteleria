@@ -58,9 +58,7 @@ class ModeloDatos{
 			$stmt = Conexion::conectar()->prepare("SELECT $campo FROM $tabla WHERE $item2 BETWEEN '$fecha1' AND '$fecha2'");
 			
 			$stmt -> execute();
-			// var_dump($stmt ->errorInfo());
-			// var_dump($stmt);
-
+			
 			return $stmt -> fetchAll();
 
 		}

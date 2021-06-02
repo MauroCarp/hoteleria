@@ -38,15 +38,16 @@ if( isset($_FILES["nuevosDatos"]) ){
         $Reader = new SpreadsheetReader($ruta);	
         
         $sheetCount = count($Reader->sheets());
-        
-		for($i=0;$i<$sheetCount;$i++){
+
+        for($i=0;$i<$sheetCount;$i++){
 
             $Reader->ChangeSheet($i);
+                
             
-				foreach ($Reader as $Row){
-                    
+            foreach ($Reader as $Row){
+                
                     $rowNumber++;
-
+                    
                     if($rowValida == TRUE){   
                         
 
@@ -124,19 +125,19 @@ if( isset($_FILES["nuevosDatos"]) ){
                                 
                                 break;
 
-                            case 27:
+                            case 26: // CORREGIDO
                                 
                                 $pesoPromIngSalTraz = $Row[1];
                                 
                                 break;
 
-                            case 29:
+                            case 29: // OKEY
                                 
                                 $pesoPromEgrTraz = $Row[1];
                                 
                                 break;
 
-                            case 30:
+                            case 31: // CORREGIDO
                                 
                                 $kilosGanPeriodoTraz = $Row[1];
                                 
@@ -222,6 +223,7 @@ if( isset($_FILES["nuevosDatos"]) ){
                         
                     }
 
+
 					if ($rowNumber == 1) {
                         
                         $periodo = substr($Row[0],-7);
@@ -236,10 +238,9 @@ if( isset($_FILES["nuevosDatos"]) ){
 
                     }
 
-				}
+			}
                 
-
-                $sql = "INSERT INTO controlpanel(periodo,periodoTime,CSanCabPeriodo,CDiaAlimTCCab,CKgRacPromTC,CKgRacPromMS,consumTCPondCab,consumMSPondCab,converMSEstADPV,poblDiaPromPeriodo,totalCabSalida,muertosPeriodo,estadiaProm,cabTrazSalidas,pesoPromIngSalTraz,pesoPromEgrTraz,kilosGanPeriodoTraz,adpvGanDiaPeriodo,totalCabFaenadas,totalKgCarne,totalPesosFaena,rinde,valorKgObtRinde,porceDesbaste,CProdKgAlim,CProdKgAES,margenTecKgProd,consumoSoja,consumoMaiz) VALUES('$periodo','$periodoTime','$CSanCabPeriodo','$CDiaAlimTCCab','$CKgRacPromTC','$CKgRacPromMS','$consumTCPondCab','$consumMSPondCab','$converMSEstADPV','$poblDiaPromPeriodo','$totalCabSalida','$muertosPeriodo','$estadiaProm','$cabTrazSalidas','$pesoPromIngSalTraz','$pesoPromEgrTraz','$kilosGanPeriodoTraz','$adpvGanDiaPeriodo','$totalCabFaenadas','$totalKgCarne','$totalPesosFaena','$rinde','$valorKgObtRinde','$porceDesbaste','$CProdKgAlim','$CProdKgAES','$margenTecKgProd','$consumoSoja','$consumoMaiz')";
+                $sql = "INSERT INTO controlpanel(archivo,periodo,periodoTime,CSanCabPeriodo,CDiaAlimTCCab,CKgRacPromTC,CKgRacPromMS,consumTCPondCab,consumMSPondCab,converMSEstADPV,poblDiaPromPeriodo,totalCabSalida,muertosPeriodo,estadiaProm,cabTrazSalidas,pesoPromIngSalTraz,pesoPromEgrTraz,kilosGanPeriodoTraz,adpvGanDiaPeriodo,totalCabFaenadas,totalKgCarne,totalPesosFaena,rinde,valorKgObtRinde,porceDesbaste,CProdKgAlim,CProdKgAES,margenTecKgProd,consumoSoja,consumoMaiz) VALUES('$nombreArchivo','$periodo','$periodoTime','$CSanCabPeriodo','$CDiaAlimTCCab','$CKgRacPromTC','$CKgRacPromMS','$consumTCPondCab','$consumMSPondCab','$converMSEstADPV','$poblDiaPromPeriodo','$totalCabSalida','$muertosPeriodo','$estadiaProm','$cabTrazSalidas','$pesoPromIngSalTraz','$pesoPromEgrTraz','$kilosGanPeriodoTraz','$adpvGanDiaPeriodo','$totalCabFaenadas','$totalKgCarne','$totalPesosFaena','$rinde','$valorKgObtRinde','$porceDesbaste','$CProdKgAlim','$CProdKgAES','$margenTecKgProd','$consumoSoja','$consumoMaiz')";
 
                 mysqli_query($conexion,$sql);
 

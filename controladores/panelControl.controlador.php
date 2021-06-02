@@ -34,6 +34,17 @@ class ControladorPanelControl{
 		return $respuesta;
 
 	}
+
+	static public function ctrChequear($campo,$condition){
+
+		$tabla = "controlpanel";
+
+		$respuesta = ModeloPanelControl::MdlChequear($tabla,$campo,$condition);
+
+		return $respuesta;
+
+	}
+	
 	
 }
 

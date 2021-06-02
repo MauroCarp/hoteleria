@@ -161,10 +161,22 @@ function formatearNumero($number){
             $periodoExplode = explode('-',$periodosExplode[$i]);
 
             $mesNumero = number_format($periodoExplode[1]);
-
           ?>
             
-            <li class="tabs <?php echo ($i == 0) ? 'active' : '';?>"><a href="#periodo_<?php echo $i + 1; ?>" data-toggle="tab"><b><?php echo $meses[$mesNumero - 1]." ".$periodoExplode[0];?></b></a></li>
+            <li class="tabs <?php echo ($i == 0) ? 'active' : '';?>">
+              
+              <a href="#periodo_<?php echo $i + 1; ?>" id="solapaPeriodo<?php echo $i + 1;?>" data-toggle="tab" style="background-color:rgba(255,0,0,.4)">
+            
+                <b><?php echo $meses[$mesNumero - 1]." ".$periodoExplode[0];?>  
+                 <span id="btn-chequeado-<?php echo $i + 1;?>">
+                  
+                  <i class="btn btn-xs fa fa-check-square" onmouseover = "this.style.color = '#03fc6b'"
+                  onmouseout = "this.style.color = '#00b84d'" style="cursor:pointer;font-size:1.8em;color:#00b84d;" onclick="chequearPlanilla('<?php echo $periodosExplode[$i].'\',\''.($i + 1).'\',\''.$meses[$mesNumero - 1].' '.$periodoExplode[0];?>')"></i>
+                
+                </span></b>
+              </a>
+            
+            </li>
           
           <?php
           }
@@ -263,15 +275,13 @@ function generarColores(cantidad,tipo){
 
 function format(number){
 
-let num = number.replace(/\./g,'');
+  let num = number.replace(/\./g,'');
 
-num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
+  num = num.toString().split('').reverse().join('').replace(/(?=\d*\.?)(\d{3})/g,'$1.');
 
-num = num.split('').reverse().join('').replace(/^[\.]/,'');
+  num = num.split('').reverse().join('').replace(/^[\.]/,'');
 
-console.log(num);
-
-return num;
+  return num;
 
 }
 
@@ -408,7 +418,7 @@ let url = 'ajax/datosPanelControl.ajax.php';
   for (let index = 0; index < periodos.length; index++) {
 
 
-    let data = 'periodo=' + periodos[index];
+    let data = 'accion=data&periodo=' + periodos[index];
 
     $.ajax({
       
@@ -421,7 +431,7 @@ let url = 'ajax/datosPanelControl.ajax.php';
       success: function(response){
 
         response = JSON.parse(response);
-
+          
         if(response.CajaPoblacion != null){
 
           $('#CostoDiario' + (index + 1)).html(response.Consumo1);
@@ -443,11 +453,23 @@ let url = 'ajax/datosPanelControl.ajax.php';
           $('#panelPrecioKiloProd' + (index + 1)).html(response.CajaKgProd);
 
           $('#panelEstadia' + (index + 1)).html(response.CajaEstadia);
+          
+          if(response.Chequeado == 1){
 
+            $('#solapaPeriodo' + (index + 1 )).css('background-color','white');
+
+            $('#btn-chequeado-' + (index + 1 )).html('');
+            
+          }
 
         }else{
 
           $('#periodo_' + (index + 1 )).html('<h1>No hay resultados</h1>');
+
+          $('#solapaPeriodo' + (index + 1 )).css('background-color','white');
+
+          $('#btn-chequeado-' + (index + 1 )).html('');
+
         }
 
       }

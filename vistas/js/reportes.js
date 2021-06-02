@@ -139,7 +139,6 @@ $('#compararValidoVentas').change(function(){
 var contadorComparar = 2;
 
 $('#compararComp').click(function(){
-  console.log('gadsg');
 
   let contenidoComp = agregarFiltro(contadorComparar,URLactual,tabla,item,'Comp');
 
@@ -156,95 +155,191 @@ GENERAR REPORTE
 
 $('#generarReporte').click(()=>{
 
-    var contador = 1;
-    var datosConsignatarios = "";
-    var datosProveedores = "";
-    var datosTropas = "";
-    var arrayValidacion = [];
-
-    $('.consignatarios').each(function(){
-      
-      var id = $(this).attr('id');
-      
-      var numeroId = id.substr(-1);
-      
-      
-      
-      var tropa = $('#tropa' + numeroId).val();
-      
-      datosTropas += 'tropa' + contador + '=' + tropa + '&';
-
-      var proveedor = $('#proveedor' + numeroId).val();
-      
-      datosProveedores += 'proveedor' + contador + '=' + proveedor + '&';
-
-      
-      var consignatario = $(this).val();
-  
-      datosConsignatarios += 'consignatario' + contador + '=' + consignatario + '&';
-
-
-      // VALIDACION 
-
-      var consignatarioValido = false;
-      var tropaValido = false;
-      var proveedorValido = false;
+    let compararValido = $('#compararValidoVentas').is(':checked');
     
-      if(!consignatarioValido){
+      let contador = 1;
+      let datosConsignatarios = "";
+      let datosProveedores = "";
+      let datosTropas = "";
+      let arrayValidacion = [];
+
+      $('.consignatarios').each(function(){
         
-        consignatarioValido = (consignatario != 'Consignatario') ? true : false;
+        let id = $(this).attr('id');
         
-      } 
+        let numeroId = id.substr(-1);
         
-        if(!proveedorValido){
+        
+        
+        let tropa = $('#tropa' + numeroId).val();
+        
+        datosTropas += 'tropa' + contador + '=' + tropa + '&';
+
+        let proveedor = $('#proveedor' + numeroId).val();
+        
+        datosProveedores += 'proveedor' + contador + '=' + proveedor + '&';
+
+        
+        let consignatario = $(this).val();
+    
+        datosConsignatarios += 'consignatario' + contador + '=' + consignatario + '&';
+
+
+        // VALIDACION 
+
+        let consignatarioValido = false;
+        let tropaValido = false;
+        let proveedorValido = false;
+      
+        if(!consignatarioValido){
           
-          proveedorValido = (proveedor != 'Proveedor') ? true : false; 
+          consignatarioValido = (consignatario != 'Consignatario') ? true : false;
           
         } 
-        
-        if(!tropaValido){
           
-          tropaValido = (tropa != 'Tropa' ) ? true : false; 
+          if(!proveedorValido){
+            
+            proveedorValido = (proveedor != 'Proveedor') ? true : false; 
+            
+          } 
           
-        } 
+          if(!tropaValido){
+            
+            tropaValido = (tropa != 'Tropa' ) ? true : false; 
+            
+          } 
 
-      formularioValido = (consignatarioValido || proveedorValido || tropaValido) ? true : false;
+        formularioValido = (consignatarioValido || proveedorValido || tropaValido) ? true : false;
 
-      arrayValidacion.push(formularioValido);
+        arrayValidacion.push(formularioValido);
 
-      contador++;
+        contador++;
 
-    });
+      });
 
-    datosTropas = datosTropas.slice(0, -1);
-    datosProveedores = datosProveedores.slice(0,-1);
-    datosConsignatarios = datosConsignatarios.slice(0,-1);
-    
-    var rango = (localStorage.getItem('rango') == null) ? '1970-01-01/2090-01-01' : localStorage.getItem('rango');
-
-    
-    var camposValidos = true;
-
-    for (let index = 0; index < arrayValidacion.length; index++) {
+      datosTropas = datosTropas.slice(0, -1);
+      datosProveedores = datosProveedores.slice(0,-1);
+      datosConsignatarios = datosConsignatarios.slice(0,-1);
       
-        if (arrayValidacion[index] == false) {
-            camposValidos = false;
-            break;
+      let rango = (localStorage.getItem('rango') == null) ? '1970-01-01/2090-01-01' : localStorage.getItem('rango');
+
+      
+      let camposValidos = true;
+
+      for (let index = 0; index < arrayValidacion.length; index++) {
+        
+          if (arrayValidacion[index] == false) {
+              camposValidos = false;
+              break;
+          }
+
+      }
+
+      if(!compararValido){
+        
+        if (!camposValidos) {
+
+          window.location = 'index.php?ruta=reportesRango&rango=' + rango;
+
+
+        }else{
+          
+          window.location = 'index.php?ruta=reportes/reportesFiltrados&' + datosConsignatarios + '&' + datosProveedores + '&' + datosTropas + '&rango=' + rango + '&cantidad=' + (contador - 1);
+
         }
-
-    }
-
     
-    if (!camposValidos) {
+      }else{
+        
+        let contadorComp = 1;
+        let datosConsignatariosComp = "";
+        let datosProveedoresComp = "";
+        let datosTropasComp = "";
+        let arrayValidacionComp = [];
+        
+        $('.consignatariosComp').each(function(){
+          
+          let id = $(this).attr('id');
+          
+          let numeroId = id.substr(13).substr(0,1);
+          
+          let tropaComp = $('#tropa' + numeroId + 'Comp').val();
+          
+          datosTropasComp += 'tropa' + contadorComp + '=' + tropaComp + '&';
+          
+          let proveedorComp = $('#proveedor' + numeroId + 'Comp').val();
+          
+          datosProveedoresComp += 'proveedor' + contadorComp + '=' + proveedorComp + '&';
+          
+          let consignatarioComp = $(this).val();
+          
+          datosConsignatariosComp += 'consignatario' + contadorComp + '=' + consignatarioComp + '&';
+          
+          // VALIDACION 
+  
+          let consignatarioValidoComp = false;
+          let tropaValidoComp = false;
+          let proveedorValidoComp = false;
+        
+          if(!consignatarioValidoComp){
+            
+            consignatarioValidoComp = (consignatarioComp != 'Consignatario') ? true : false;
+            
+          } 
+            
+            if(!proveedorValidoComp){
+              
+              proveedorValidoComp = (proveedorComp != 'Proveedor') ? true : false; 
+              
+            } 
+            
+            if(!tropaValidoComp){
+              
+              tropaValidoComp = (tropaComp != 'Tropa' ) ? true : false; 
+              
+            } 
+  
+          formularioValidoComp = (consignatarioValidoComp || proveedorValidoComp || tropaValidoComp) ? true : false;
+  
+          arrayValidacionComp.push(formularioValidoComp);
+  
+          contadorComp++;
+  
+        });
+  
+        
+        datosTropasComp = datosTropasComp.slice(0, -1);
+        datosProveedoresComp = datosProveedoresComp.slice(0,-1);
+        datosConsignatariosComp = datosConsignatariosComp.slice(0,-1);
 
-      window.location = 'index.php?ruta=reportesRango&rango=' + rango;
+        
+        let rangoComp = (localStorage.getItem('rangoComp') == null) ? '1970-01-01/2090-01-01' : localStorage.getItem('rangoComp');
+        
+        
+        let camposValidosComp = true;
+        
+        for (let indexComp = 0; indexComp < arrayValidacionComp.length; indexComp++) {
+          
+          if (arrayValidacionComp[indexComp] == false) {
+            camposValidosComp = false;
+            break;
+          }
+          
+        }
+        
+          
+        if (!camposValidosComp) {
+
+          window.location = 'index.php?ruta=reportes/comparar/reportesRango&rango=' + rango + '&rangoComp' + rangoComp;
 
 
-    }else{
-      
-      window.location = 'index.php?ruta=reportes/reportesFiltrados&' + datosConsignatarios + '&' + datosProveedores + '&' + datosTropas + '&rango=' + rango + '&cantidad=' + (contador - 1);
+        }else{
+          
+          window.location = 'index.php?ruta=reportes/comparar/reportesFiltrados&' + datosConsignatarios + '&' + datosProveedores + '&' + datosTropas + '&rango=' + rango + '&cantidad=' + (contador - 1) + '&' + datosConsignatariosComp + '&' + datosProveedoresComp + '&' + datosTropasComp +  + '&rangoComp' + rangoComp  + '&cantidadComp' + (contadorComp - 1);
 
-    }
+        }
+        return;
+      }
+
 
 
 });
@@ -725,11 +820,63 @@ $(".daterangepicker.opensright .range_inputs .cancelBtn").on("click", function()
 
 });
 
+/*=============================================
+RANGO DE FECHAS COMPARAR
+=============================================*/
+
+$('#daterange-btnComp').daterangepicker(
+  {
+    ranges   : {
+
+    },
+    startDate: moment(),
+    endDate  : moment()
+  },
+  function (start, end) {
+    $('#daterange-btnComp span').html(start.format('DD/MM/Y') + ' - ' + end.format('DD/MM/YYYY'));
+
+    var fechaInicial = start.format('YYYY-MM-DD');
+
+    var fechaFinal = end.format('YYYY-MM-DD');
+
+    localStorage.setItem('rangoComp', fechaInicial + '/' + fechaFinal);
+
+    var capturarRango = $("#daterange-btnComp span").html();
+
+    cargarSelectSegunFecha('1',capturarRango,'animales','consignatario','fechaSalida');
+    
+    cargarSelectSegunFecha('1',capturarRango,'animales','proveedor','fechaSalida');
+    
+    cargarSelectSegunFecha('1',capturarRango,'animales','tropa','fechaSalida');
+
+  }
+
+)
+
+
+/*=============================================
+CANCELAR RANGO DE FECHAS
+=============================================*/
+
+$(".daterangepicker.opensright .range_inputs .cancelBtn").on("click", function(){
+
+	localStorage.removeItem("capturarRango");
+  localStorage.clear();
+  $('#daterange-btn').html('<span><i class="fa fa-calendar"></i> Rango de fecha </span><i class="fa fa-caret-down"></i>');
+
+});
+
+
+
+
 $('#btn-filtros').click(()=>{
 
   localStorage.removeItem("rango");
-  
+
+  localStorage.removeItem("rangoComp");
+
   $('#daterange-btn').html('<span><i class="fa fa-calendar"></i> Rango de fecha </span><i class="fa fa-caret-down"></i>');
+  $('#daterange-btnComp').html('<span><i class="fa fa-calendar"></i> Rango de fecha </span><i class="fa fa-caret-down"></i>');
 
 });
 

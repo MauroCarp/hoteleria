@@ -1,6 +1,6 @@
 <?php
 
-if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor" || $_SESSION["perfil"] == "Administrador"){
+if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor"){
 
   echo '<script>
 
@@ -11,6 +11,20 @@ if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor" || $_S
   return;
 
 }
+
+function formatearNumero2($number){
+
+  return number_format($number,2,",",".");
+
+}
+
+function formatearNumero($number){
+
+  return number_format($number,0,",",".");
+
+}
+
+$meses = Array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
 
 ?>
 <div class="content-wrapper">
@@ -33,11 +47,14 @@ if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor" || $_S
 
   </section>
   
-  
-  <section class="content">
-  <h2>Compras</h2>
 
-    <div class="box">
+  <?php 
+  if($_SESSION["perfil"] == "Master"){ ?> 
+  
+  <section class="content" style="display:inline-block">
+    <h2>Compras</h2>
+
+    <div class="box"  style="width:100%;">
 
       <div class="box-body">
         
@@ -62,7 +79,7 @@ if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor" || $_S
         $item = null;
         $valor = null;
         $tabla = 'compras';
-        $archivosCompras = ControladorArchivos::ctrMostrarArchivos($item, $valor,$tabla);
+        $archivosCompras = ControladorArchivos::ctrMostrarArchivos($item,$valor,$tabla,true);
 
        foreach ($archivosCompras as $key => $value){
          
@@ -99,10 +116,10 @@ if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor" || $_S
   </section>
 
   
-  <section class="content">
-  <h2>Ventas</h2>
+  <section class="content" style="display:inline-block">
+    <h2>Ventas</h2>
 
-    <div class="box">
+    <div class="box"  style="width:100%;">
 
       <div class="box-body">
         
@@ -127,7 +144,7 @@ if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor" || $_S
         $item = null;
         $valor = null;
         $tabla = 'animales';
-        $archivosVentas = ControladorArchivos::ctrMostrarArchivos($item, $valor,$tabla);
+        $archivosVentas = ControladorArchivos::ctrMostrarArchivos($item, $valor,$tabla,true);
 
        foreach ($archivosVentas as $key => $value){
          
@@ -163,10 +180,10 @@ if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor" || $_S
   </section>
 
   
-  <section class="content">
-  <h2>Muertes</h2>
+  <section class="content" style="display:inline-block">
+    <h2>Muertes</h2>
 
-    <div class="box">
+    <div class="box"  style="width:100%;">
 
       <div class="box-body">
         
@@ -191,7 +208,7 @@ if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor" || $_S
         $item = null;
         $valor = null;
         $tabla = 'muertes';
-        $archivosMuertes = ControladorArchivos::ctrMostrarArchivos($item, $valor,$tabla);
+        $archivosMuertes = ControladorArchivos::ctrMostrarArchivos($item, $valor,$tabla,true);
 
        foreach ($archivosMuertes as $key => $value){
          
@@ -225,14 +242,105 @@ if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor" || $_S
     </div>
 
   </section>
+  
+  <?php
+  }
+  ?>
+
+  <section class="content" style="display:inline-block">
+    <h2>Trablero de Control</h2>
+
+    <div class="box"  style="width:100%;">
+
+      <div class="box-body">
+        
+       <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
+         
+        <thead>
+         
+         <tr>
+           
+           <th style="width:10px">#</th>
+           <th>Archivo</th>
+           <th>Acciones</th>
+
+         </tr> 
+
+        </thead>
+
+        <tbody>
+
+        <?php
+
+        $item = null;
+        $valor = null;
+        $tabla = 'controlpanel';
+        $archivosCP = ControladorArchivos::ctrMostrarArchivos($item, $valor,$tabla,false);
+
+       foreach ($archivosCP as $key => $value){
+
+          $periodo = $value['periodo'];
+
+          $periodoExplode = explode('-',$periodo);
+
+          $mes = number_format($periodoExplode[1]);
+
+          $anio = $periodoExplode[0];
+
+          echo ' <tr>
+                 
+                  <td>'.($key+1).'</td>
+          
+                  <td>'.$meses[$mes - 1].' - '.$anio.'</td>
+                  <td>';
+
+          
+
+                  if($_SESSION["perfil"] == "Master"){ 
+                    
+                    echo '<button class="btn btn-danger btnEliminarArchivo btn-block" nombreArchivo="'.$value["archivo"].'" tablaDB="controlpanel"><i class="fa fa-times"></i></button>';
+                    
+                  }else{
+
+                    echo '<a href="#" class="btn btn-warning modalEditar btn-block"  data-toggle="modal" data-target="#modificarPanelControl" archivo="'.$value['archivo'].'" periodo="'.$value['periodo'].'"><i class="fa fa-pencil"></i></a>';
+                
+                  }
+
+                echo '
+
+                </td>
+
+                </tr>';
+
+                
+              }
+              
+              
+              ?> 
+
+        </tbody>
+
+       </table>
+
+      </div>
+
+    </div>
+
+  </section>
 
 
 </div>
 
 <?php
+  
+  include 'modales/modificarPanelControl.modal.php';
+
+  $editarPlanilla = new ControladorArchivos();
+  $editarPlanilla -> ctrEditarPlanilla();
 
   $borrarArchivo = new ControladorArchivos();
   $borrarArchivo -> ctrBorrarArchivos();
+
 
 ?> 
 
