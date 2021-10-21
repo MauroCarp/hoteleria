@@ -198,11 +198,13 @@ function formatearNumero($number){
 
                 <ul class="nav nav-tabs" style="font-size:1.em;">
 
-                  <li class="tabs active"><a href="#tab_1_<?php echo $i + 1;?>" data-toggle="tab"><b>Consumos</b></a></li>
+                  <li class="tabs active"><a href="#tab_1_<?php echo $i + 1;?>" data-toggle="tab" class="tabsPanelControl"><b>Consumos</b></a></li>
 
-                  <li class="tabs"><a href="#tab_2_<?php echo $i + 1;?>" data-toggle="tab"><b>Poblacion</b></a></li>
+                  <li class="tabs"><a href="#tab_2_<?php echo $i + 1;?>" data-toggle="tab" class="tabsPanelControl"><b>Poblacion</b></a></li>
 
-                  <li class="tabs"><a href="#tab_3_<?php echo $i + 1;?>" data-toggle="tab"><b>Producci&oacute;n</b></a></li>
+                  <li class="tabs"><a href="#tab_3_<?php echo $i + 1;?>" data-toggle="tab" class="tabsPanelControl"><b>Producci&oacute;n</b></a></li>
+                  
+                  <li class="tabs"><a href="#tab_4_<?php echo $i + 1;?>" data-toggle="tab" class="tabsPanelControl"><b>Estadisticas</b></a></li>
 
                 </ul>
 
@@ -223,6 +225,12 @@ function formatearNumero($number){
                   <div class="tab-pane produccion" id="tab_3_<?php echo $i + 1;?>">
 
                   <?php include('reportes/panelControl/produccion.php'); ?>
+
+                  </div>
+
+                  <div class="tab-pane estadisticas" id="tab_4_<?php echo $i + 1;?>">
+
+                  <?php include('reportes/panelControl/estadisticas.php'); ?>
 
                   </div>
                 
@@ -247,6 +255,7 @@ function formatearNumero($number){
 </div> 
 
 <script>
+
 function generarColores(cantidad,tipo){
 
   let coloresBg = ['rgba(255, 99, 132, 0.2)','rgba(54, 162, 235, 0.2)','rgba(255, 206, 86, 0.2)','rgba(75, 192, 192, 0.2)','rgba(153, 102, 255, 0.2)','rgba(255, 159, 64, 0.2)','rgba(100, 255, 64, 0.2)'];
@@ -324,6 +333,55 @@ function generarGraficoBarSimple(registros,divId,labels,tituloLabel){
                                     }
                                 }
                               });   
+
+  return myChart; 
+
+}
+
+function generarGraficoLinea(registros,divId,labels,tituloLabel){
+
+  let ctx = document.getElementById(divId).getContext('2d');
+  
+  let data = [0,0,0,0,0,0,0,0,0,0,0,0,0];
+
+  for (let index = 1; index <= labels.length; index++) {
+    
+    data[index] = (registros[index]) ? registros[index] : 0;
+    
+  }  
+
+data.shift()
+
+  let myChart = new Chart(ctx, {
+                                type: 'line',
+                                data: {
+                                    labels: labels,
+                                    datasets: [{
+                                        label: tituloLabel,
+                                        data: registros,
+                                        borderColor: window.chartColors.red,
+                                        fill:false,
+                                        data:data
+                                    }]
+                                },
+                                options: {
+                                  scales: {
+                                      yAxes: [{
+                                          ticks: {
+                                              beginAtZero: true
+                                          }
+                                      }]
+                                    },
+                                    plugins: {
+                                      labels: {
+                                        render: 'value'
+                                      },
+                                      legend: {
+                                        display: true,
+                                      }
+                                    }
+                                }
+  });   
 
   return myChart; 
 
@@ -416,7 +474,6 @@ periodos = periodos.split('/');
 let url = 'ajax/datosPanelControl.ajax.php';
 
   for (let index = 0; index < periodos.length; index++) {
-
 
     let data = 'accion=data&periodo=' + periodos[index];
 
@@ -557,6 +614,52 @@ let url = 'ajax/datosPanelControl.ajax.php';
 
 
 
+  }
+
+  for (let index = 0; index < periodos.length; index++) {
+
+      let data = 'accion=estadisticas&periodo=' + periodos[index];
+
+      $.ajax({
+        
+        method: 'POST',
+        
+        url: url,
+        
+        data: data,
+        
+        success: function(respuesta){
+
+          let response = JSON.parse(respuesta);
+          
+          let divId = `graficoPrecioKgMS${index + 1}`
+         
+          generarGraficoLinea(response.precioKgMS,divId,meses,'Precio Kg de MS')
+          
+          divId = `graficoConversionMS${index + 1}`
+                   
+          generarGraficoLinea(response.conversionMS,divId,meses,'Conversión de MS')
+          
+          divId = `graficoADPV${index + 1}`
+         
+          generarGraficoLinea(response.adpv,divId,meses,'A.D.P.V')
+          
+          divId = `graficoProblacionProm${index + 1}`
+         
+          generarGraficoLinea(response.poblacionProm,divId,meses,'Población Promedio')
+          
+          divId = `graficoEstadiaProm${index + 1}`
+         
+          generarGraficoLinea(response.estadiaProm,divId,meses,'Estadia Promedio')
+          
+          divId = `graficoIndiceReposicion${index + 1}`
+         
+          generarGraficoLinea(response.indiceReposicion,divId,meses,'Indice de Reposición')
+
+        }
+
+    })
+  
   }
 
 </script>

@@ -359,3 +359,29 @@ function chequearPlanilla(periodo,id,etiqueta){
   })
 
 }
+
+
+/*=============================================
+SECCION ESTADISTICAS
+=============================================*/
+$('.tabsPanelControl').on('click',function(){
+
+  let tab = $(this).attr('href')
+
+  tabSub = tab.substring(0, tab.length - 2)
+
+  let countNumber = tab.substring(7, tab.length);
+
+  console.log(countNumber);
+  
+  if(tabSub == '#tab_4'){
+     
+     $(`#cajasPanelControl${countNumber}`).hide(200) 
+     
+    }else{
+            
+    $(`#cajasPanelControl${countNumber}`).show(200) 
+
+  }
+  
+})

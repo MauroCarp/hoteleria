@@ -21,7 +21,7 @@ class TablaCompras{
 		$orden = 'fecha';
 		$compras = ControladorDatosCompras::ctrMostrardatos($item, $valor,$orden);
 
-s
+
         if(count($compras) == 0){
 
   			echo '{"data": []}';

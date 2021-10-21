@@ -1,4 +1,4 @@
-<section class="content" style="min-height:0px;padding:0px;">
+<section class="content" style="min-height:0px;padding:0px;" id="cajasPanelControl<?php echo $i +1?>">
     
     <div class="row">
 

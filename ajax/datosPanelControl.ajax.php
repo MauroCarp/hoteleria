@@ -306,6 +306,20 @@ if($accion == 'data'){
     echo json_encode($respuesta);
 }
 
+if($accion == 'estadisticas'){
+
+    $anio = explode('-',$periodo);
+
+    $anio = $anio[0];
+
+    $item = 'periodoTime';
+
+    $data = ControladorPanelControl::ctrMostrarDataPorAnio($item,$anio);
+
+    print_r(json_encode($data));
+    
+}
+
 if($accion == 'valuesEditar'){
 
     $item = 'periodo';

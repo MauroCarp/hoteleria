@@ -215,7 +215,7 @@
 
 			</li>';
 			
-			if($_SESSION["perfil"] == "Master"){
+			if($_SESSION["perfil"] == "Master" OR $_SESSION["perfil"] == "Administrador"){
 
 				echo '<li>
 	
@@ -226,24 +226,22 @@
 	
 					</a>
 	
+				</li>
+				
+				<li>
+					
+					<a href="archivosCarga">
+					
+					<i class="fa fa-files-o"></i>
+					<span>Lista de Archivos Carga</span>
+					
+					</a>
+				
 				</li>';
 				
 			}
-			
-			
-			echo '
-				<li>
-				<a href="archivosCarga">
-
-					<i class="fa fa-files-o"></i>
-					<span>Lista de Archivos Carga</span>
-
-				</a>
-
-			</li>';
-		
-
-
+				
+				
 		?>
 
 		</ul>

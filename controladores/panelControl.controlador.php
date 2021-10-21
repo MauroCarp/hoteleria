@@ -44,7 +44,37 @@ class ControladorPanelControl{
 		return $respuesta;
 
 	}
+
+	static public function ctrMostrarDataPorAnio($item,$valor){
+		
+		$tabla = 'controlpanel';
+
+		$respuesta = ModeloPanelControl::mdlMostrarDataPorAnio($tabla,$item,$valor);
+
+		$datos = array('precioKgMS'=>array(),
+								'conversionMS'=>array(),
+								'adpv'=>array(),
+								'poblacionProm'=>array(),
+								'estadiaProm'=>array(),
+								'indiceReposicion'=>array(),
+							);
+		for ($i=0; $i <sizeof($respuesta) ; $i++) { 
 	
+			$arrayIndex = substr($respuesta[$i]['periodo'],5);
+
+			$arrayIndex = ($arrayIndex < 10) ? substr($arrayIndex,1) : $arrayIndex ;
+
+			$datos['precioKgMS'][$arrayIndex] =  $respuesta[$i]['CKgRacPromMS'];
+			$datos['conversionMS'][$arrayIndex] =  $respuesta[$i]['converMSEstADPV'];
+			$datos['adpv'][$arrayIndex] =  $respuesta[$i]['converMSEstADPV'];
+			$datos['poblacionProm'][$arrayIndex] =  $respuesta[$i]['poblDiaPromPeriodo'];
+			$datos['estadiaProm'][$arrayIndex] =  $respuesta[$i]['estadiaProm'];
+			$datos['indiceReposicion'][$arrayIndex] =  $respuesta[$i]['indiceReposicion'];
+
+		}
+
+		return $datos;
+	}
 	
 }
 

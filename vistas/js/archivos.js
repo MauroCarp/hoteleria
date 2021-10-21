@@ -119,6 +119,8 @@ $(".modalEditar").on("click", function(){
       $('#CProdKgAlim').val(response.CProdKgAlim);
       $('#CProdKgAES').val(response.CProdKgAES);
       $('#margenTecKgProd').val(response.margenTecKgProd);
+      $('#maiz').val(response.consumoMaiz);
+      $('#soja').val(response.consumoSoja);
       
         
     }

@@ -48,7 +48,7 @@ MODAL GRAFICO  MUERTES TRATADAS
 
                     <div class="col-md-8">Costo de Sanidad por Cabeza Per&iacute;odo</div>
 
-                    <div class="col-md-3"><input type="number" step="0.001" class="form-control" id="CSanCabPeriodo" name="CSanCabPeriodo" ></div>
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="CSanCabPeriodo" name="CSanCabPeriodo" ></div>
 
                   </div>
 
@@ -56,7 +56,7 @@ MODAL GRAFICO  MUERTES TRATADAS
 
                     <div class="col-md-8">Costo Diario en Alimentaci&oacute;n en Tal Cual por Cabeza</div>
 
-                    <div class="col-md-3"><input type="number" step="0.001" class="form-control" id="CDiaAlimTCCab" name="CDiaAlimTCCab" ></div>
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="CDiaAlimTCCab" name="CDiaAlimTCCab" ></div>
 
                   </div>
 
@@ -64,7 +64,7 @@ MODAL GRAFICO  MUERTES TRATADAS
 
                     <div class="col-md-8">Costo Kilo de Raci&oacute;n Prom. en TC</div>
 
-                    <div class="col-md-3"><input type="number" step="0.001" class="form-control" id="CKgRacPromTC" name="CKgRacPromTC" ></div>
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="CKgRacPromTC" name="CKgRacPromTC" ></div>
 
                   </div>
 
@@ -72,7 +72,7 @@ MODAL GRAFICO  MUERTES TRATADAS
 
                     <div class="col-md-8">Costo Kilo de Raci&oacute;n Prom. en MS</div>
 
-                    <div class="col-md-3"><input type="number" step="0.001" class="form-control" id="CKgRacPromMS" name="CKgRacPromMS" ></div>
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="CKgRacPromMS" name="CKgRacPromMS" ></div>
 
                   </div>
                   
@@ -90,7 +90,7 @@ MODAL GRAFICO  MUERTES TRATADAS
 
                     <div class="col-md-8">Consumo en TC PONDERADO por Cabeza</div>
 
-                    <div class="col-md-3"><input type="number" step="0.001" class="form-control" id="consumTCPondCab" name="consumTCPondCab" ></div>
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="consumTCPondCab" name="consumTCPondCab" ></div>
 
                   </div>
 
@@ -98,7 +98,7 @@ MODAL GRAFICO  MUERTES TRATADAS
 
                     <div class="col-md-8">Consumo en MS PONDERADO por Cabeza</div>
 
-                    <div class="col-md-3"><input type="number" step="0.001" class="form-control" id="consumMSPondCab" name="consumMSPondCab" ></div>
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="consumMSPondCab" name="consumMSPondCab" ></div>
 
                   </div>
 
@@ -106,7 +106,7 @@ MODAL GRAFICO  MUERTES TRATADAS
 
                     <div class="col-md-8">Conversión MS ESTIMADA según última ADPV</div>
 
-                    <div class="col-md-3"><input type="number" step="0.001" class="form-control" id="converMSEstADPV" name="converMSEstADPV" ></div>
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="converMSEstADPV" name="converMSEstADPV" ></div>
 
                   </div>
 
@@ -114,7 +114,7 @@ MODAL GRAFICO  MUERTES TRATADAS
 
                     <div class="col-md-8">Consumo de Soja</div>
 
-                    <div class="col-md-3"><input type="number" step="0.001" class="form-control" id="consumoSoja" name="consumoSoja" ></div>
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="consumoSoja" name="consumoSoja" ></div>
 
                   </div>
 
@@ -122,7 +122,7 @@ MODAL GRAFICO  MUERTES TRATADAS
 
                     <div class="col-md-8">Consumo de Maiz</div>
 
-                    <div class="col-md-3"><input type="number" step="0.001" class="form-control" id="consumoMaiz" name="consumoMaiz" ></div>
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="consumoMaiz" name="consumoMaiz" ></div>
 
                   </div>
                   
@@ -140,7 +140,7 @@ MODAL GRAFICO  MUERTES TRATADAS
 
                     <div class="col-md-8">Poblaci&oacute;n Diaria Prom. Per&iacute;odo</div>
 
-                    <div class="col-md-3"><input type="number" step="0.001" class="form-control" id="poblDiaPromPeriodo" name="poblDiaPromPeriodo" ></div>
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="poblDiaPromPeriodo" name="poblDiaPromPeriodo" ></div>
 
                   </div>
 
@@ -148,7 +148,7 @@ MODAL GRAFICO  MUERTES TRATADAS
 
                     <div class="col-md-8">Total Cabezas Salidas (No incluye Muertos)</div>
 
-                    <div class="col-md-3"><input type="number" step="0.001" class="form-control" id="totalCabSalida" name="totalCabSalida" ></div>
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="totalCabSalida" name="totalCabSalida" ></div>
 
                   </div>
 
@@ -156,7 +156,7 @@ MODAL GRAFICO  MUERTES TRATADAS
 
                     <div class="col-md-8">Muertos en el Per&iacute;odo</div>
 
-                    <div class="col-md-3"><input type="number" step="0.001" class="form-control" id="muertosPeriodo" name="muertosPeriodo" ></div>
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="muertosPeriodo" name="muertosPeriodo" ></div>
 
                   </div>
 
@@ -164,7 +164,7 @@ MODAL GRAFICO  MUERTES TRATADAS
 
                     <div class="col-md-8">Estadia Promedio</div>
 
-                    <div class="col-md-3"><input type="number" step="0.001" class="form-control" id="estadiaProm" name="estadiaProm" ></div>
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="estadiaProm" name="estadiaProm" ></div>
 
                   </div>
 
@@ -172,7 +172,7 @@ MODAL GRAFICO  MUERTES TRATADAS
 
                     <div class="col-md-8">Cabezas Trazadas Salidas (No incluye Muertos)</div>
 
-                    <div class="col-md-3"><input type="number" step="0.001" class="form-control" id="cabTrazSalidas" name="cabTrazSalidas" ></div>
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="cabTrazSalidas" name="cabTrazSalidas" ></div>
 
                   </div>
                   
@@ -180,7 +180,7 @@ MODAL GRAFICO  MUERTES TRATADAS
 
                     <div class="col-md-8">Peso Promedio Ingreso/Salidos - Trazados</div>
 
-                    <div class="col-md-3"><input type="number" step="0.001" class="form-control" id="pesoPromIngSalTraz" name="pesoPromIngSalTraz" ></div>
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="pesoPromIngSalTraz" name="pesoPromIngSalTraz" ></div>
 
                   </div>
                   
@@ -188,7 +188,7 @@ MODAL GRAFICO  MUERTES TRATADAS
 
                     <div class="col-md-8">Peso Promedio Egresos -  Trazados</div>
 
-                    <div class="col-md-3"><input type="number" step="0.001" class="form-control" id="pesoPromEgrTraz" name="pesoPromEgrTraz" ></div>
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="pesoPromEgrTraz" name="pesoPromEgrTraz" ></div>
 
                   </div>
                   
@@ -196,7 +196,7 @@ MODAL GRAFICO  MUERTES TRATADAS
 
                     <div class="col-md-8">Kilos Ganados Periodo - Trazados</div>
 
-                    <div class="col-md-3"><input type="number" step="0.001" class="form-control" id="kilosGanPeriodoTraz" name="kilosGanPeriodoTraz" ></div>
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="kilosGanPeriodoTraz" name="kilosGanPeriodoTraz" ></div>
 
                   </div>
                   
@@ -204,7 +204,7 @@ MODAL GRAFICO  MUERTES TRATADAS
 
                     <div class="col-md-8">ADPV Ganancia Diaria en el Periodo</div>
 
-                    <div class="col-md-3"><input type="number" step="0.001" class="form-control" id="adpvGanDiaPeriodo" name="adpvGanDiaPeriodo" ></div>
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="adpvGanDiaPeriodo" name="adpvGanDiaPeriodo" ></div>
 
                   </div>
 
@@ -223,7 +223,7 @@ MODAL GRAFICO  MUERTES TRATADAS
 
                     <div class="col-md-8">Total Cabezas Faenadas</div>
 
-                    <div class="col-md-3"><input type="number" step="0.001" class="form-control" id="totalCabFaenadas" name="totalCabFaenadas" ></div>
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="totalCabFaenadas" name="totalCabFaenadas" ></div>
 
                   </div>
 
@@ -231,7 +231,7 @@ MODAL GRAFICO  MUERTES TRATADAS
 
                     <div class="col-md-8">Total Kilos Carne (Faena)</div>
 
-                    <div class="col-md-3"><input type="number" step="0.001" class="form-control" id="totalKgCarne" name="totalKgCarne" ></div>
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="totalKgCarne" name="totalKgCarne" ></div>
 
                   </div>
 
@@ -239,7 +239,7 @@ MODAL GRAFICO  MUERTES TRATADAS
 
                     <div class="col-md-8">Total $ Faena (Sin Gastos)</div>
 
-                    <div class="col-md-3"><input type="number" step="0.001" class="form-control" id="totalPesosFaena" name="totalPesosFaena" ></div>
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="totalPesosFaena" name="totalPesosFaena" ></div>
 
                   </div>
 
@@ -247,7 +247,7 @@ MODAL GRAFICO  MUERTES TRATADAS
 
                     <div class="col-md-8">Rinde</div>
 
-                    <div class="col-md-3"><input type="number" step="0.001" class="form-control" id="rinde" name="rinde" ></div>
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="rinde" name="rinde" ></div>
 
                   </div>
 
@@ -255,7 +255,7 @@ MODAL GRAFICO  MUERTES TRATADAS
 
                     <div class="col-md-8">Valor Kg Obtenido aplicando Rinde</div>
 
-                    <div class="col-md-3"><input type="number" step="0.001" class="form-control" id="valorKgObtRinde" name="valorKgObtRinde" ></div>
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="valorKgObtRinde" name="valorKgObtRinde" ></div>
 
                   </div>
                   
@@ -263,7 +263,7 @@ MODAL GRAFICO  MUERTES TRATADAS
 
                     <div class="col-md-8">% Desbaste</div>
 
-                    <div class="col-md-3"><input type="number" step="0.001" class="form-control" id="porceDesbaste" name="porceDesbaste" ></div>
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="porceDesbaste" name="porceDesbaste" ></div>
 
                   </div>
 
@@ -279,7 +279,7 @@ MODAL GRAFICO  MUERTES TRATADAS
 
                     <div class="col-md-8">Costo Producción 1 Kg (Solo Alimentación)</div>
 
-                    <div class="col-md-3"><input type="number" step="0.001" class="form-control" id="CProdKgAlim" name="CProdKgAlim" ></div>
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="CProdKgAlim" name="CProdKgAlim" ></div>
 
                   </div>
 
@@ -287,7 +287,7 @@ MODAL GRAFICO  MUERTES TRATADAS
 
                     <div class="col-md-8">Costo Producción 1 Kg ( Alimentación+ Estructura + Sanidad )</div>
 
-                    <div class="col-md-3"><input type="number" step="0.001" class="form-control" id="CProdKgAES" name="CProdKgAES" ></div>
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="CProdKgAES" name="CProdKgAES" ></div>
 
                   </div>
 
@@ -295,7 +295,34 @@ MODAL GRAFICO  MUERTES TRATADAS
 
                     <div class="col-md-8">Margen Técnico por Kilo Producido</div>
 
-                    <div class="col-md-3"><input type="number" step="0.001" class="form-control" id="margenTecKgProd" name="margenTecKgProd" ></div>
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="margenTecKgProd" name="margenTecKgProd" ></div>
+
+                  </div>
+
+                                    <!-- PRODUCCION -->
+
+                  <div class="row">
+
+                    <div class="col-md-8"><b>Consumo de Maiz y Soja</b></div>
+
+                    <div class="col-md-3"></div>
+
+                  </div>
+
+
+                  <div class="row">
+
+                    <div class="col-md-8">Maiz</div>
+
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="maiz" name="maiz" ></div>
+
+                  </div>
+
+                  <div class="row">
+
+                    <div class="col-md-8">Soja</div>
+
+                    <div class="col-md-3"><input type="number" step="0.0001" class="form-control" id="soja" name="soja" ></div>
 
                   </div>
                                 

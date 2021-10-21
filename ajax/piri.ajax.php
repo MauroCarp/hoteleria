@@ -12,7 +12,7 @@ $resultado = mysqli_fetch_array($query);
 
 // echo $resultado['fecha'];
 
-$html = file_get_html('http://rosgan.com.ar/precios-indices-rosgan/');
+$html = file_get_html('https://www.rosgan.com.ar/precios-rosgan/');
 $arrayMeses[] = array();
 $arrayMeses[] = 'enero';
 $arrayMeses[] = 'febrero';

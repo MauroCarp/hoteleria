@@ -99,4 +99,20 @@ class ModeloPanelControl{
 
 	}
 
+	/*=============================================
+	DATA POR AÑO
+	=============================================*/
+	static public function mdlMostrarDataPorAnio($tabla,$item,$valor){
+	
+		
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE YEAR($item) = :$item ORDER BY periodoTime ASC");
+
+		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+		$stmt -> execute();
+		
+		return $stmt -> fetchAll();
+		
+	}
+
 }
