@@ -49,6 +49,9 @@ function formatearNumero($number){
 
   $estadia = ControladorPanelControl::ctrMostrarUltimos($campo,$cantidad);
 
+  $campo = 'indiceReposicion';
+
+  $indiceReposicion = ControladorPanelControl::ctrMostrarUltimos($campo,$cantidad);
 
   // $ KG PRODUCIDO
 
@@ -108,6 +111,8 @@ function formatearNumero($number){
       $dataGraficos['Poblacion'][] = $poblacion[$i][0];
 
       $dataGraficos['Estadia'][] = round($estadia[$i][0]);
+
+      $dataGraficos['IndiceReposicion'][] = $indiceReposicion[$i][0];
 
       $dataGraficos['KgProd'][] = $costoKgProd[$i][0];
       
@@ -349,8 +354,24 @@ function generarGraficoLinea(registros,divId,labels,tituloLabel){
     data[index] = (registros[index]) ? registros[index] : 0;
     
   }  
+  
+  data.shift()
+    
+  let minimo = 0;
 
-data.shift()
+
+  if(tituloLabel == 'Conversión de MS' || tituloLabel == 'A.D.P.V'  || tituloLabel ==  'Estadia Promedio'){
+
+    // console.log(tituloLabel);
+      
+    let  result = data.filter(valor => valor != 0);
+
+    minimo = (tituloLabel == 'A.D.P.V') ? Math.min.apply(null, result) : (Math.min.apply(null, result) - 1)
+    
+    // console.log(minimo);
+  }
+
+
 
   let myChart = new Chart(ctx, {
                                 type: 'line',
@@ -368,7 +389,7 @@ data.shift()
                                   scales: {
                                       yAxes: [{
                                           ticks: {
-                                              beginAtZero: true
+                                              min: minimo,
                                           }
                                       }]
                                     },
@@ -382,7 +403,7 @@ data.shift()
                                     }
                                 }
   });   
-
+    
   return myChart; 
 
 }
@@ -553,7 +574,8 @@ let url = 'ajax/datosPanelControl.ajax.php';
       success:function(response){
         
         response = JSON.parse(response);
-        
+
+        dataGraficos['IndiceReposicion'].push(response['IndiceReposicion']);
         dataGraficos['Conversion'].push(response['Conversion']);
         dataGraficos['CostoKgMS'].push(response['CostoKgMS']);
         dataGraficos['Poblacion'].push(response['Poblacion']);
@@ -591,6 +613,11 @@ let url = 'ajax/datosPanelControl.ajax.php';
         divId = 'graficoEstadia' + (index + 1);
 
         generarGraficoBarSimple(dataGraficos['Estadia'],divId,dataGraficos['Labels'],'Estadia Prom.');
+        
+        //  INDICE REPOSICION
+         divId = 'graficoIndiceReposicion' + (index + 1);
+
+        generarGraficoBarSimple(dataGraficos['IndiceReposicion'],divId,dataGraficos['Labels'],'Indice de Rep.');
         
         // $ Kg Prod
         divId = 'graficoCostoKgProd' + (index + 1);
@@ -631,36 +658,94 @@ let url = 'ajax/datosPanelControl.ajax.php';
         success: function(respuesta){
 
           let response = JSON.parse(respuesta);
+                              
           
-          let divId = `graficoPrecioKgMS${index + 1}`
-         
-          generarGraficoLinea(response.precioKgMS,divId,meses,'Precio Kg de MS')
+          console.log(response);
           
+          let divAnual = `tasaMSPrecioVentaAnual${index + 1}`
+
+          let precioKgMSAnual = response.precioKgMSAnual
+
+          let precioVentaAnual = response.precioVentaAnual
+
+          let tasaAnual = (precioKgMSAnual / precioVentaAnual)
+          
+          $(`#${divAnual}`).html(tasaAnual.toFixed(2))
+
+          let divId = `graficoTasaMsPrecioVenta${index + 1}`
+          
+          let precioKgMS = response.precioKgMS;
+
+          let precioVenta = response.precioVenta
+
+          let tasa = {}
+          
+          for (const key in precioKgMS) {
+
+            let valor = (precioKgMS[key] / precioVenta[key]).toFixed(3)
+
+            tasa[key] = valor
+              
+          }
+
+          generarGraficoLinea(tasa,divId,meses,'$ MS / $  Venta')
+          
+          // 
+
+          divAnual = `conversionMSAnual${index + 1}`
+
+          $(`#${divAnual}`).html(response.conversionMSAnual.toFixed(2))
+
           divId = `graficoConversionMS${index + 1}`
-                   
+          
           generarGraficoLinea(response.conversionMS,divId,meses,'Conversión de MS')
           
+          // 
+
+          divAnual = `ADPVAnual${index + 1}`
+
+          $(`#${divAnual}`).html(response.adpvAnual.toFixed(2))
+
           divId = `graficoADPV${index + 1}`
-         
+          
           generarGraficoLinea(response.adpv,divId,meses,'A.D.P.V')
           
-          divId = `graficoProblacionProm${index + 1}`
-         
+          // 
+          
+          divAnual = `poblacionPromAnual${index + 1}`
+
+          $(`#${divAnual}`).html(response.poblacionPromAnual.toFixed(2))
+
+          divId = `graficoPoblacionProm${index + 1}`
+          
           generarGraficoLinea(response.poblacionProm,divId,meses,'Población Promedio')
           
-          divId = `graficoEstadiaProm${index + 1}`
-         
-          generarGraficoLinea(response.estadiaProm,divId,meses,'Estadia Promedio')
+          // 
           
-          divId = `graficoIndiceReposicion${index + 1}`
-         
-          generarGraficoLinea(response.indiceReposicion,divId,meses,'Indice de Reposición')
+          divAnual = `estadiaPromAnual${index + 1}`
+
+          $(`#${divAnual}`).html(response.estadiaPromAnual.toFixed(2))
+          
+          divId = `graficoEstadiaProm${index + 1}`
+          
+          generarGraficoLinea(response.estadiaProm,divId,meses,'Estadia Promedio')
+        
+          //
+
+          divAnual = `indiceReposicionAnual${index + 1}`
+
+          $(`#${divAnual}`).html(response.indiceReposicionAnual.toFixed(2))
+          
+          divId = `graficoIR${index + 1}`
+                                            
+          generarGraficoLinea(response.indiceReposicion,divId,meses,'Indice Reposicion')
 
         }
 
-    })
-  
-  }
+      })
+      
+    }
+
 
 </script>
 

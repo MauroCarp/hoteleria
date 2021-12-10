@@ -85,8 +85,6 @@ $('#compararValidoFechaPanelControl').change(function(){
 	
 	let compararValido = $(this).is(':checked');
 	
-	console.log(compararValido);
-
 	if(compararValido){
   
 	  $('#modalFechaPanelControlComparar').show(1000);
@@ -371,8 +369,6 @@ $('.tabsPanelControl').on('click',function(){
   tabSub = tab.substring(0, tab.length - 2)
 
   let countNumber = tab.substring(7, tab.length);
-
-  console.log(countNumber);
   
   if(tabSub == '#tab_4'){
      

@@ -202,6 +202,15 @@ if($accion == 'data'){
 
             </tr>
 
+            <tr>
+                                    
+            <td>Indice de Reposición</td>
+            
+            <td><span class='badge bg-blue'>".formatearNumero2($datos['indiceReposicion'])."</span></td>
+
+            </tr>
+
+
         </tbody>
     ";
 
@@ -244,7 +253,7 @@ if($accion == 'data'){
                                     
                 <td>Valor Kg Obtenido aplicando Rinde</td>
                 
-                <td><span class='badge bg-blue'>".formatearNumero2($datos['valorKgObtRinde'])." Kg</span></td>
+                <td><span class='badge bg-blue'>$ ".formatearNumero2($datos['valorKgObtRinde'])."</span></td>
 
             </tr>
 

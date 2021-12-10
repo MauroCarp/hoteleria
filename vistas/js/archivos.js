@@ -57,78 +57,82 @@ const showLoading = ()=>{
 /*=============================================
 MOSTRAR MODAL ARCHIVO
 =============================================*/
-$(".modalEditar").on("click", function(){
-
-  let nombreArchivo = $(this).attr("archivo");
-  let periodo = $(this).attr("periodo");
-
-  periodoSlice = periodo.split('-');
-
-  let anio = periodoSlice[0];
-  let mes = parseFloat(periodoSlice[1]);
+  $(document).on("click",'.modalEditar', function(){
+  
+    console.log('hola');
     
-  $('#tituloEditarPlanilla').html(`Editar Planilla ${arrayMeses[mes-1].charAt(0).toUpperCase() + arrayMeses[mes-1].slice(1)} - ${anio}`);
-
-  $('.btnEditarArchivo').attr('periodo', periodo);
-
-  let data = `accion=valuesEditar&periodo=${periodo}`;
-
-  let url = 'ajax/datosPanelControl.ajax.php';
-
-  showLoading();
-
-  $.ajax({
-
-    method: 'POST',
-
-    url: url,
-    
-    data: data,
-
-    success: function(response){
+    let nombreArchivo = $(this).attr("archivo");
+    let periodo = $(this).attr("periodo");
+  
+    periodoSlice = periodo.split('-');
+  
+    let anio = periodoSlice[0];
+    let mes = parseFloat(periodoSlice[1]);
       
-      swal.close();
+    $('#tituloEditarPlanilla').html(`Editar Planilla ${arrayMeses[mes-1].charAt(0).toUpperCase() + arrayMeses[mes-1].slice(1)} - ${anio}`);
+  
+    $('.btnEditarArchivo').attr('periodo', periodo);
+  
+    let data = `accion=valuesEditar&periodo=${periodo}`;
+  
+    let url = 'ajax/datosPanelControl.ajax.php';
+  
+    showLoading();
+  
+    $.ajax({
+  
+      method: 'POST',
+  
+      url: url,
       
-      response = JSON.parse(response);
-
-      $('#periodo').val(response.periodo);
-      $('#CSanCabPeriodo').val(response.CSanCabPeriodo);
-      $('#CDiaAlimTCCab').val(response.CDiaAlimTCCab);
-      $('#CKgRacPromTC').val(response.CKgRacPromTC);
-      $('#CKgRacPromMS').val(response.CKgRacPromMS);
-      $('#consumTCPondCab').val(response.consumTCPondCab);
-      $('#consumMSPondCab').val(response.consumMSPondCab);
-      $('#converMSEstADPV').val(response.converMSEstADPV);
-      $('#consumoSoja').val(response.consumoSoja);
-      $('#consumoMaiz').val(response.consumoMaiz);
-      $('#poblDiaPromPeriodo').val(response.poblDiaPromPeriodo);
-      $('#totalCabSalida').val(response.totalCabSalida);
-      $('#muertosPeriodo').val(response.muertosPeriodo);
-      $('#estadiaProm').val(response.estadiaProm);
-      $('#cabTrazSalidas').val(response.cabTrazSalidas);
-      $('#pesoPromIngSalTraz').val(response.pesoPromIngSalTraz);
-      $('#pesoPromEgrTraz').val(response.pesoPromEgrTraz);
-      $('#kilosGanPeriodoTraz').val(response.kilosGanPeriodoTraz);
-      $('#adpvGanDiaPeriodo').val(response.adpvGanDiaPeriodo);
-      $('#totalCabFaenadas').val(response.totalCabFaenadas);
-      $('#totalKgCarne').val(response.totalKgCarne);
-      $('#totalPesosFaena').val(response.totalPesosFaena);
-      $('#rinde').val(response.rinde);
-      $('#valorKgObtRinde').val(response.valorKgObtRinde);
-      $('#porceDesbaste').val(response.porceDesbaste);
-      $('#CProdKgAlim').val(response.CProdKgAlim);
-      $('#CProdKgAES').val(response.CProdKgAES);
-      $('#margenTecKgProd').val(response.margenTecKgProd);
-      $('#maiz').val(response.consumoMaiz);
-      $('#soja').val(response.consumoSoja);
-      
+      data: data,
+  
+      success: function(response){
         
-    }
-
-  });
-   
-})
-
+        swal.close();
+        
+        response = JSON.parse(response);
+        
+        console.log(response);
+        
+        $('#periodo').val(response.periodo);
+        $('#CSanCabPeriodo').val(response.CSanCabPeriodo);
+        $('#CDiaAlimTCCab').val(response.CDiaAlimTCCab);
+        $('#CKgRacPromTC').val(response.CKgRacPromTC);
+        $('#CKgRacPromMS').val(response.CKgRacPromMS);
+        $('#consumTCPondCab').val(response.consumTCPondCab);
+        $('#consumMSPondCab').val(response.consumMSPondCab);
+        $('#converMSEstADPV').val(response.converMSEstADPV);
+        $('#consumoSoja').val(response.consumoSoja);
+        $('#consumoMaiz').val(response.consumoMaiz);
+        $('#poblDiaPromPeriodo').val(response.poblDiaPromPeriodo);
+        $('#totalCabSalida').val(response.totalCabSalida);
+        $('#muertosPeriodo').val(response.muertosPeriodo);
+        $('#estadiaProm').val(response.estadiaProm);
+        $('#cabTrazSalidas').val(response.cabTrazSalidas);
+        $('#pesoPromIngSalTraz').val(response.pesoPromIngSalTraz);
+        $('#pesoPromEgrTraz').val(response.pesoPromEgrTraz);
+        $('#kilosGanPeriodoTraz').val(response.kilosGanPeriodoTraz);
+        $('#adpvGanDiaPeriodo').val(response.adpvGanDiaPeriodo);
+        $('#totalCabFaenadas').val(response.totalCabFaenadas);
+        $('#totalKgCarne').val(response.totalKgCarne);
+        $('#totalPesosFaena').val(response.totalPesosFaena);
+        $('#rinde').val(response.rinde);
+        $('#valorKgObtRinde').val(response.valorKgObtRinde);
+        $('#porceDesbaste').val(response.porceDesbaste);
+        $('#CProdKgAlim').val(response.CProdKgAlim);
+        $('#CProdKgAES').val(response.CProdKgAES);
+        $('#margenTecKgProd').val(response.margenTecKgProd);
+        $('#maiz').val(response.consumoMaiz);
+        $('#soja').val(response.consumoSoja);
+        
+          
+      }
+  
+    });
+     
+  })
+  
 
 
 

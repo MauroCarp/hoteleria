@@ -39,11 +39,18 @@ $dataGraficos['Poblacion'] = $poblacion[0];
 
 $campo = 'estadiaProm';
 
-$campo = 'estadiaProm';
-
 $estadia = ControladorPanelControl::ctrMostrarDato($campo,$item,$valor);
 
 $dataGraficos['Estadia'] = $estadia[0];
+
+
+// INDICE REPOSICION
+
+$campo = 'indiceReposicion';
+
+$indiceReposicion = ControladorPanelControl::ctrMostrarDato($campo,$item,$valor);
+
+$dataGraficos['IndiceReposicion'] = $indiceReposicion[0];
 
 // $ KILO PROD
 

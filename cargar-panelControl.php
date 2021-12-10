@@ -225,7 +225,19 @@ if( isset($_FILES["nuevosDatos"]) ){
 
 
 					if ($rowNumber == 1) {
-                        
+
+                        if($Row[0] == ''){
+                            echo'<script>
+
+                            alert("El periodo no fue especificado")
+                            window.location.href = "index.php?ruta=inicio"
+
+                          </script>';
+                          
+                          die();
+
+                        }
+ 
                         $periodo = substr($Row[0],-7);
 
                         $periodo = explode('-',$periodo);

@@ -25,52 +25,93 @@
 
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-8">
 
-        <div class="box box-success">
+        <div class="row">
 
-            <div class="box-header with-border">
+            <div class="col-md-6">
 
-                <h3 class="box-title">Poblaci&oacute;n Diaria Promedio</h3>
+                <div class="row">
 
+                    <div class="col-md-12">
+
+                        <div class="box box-success">
+
+                            <div class="box-header with-border">
+
+                                <h3 class="box-title">Poblaci&oacute;n Diaria Promedio</h3>
+
+                            </div>
+
+
+                            <div class="box-body">
+
+                                <div class="chart">
+
+                                    <canvas id="graficoPoblacion<?php echo $i + 1;?>"></canvas>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-12">
+                    
+                        <div class="box box-success">
+
+                            <div class="box-header with-border">
+
+                                <h3 class="box-title">&Iacute;ndice de Reposici&oacute;n</h3>
+
+                            </div>
+
+
+                            <div class="box-body">
+
+                                <div class="chart">
+
+                                    <canvas id="graficoIndiceReposicion<?php echo $i + 1;?>"></canvas>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+               
             </div>
-        
 
-            <div class="box-body">
+            <div class="col-md-6">
+            
+                <div class="box box-success">
 
-                <div class="chart">
+                    <div class="box-header with-border">
 
-                    <canvas id="graficoPoblacion<?php echo $i + 1;?>"></canvas>
+                        <h3 class="box-title">Estadia Promedio</h3>
+
+                    </div>
+
+
+                    <div class="box-body">
+
+                        <div class="chart">
+
+                            <canvas id="graficoEstadia<?php echo $i + 1;?>"></canvas>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
             </div>
-
-        </div>
-
-    </div>
- 
-    <div class="col-md-4">
-
-        <div class="box box-success">
-
-            <div class="box-header with-border">
-
-                <h3 class="box-title">Estadia Promedio</h3>
-
-            </div>
-        
-
-            <div class="box-body">
-
-                <div class="chart">
-
-                    <canvas id="graficoEstadia<?php echo $i + 1;?>"></canvas>
-
-                </div>
-
-            </div>
-
+            
         </div>
 
     </div>

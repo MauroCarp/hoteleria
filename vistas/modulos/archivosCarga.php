@@ -254,7 +254,7 @@ $meses = Array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto"
 
       <div class="box-body">
         
-       <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
+       <table class="table table-bordered table-striped dt-responsive tablas tablaPanelControl" width="100%">
          
         <thead>
          
