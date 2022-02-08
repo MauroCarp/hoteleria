@@ -169,7 +169,7 @@ MODAL AGREGAR USUARIO
 
     <div class="modal-content">
 
-      <form role="form" method="post" enctype="multipart/form-data" action="cargar-datos-muertes.php">
+    <form role="form" method="post" enctype="multipart/form-data" action="cargar-datos-muertes.php">
 
         <!--=====================================
         CABEZA DEL MODAL
