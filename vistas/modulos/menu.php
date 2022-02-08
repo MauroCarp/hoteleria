@@ -238,7 +238,7 @@
 
 			  echo '<li>
 
-						<a href="resumenConversion">
+			  			<a href="#" data-toggle="modal" data-target="#ventanaModalAnual">
 							
 							<i class="fa fa-bar-chart"></i>
 							<span>Generar Reportes</span>
@@ -322,6 +322,8 @@ $modalSeccion = 'ventanaModalFechaPanelControl';
 $idGenerar = 'generarPanelControl';
 
 include 'modales/filtroMensualAnual.modal.php';
+
+include 'modales/filtroAnual.modal.php';
 
 ?>
 

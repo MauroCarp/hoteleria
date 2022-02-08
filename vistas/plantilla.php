@@ -234,6 +234,7 @@ CUERPO DOCUMENTO
 <script src="vistas/js/reportes.js"></script>
 <script src="vistas/js/reportesCompras.js"></script>
 <script src="vistas/js/reportesMuertes.js"></script>
+<script src="vistas/js/conversion.js"></script>
 <script src="vistas/js/piri.js"></script>
 <script src="vistas/js/archivos.js"></script>
 

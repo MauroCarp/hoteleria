@@ -5,13 +5,14 @@ class ControladorConversion{
 	MOSTRAR DATOS
 	=============================================*/
 
-	static public function ctrMostrarDatos($item, $valor,$orden){
+	static public function ctrMostrarDatos($item, $valor){
 
-		$tabla = "compras";
+		$tabla = "conversion";
 
-		$respuesta = ModeloDatos::MdlMostrarDatos($tabla, $item, $valor,$orden);
+		$respuesta = ModeloConversion::mdlMostrarDatos($tabla, $item, $valor);
 
 		return $respuesta;
+
 	}
 
 

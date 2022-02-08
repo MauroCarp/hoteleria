@@ -8,17 +8,17 @@ class ModeloConversion{
 	MOSTRAR Datos
 	=============================================*/
 
-	static public function mdlMostrarDatosCajas($tabla,$campo, $item, $valor){
+	static public function mdlMostrarDatos($tabla, $item, $valor){
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT $campo FROM $tabla WHERE $item = :$item ");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY periodoTime ASC");
 
 			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
 			$stmt -> execute();
 			
-			return $stmt -> fetch();
+			return $stmt -> fetchAll();
 			
 		}else{
 			
