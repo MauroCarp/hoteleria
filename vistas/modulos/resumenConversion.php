@@ -12,28 +12,30 @@ if($_SESSION["perfil"] == "Vendedor"){
 
 }
 
+$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+
 ?>
 
 <script>
 
-    const generarConfigBarChart = (label,data,label2)=>{
+  const generarConfigBarChart = (label,data,label2)=>{
 
-      let configuracion = {
-          labels: label,
-          datasets: [{
-          label: label2,
-          backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-          borderColor: window.chartColors.red,
-          borderWidth: 1, 
-          data: data
-          }]
+    let configuracion = {
+        labels: label,
+        datasets: [{
+        label: label2,
+        backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
+        borderColor: window.chartColors.red,
+        borderWidth: 1, 
+        data: data
+        }]
 
-      };
-              
-      return configuracion;
-              
+    };
+            
+    return configuracion;
+            
 
-    }
+  }
 
   const generarChartResumen = (idChart,config)=>{
 
@@ -97,15 +99,11 @@ if($_SESSION["perfil"] == "Vendedor"){
                                     
                                     $contador = 1;
 
-                                    setlocale(LC_ALL, 'es_ES');
-
                                     foreach ($registros as $key => $registroMes) {
 
                                       $monthNum  = $registroMes['mes'];
 
-                                      $dateObj   = DateTime::createFromFormat('!m', $monthNum);
-
-                                      $monthName = strftime('%B', $dateObj->getTimestamp());
+                                      $monthName = $meses[$monthNum-1];
 
                                       if($first){
 
@@ -125,7 +123,7 @@ if($_SESSION["perfil"] == "Vendedor"){
 
                                 ?>
                        
-                                  <li class='tabs' id='stadistica'><a href='#tab_estadistica' data-toggle='tab'>Estadistica Anual</a></li>
+                                  <li class='tabs' id='stadistica'><a href='#tab_estadistica' data-toggle='tab' id="btnEstadistica">Estadistica Anual</a></li>
 
                             </ul>
 
@@ -182,368 +180,3 @@ if($_SESSION["perfil"] == "Vendedor"){
     </div>
 
 </div>
-
-
-<script>
-
-
-  //   // CICLO COMPLETO
-  //     var poblacionSexo = document.getElementById('pieChart').getContext('2d');
-  //     window.myPie = new Chart(poblacionSexo, configPSS);
-
-      
-  //     var adpv = document.getElementById('barChart').getContext('2d');
-  //     var chartAdpvGeneral = new Chart(adpv, {
-  //       type: 'bar',
-  //       data: configADPV,
-  //       options: {
-  //         responsive: true,
-  //         legend: {
-  //           position: 'top',
-  //         },
-  //         title: {
-  //           display: false,
-  //           text: 'Prom. Adpv'
-  //         },
-  //         plugins: {
-  //           labels: {
-  //             render: 'value'
-  //           }
-  //         },
-  //         scales: {
-  //             yAxes: [{
-  //                 ticks: {
-  //                     suggestedMin: 0,
-  //                     suggestedMax: <?php // echo $promedioAdpvCC;?>
-  //                 }
-  //             }]
-  //         }
-  //       }
-  //     });
-
-  //     var dias = document.getElementById('barChart1').getContext('2d');
-  //     var chartDiasGeneral = new Chart(dias, {
-  //       type: 'bar',
-  //       data: configDias,
-  //       options: {
-  //         responsive: true,
-  //         legend: {
-  //           position: 'top',
-  //         },
-  //         title: {
-  //           display: false,
-  //           text: 'Prom. Dias'
-  //         },
-  //         plugins: {
-  //           labels: {
-  //             render: 'value'
-  //           }
-  //         }
-  //       }
-  //     });
-
-  //     var kgIng = document.getElementById('barChart2').getContext('2d');
-  //     var chartKgIngGeneral = new Chart(kgIng, {
-  //       type: 'bar',
-  //       data: configKgIng,
-  //       options: {
-  //         responsive: true,
-  //         legend: {
-  //           position: 'top',
-  //         },
-  //         title: {
-  //           display: false,
-  //           text: 'Prom. Kg Ingreso'
-  //         },
-  //         plugins: {
-  //           labels: {
-  //             render: 'value'
-  //           }
-  //         }
-  //       }
-  //     });
-
-  //     var kgEgr = document.getElementById('barChart3').getContext('2d');
-  //     var chartkgEgrGeneral = new Chart(kgEgr, {
-  //       type: 'bar',
-  //       data: configKgEgr,
-  //       options: {
-  //         responsive: true,
-  //         legend: {
-  //           position: 'top',
-  //         },
-  //         title: {
-  //           display: false,
-  //           text: 'Prom. Kg Salida'
-  //         },
-  //         plugins: {
-  //           labels: {
-  //             render: 'value'
-  //           }
-  //         }
-  //       }
-  //     });
-
-      
-  //     var kgProd = document.getElementById('barChart4').getContext('2d');
-  //     var chartkgProdGeneral = new Chart(kgProd, {
-  //       type: 'bar',
-  //       data: configKgProd,
-  //       options: {
-  //         responsive: true,
-  //         legend: {
-  //           position: 'top',
-  //         },
-  //         title: {
-  //           display: false,
-  //           text: 'Prom. Kg Prod.'
-  //         },
-  //         plugins: {
-  //           labels: {
-  //             render: 'value'
-  //           }
-  //         }
-  //       }
-  //     });
-
-
-  //   ////// RECRIA PASTORIL ///////
-
-  //     var porcentajePoblacionRP = document.getElementById('pieChart1RP').getContext('2d');
-  //     window.myPie = new Chart(porcentajePoblacionRP, configPPRP);
-    
-      
-  //     var adpvRP = document.getElementById('barChartRP').getContext('2d');
-  //     var chartAdpvRPGeneral = new Chart(adpvRP, {
-  //       type: 'bar',
-  //       data: configADPVRP,
-  //       options: {
-  //         responsive: true,
-  //         legend: {
-  //           position: 'top',
-  //         },
-  //         title: {
-  //           display: false,
-  //           text: 'Prom. Adpv'
-  //         },
-  //         plugins: {
-  //           labels: {
-  //             render: 'value'
-  //           }
-  //         },
-  //         scales: {
-  //             yAxes: [{
-  //                 ticks: {
-  //                     suggestedMin: 0,
-  //                     suggestedMax: <?php // echo $promedioAdpvRP;?>
-  //                 }
-  //             }]
-  //         }
-  //       }
-  //     });
-
-  //     var diasRP = document.getElementById('barChart1RP').getContext('2d');
-  //     var chartDiasRPGeneral = new Chart(diasRP, {
-  //       type: 'bar',
-  //       data: configDiasRP,
-  //       options: {
-  //         responsive: true,
-  //         legend: {
-  //           position: 'top',
-  //         },
-  //         title: {
-  //           display: false,
-  //           text: 'Prom. Dias'
-  //         },
-  //         plugins: {
-  //           labels: {
-  //             render: 'value'
-  //           }
-  //         }
-  //       }
-  //     });
-
-
-  //     var kgProdRP = document.getElementById('barChart4RP').getContext('2d');
-  //     var chartKgProdRPGeneral = new Chart(kgProdRP, {
-  //       type: 'bar',
-  //       data: configKgProdRP,
-  //       options: {
-  //         responsive: true,
-  //         legend: {
-  //           position: 'top',
-  //         },
-  //         title: {
-  //           display: false,
-  //         },
-  //         plugins: {
-  //           labels: {
-  //             render: 'value'
-  //           }
-  //         }
-  //       }
-  //     });
-
-
-    
-  //   ////// RECRIA CORRAL ///////
-
-
-
-  //     var porcentajePoblacionRC = document.getElementById('pieChart1RC').getContext('2d');
-  //     window.myPie = new Chart(porcentajePoblacionRC, configPPRC);
-      
-
-      
-  //     var adpvRC = document.getElementById('barChartRC').getContext('2d');
-  //     var chartAdpvRCGeneral = new Chart(adpvRC, {
-  //       type: 'bar',
-  //       data: configADPVRC,
-  //       options: {
-  //         responsive: true,
-  //         legend: {
-  //           position: 'top',
-  //         },
-  //         title: {
-  //           display: false,
-  //           text: 'Prom. Adpv'
-  //         },
-  //         plugins: {
-  //           labels: {
-  //             render: 'value'
-  //           }
-  //         },
-  //         scales: {
-  //             yAxes: [{
-  //                 ticks: {
-  //                     suggestedMin: 0,
-  //                     suggestedMax: <?php // echo $promedioAdpvRC;?>
-  //                 }
-  //             }]
-  //         }
-  //       }
-  //     });
-
-  //     var diasRC = document.getElementById('barChart1RC').getContext('2d');
-  //     var chartDiasRCGeneral = new Chart(diasRC, {
-  //       type: 'bar',
-  //       data: configDiasRC,
-  //       options: {
-  //         responsive: true,
-  //         legend: {
-  //           position: 'top',
-  //         },
-  //         title: {
-  //           display: false,
-  //           text: 'Prom. Dias'
-  //         },
-  //         plugins: {
-  //           labels: {
-  //             render: 'value'
-  //           }
-  //         }
-  //       }
-  //     });
-
-  //     var kgProdRC = document.getElementById('barChart4RC').getContext('2d');
-  //     var chartKgProdRCGeneral = new Chart(kgProdRC, {
-  //       type: 'bar',
-  //       data: configKgProdRC,
-  //       options: {
-  //         responsive: true,
-  //         legend: {
-  //           position: 'top',
-  //         },
-  //         title: {
-  //           display: false,
-  //         },
-  //         plugins: {
-  //           labels: {
-  //             render: 'value'
-  //           }
-  //         }
-  //       }
-  //     });
-
-        
-  //   ////// TERMINACION ///////
-
-  //     var porcentajePoblacionT = document.getElementById('pieChart1T').getContext('2d');
-  //     window.myPie = new Chart(porcentajePoblacionT, configPPT);
-      
-
-      
-  //     var adpvT = document.getElementById('barChartT').getContext('2d');
-  //     var chartAdpvTGeneral = new Chart(adpvT, {
-  //       type: 'bar',
-  //       data: configADPVT,
-  //       options: {
-  //         responsive: true,
-  //         legend: {
-  //           position: 'top',
-  //         },
-  //         title: {
-  //           display: false,
-  //           text: 'Prom. Adpv'
-  //         },
-  //         plugins: {
-  //           labels: {
-  //             render: 'value'
-  //           }
-  //         },
-  //         scales: {
-  //             yAxes: [{
-  //                 ticks: {
-  //                     suggestedMin: 0,
-  //                     suggestedMax: <?php //echo $promedioAdpvT;?>
-  //                 }
-  //             }]
-  //         }
-  //       }
-  //     });
-
-  //     var diasT = document.getElementById('barChart1T').getContext('2d');
-  //     var chartDiasTGeneral = new Chart(diasT, {
-  //       type: 'bar',
-  //       data: configDiasT,
-  //       options: {
-  //         responsive: true,
-  //         legend: {
-  //           position: 'top',
-  //         },
-  //         title: {
-  //           display: false,
-  //           text: 'Prom. Dias'
-  //         },
-  //         plugins: {
-  //           labels: {
-  //             render: 'value'
-  //           }
-  //         }
-  //       }
-  //     });
-
-  //     var kgProdT = document.getElementById('barChart4T').getContext('2d');
-  //     var chartKgProdTGeneral = new Chart(kgProdT, {
-  //       type: 'bar',
-  //       data: configKgProdT,
-  //       options: {
-  //         responsive: true,
-  //         legend: {
-  //           position: 'top',
-  //         },
-  //         title: {
-  //           display: false,
-  //         },
-  //         plugins: {
-  //           labels: {
-  //             render: 'value'
-  //           }
-  //         }
-  //       }
-  //     });
-
-
-
-  // })
-</script> 

@@ -279,7 +279,10 @@ include 'modales/costos.modal.php';
             }]
           }
 				}
-      };
+    };
+
+    console.log(confCantProv);
+    
       
     generarGraficoBar('cantProveedor',confCantProv,'noOption');
 

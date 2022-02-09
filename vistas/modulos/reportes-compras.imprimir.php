@@ -285,6 +285,8 @@ include 'ajax/datosReporteComprasCostos.ajax.php';
       }
     };
 
+    console.log(confCantProv);
+    
     generarGraficoBar('cantProveedor',confCantProv,'noOption');
 
 
