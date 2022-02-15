@@ -1,11 +1,11 @@
 // GENERAR REPORTE
-let btnGenerarReporte = document.getElementById('generarReporteConversion')
+let btnGenerarReporte = document.getElementById('generarResumen')
 
 btnGenerarReporte.addEventListener('click',()=>{
 
-    let anio = document.getElementById('anioConv').value
+    // let anio = document.getElementById('anioConv').value
 
-    window.location = `index.php?ruta=resumenConversion&anio=${anio}`
+    // window.location = `index.php?ruta=resumenConversion&anio=${anio}`
 
 });
 
@@ -119,3 +119,23 @@ if(btnEstadisticaLabel != null){
 }
 
 
+// COMPARAR PERIODO
+document.getElementById('periodoConv').value = monthValue
+
+let contadorConv = 2;
+
+let contenidoConv = '';
+
+$('#compararConversion').click(()=>{
+
+  contenidoConv = agregarPeriodo(contadorConv,'periodoConv');
+  
+  $('#btn-plusConv').before(contenidoConv);
+  
+  $('#btn-plusConv').before('<br>');
+  
+  $('#periodoConv' + contadorConv )[0].value = monthValue;
+  
+  contadorConv++;
+
+});

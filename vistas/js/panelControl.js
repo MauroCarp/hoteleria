@@ -11,7 +11,7 @@ let monthValue = year + '-' + month;
 AGREGAR PERIODO
 =============================================*/
 
-function agregarPeriodo(contador){
+function agregarPeriodo(contador,inputID){
 
 
       let contenido = '<div class="row">';
@@ -28,7 +28,7 @@ function agregarPeriodo(contador){
       
       contenido += '<div class="col-md-12">';
 
-      contenido += '<input class="form-control months" type="month" id="periodoPC' + contador + '">';
+      contenido += `<input class="form-control months" type="month" id="${inputID}${contador}">`;
 
       contenido += '</div>';
       
@@ -44,7 +44,7 @@ let contenido = '';
 
 $('#compararPC').click(()=>{
 
-  contenido = agregarPeriodo(contadorPC);
+  contenido = agregarPeriodo(contadorPC,'periodoPC');
   
   $('#btn-plusPC').before(contenido);
   

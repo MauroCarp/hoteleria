@@ -1,5 +1,5 @@
 
-<div id="ventanaModalFechaPanelControl" class="modal fade" role="dialog">
+<div id="<?php  echo $modalSeccion;?>" class="modal fade" role="dialog">
  
   <div class="modal-dialog">
 
@@ -41,7 +41,7 @@
                         
                         <div class="col-md-12">
                         
-                           <input class="form-control months" type="month" id='periodoPC'>
+                           <input class="form-control months" type="month" id='<?php echo $inputID;?>'>
                             
                         </div>
 
@@ -51,10 +51,10 @@
 
                     
                     
-                    <div class='row' id='btn-plusPC'>
+                    <div class='row' id='<?php echo $divBtnPlus;?>'>
 
                         <div class='col-md-1'>
-                            <button type='button' class='btn btn-info' id='compararPC'><i class='fa fa-plus'></i></button>
+                            <button type='button' class='btn btn-info' id='<?php echo $btnPlus;?>'><i class='fa fa-plus'></i></button>
                         </div>
 
                     </div>

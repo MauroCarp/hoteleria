@@ -238,7 +238,7 @@
 
 			  echo '<li>
 
-			  			<a href="#" data-toggle="modal" data-target="#ventanaModalAnual">
+			  			<a href="#" data-toggle="modal" data-target="#ventanaModalResumenConversion">
 							
 							<i class="fa fa-bar-chart"></i>
 							<span>Generar Reportes</span>
@@ -319,11 +319,28 @@ include 'modales/filtroFecha.modal.php';
 
 $modalSeccion = 'ventanaModalFechaPanelControl';
 
+$inputID = 'periodoPC';
+
+$divBtnPlus = 'btn-plusPC';
+
+$btnPlus = 'compararPC';
+
 $idGenerar = 'generarPanelControl';
 
 include 'modales/filtroMensualAnual.modal.php';
 
-include 'modales/filtroAnual.modal.php';
+$modalSeccion = 'ventanaModalResumenConversion';
+
+$inputID = 'periodoConv';
+
+$divBtnPlus = 'btn-plusConv';
+
+$btnPlus = 'compararConversion';
+
+$idGenerar = 'generarResumen';
+
+include 'modales/filtroMensualAnual.modal.php';
+
 
 ?>
 
