@@ -14,7 +14,7 @@
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Filtro Panel de Control</h4>
+          <h4 class="modal-title">Filtro <?php echo $titulo;?></h4>
 
         </div>
 
@@ -41,7 +41,7 @@
                         
                         <div class="col-md-12">
                         
-                           <input class="form-control months" type="month" id='<?php echo $inputID;?>'>
+                           <input class="form-control months<?php echo $inputID;?>" type="month" id='periodo<?php echo $inputID;?>'>
                             
                         </div>
 

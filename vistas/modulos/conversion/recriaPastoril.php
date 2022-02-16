@@ -16,7 +16,7 @@
       
                 <div class="chart">
             
-                    <canvas id="kgIngChartRP<?php echo $mes;?>" style="height:230px"></canvas>
+                    <canvas id="kgIngChartRP" style="height:230px"></canvas>
             
                 </div>
       
@@ -42,7 +42,7 @@
 
                 <div class="chart">
 
-                    <canvas id="kgEgrChartRP<?php echo $mes;?>" style="height:230px"></canvas>
+                    <canvas id="kgEgrChartRP" style="height:230px"></canvas>
 
                 </div>
 
@@ -67,7 +67,7 @@
 
                 <div class="chart">
 
-                    <canvas id="kgProdChartRP<?php echo $mes;?>" style="height:230px"></canvas>
+                    <canvas id="kgProdChartRP" style="height:230px"></canvas>
 
                 </div>
 
@@ -96,7 +96,7 @@
 
                 <div class="chart">
 
-                    <canvas id="adpvChartRP<?php echo $mes;?>" style="height:230px"></canvas>
+                    <canvas id="adpvChartRP" style="height:230px"></canvas>
 
                 </div>
 
@@ -121,7 +121,7 @@
 
                 <div class="chart">
 
-                    <canvas id="diasChartRP<?php echo $mes;?>" style="height:230px"></canvas>
+                    <canvas id="diasChartRP" style="height:230px"></canvas>
 
                 </div>
 
@@ -146,7 +146,7 @@
 
                 <div class="chart">
 
-                    <canvas id="conversionChartRP<?php echo $mes;?>" style="height:230px"></canvas>
+                    <canvas id="conversionChartRP" style="height:230px"></canvas>
 
                 </div>
 
@@ -159,84 +159,83 @@
 </div>
 
 <script>
+    
 
-    // DIAS
+    // // DIAS
 
-        data = [Math.round(<?php echo $value['diasRP'];?>)];
+    //     data = [Math.round(<?php //echo $value['diasCC'];?>)];
         
-        label = ['Prom. Dias'];
+    //     label = ['Prom. Dias'];
 
-        label2 = 'Dias';
+    //     label2 = 'Dias';
 
-        config = generarConfigBarChart(label,data,label2);
+    //     config = generarConfigBarChart(label,data,label2);
 
-        idChart = 'diasChartRP' + <?php echo $mes?> 
+    //     idChart = 'diasChartCC' + <?php //echo $mes?> 
 
-        generarChartResumen(idChart,config)
+    //     generarChartResumen(idChart,config)
 
-    // ADPV
+    // // ADPV
 
-        data = [ <?php echo $value['adpvRP'];?> ];
+    //     data = [ <?php //echo $value['adpvCC'];?> ];
 
-        label = ['Prom. Adpv'];
+    //     label = ['Prom. Adpv'];
 
-        label2 = 'Kg';
+    //     label2 = 'Kg';
 
-        config = generarConfigBarChart(label,data,label2);
+    //     config = generarConfigBarChart(label,data,label2);
 
-        idChart = 'adpvChartRP' + <?php echo $mes?> 
+    //     idChart = 'adpvChartCC' + <?php //echo $mes?> 
 
-        generarChartResumen(idChart,config)
+    //     generarChartResumen(idChart,config)
 
-    // KG ING
+    // // KG ING
 
-        data = [<?php echo $value['kgIngRP'];?>];
+    //     data = [<?php //echo $value['kgIngCC'];?>];
     
-        label = ['Prom. Kg Ingreso'];
+    //     label = ['Prom. Kg Ingreso'];
 
-        config = generarConfigBarChart(label,data,label2);
+    //     config = generarConfigBarChart(label,data,label2);
 
-        idChart = 'kgIngChartRP' + <?php echo $mes?> 
+    //     idChart = 'kgIngChartCC' + <?php //echo $mes?> 
 
-        generarChartResumen(idChart,config)
+    //     generarChartResumen(idChart,config)
 
 
-    // KG EGR
+    // // KG EGR
 
-        data = [<?php echo $value['kgEgrRP'];?>];
+    //     data = [<?php //echo $value['kgEgrCC'];?>];
     
-        label = ['Prom. Kg Egreso'];
+    //     label = ['Prom. Kg Egreso'];
 
-        config = generarConfigBarChart(label,data,label2);
+    //     config = generarConfigBarChart(label,data,label2);
 
-        idChart = 'kgEgrChartRP' + <?php echo $mes?> 
+    //     idChart = 'kgEgrChartCC' + <?php //echo $mes?> 
 
-        generarChartResumen(idChart,config)
+    //     generarChartResumen(idChart,config)
 
 
-    // KG PROD
+    // // KG PROD
 
-        data = [<?php echo $value['kgProdRP'];?>];
+    //     data = [<?php //echo $value['kgProdCC'];?>];
             
-        label = ['Prom. Kg Produc.'];
+    //     label = ['Prom. Kg Produc.'];
 
-        config = generarConfigBarChart(label,data,label2);
+    //     config = generarConfigBarChart(label,data,label2);
 
-        idChart = 'kgProdChartRP' + <?php echo $mes?> 
+    //     idChart = 'kgProdChartCC' + <?php //echo $mes?> 
 
-        generarChartResumen(idChart,config)
+    //     generarChartResumen(idChart,config)
+    // // CONVERCION
 
-
-    // CONVERCION
-
-        data = [<?php echo $value['convMsRP'];?>];
+    //     data = [<?php //echo $value['convMsCC'];?>];
             
-        label = ['Conversion MS'];
+    //     label = ['Conversion MS'];
 
-        config = generarConfigBarChart(label,data,label2);
+    //     config = generarConfigBarChart(label,data,label2);
 
-        idChart = 'conversionChartRP' + <?php echo $mes?> 
+    //     idChart = 'conversionChartCC' + <?php //echo $mes?> 
 
-        generarChartResumen(idChart,config)
+    //     generarChartResumen(idChart,config)
 
 </script>

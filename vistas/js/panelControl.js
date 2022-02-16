@@ -28,7 +28,7 @@ function agregarPeriodo(contador,inputID){
       
       contenido += '<div class="col-md-12">';
 
-      contenido += `<input class="form-control months" type="month" id="${inputID}${contador}">`;
+      contenido += `<input class="form-control months${inputID}" type="month" id="periodo${inputID}${contador}">`;
 
       contenido += '</div>';
       
@@ -44,7 +44,7 @@ let contenido = '';
 
 $('#compararPC').click(()=>{
 
-  contenido = agregarPeriodo(contadorPC,'periodoPC');
+  contenido = agregarPeriodo(contadorPC,'PC');
   
   $('#btn-plusPC').before(contenido);
   
@@ -64,7 +64,7 @@ $('#generarPanelControl').click(()=>{
 
     let periodos = [];
     
-    $('.months').each(function(){
+    $('.monthsPC' ).each(function(){
 
       periodos.push($(this).val());
 

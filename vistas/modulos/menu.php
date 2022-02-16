@@ -319,7 +319,9 @@ include 'modales/filtroFecha.modal.php';
 
 $modalSeccion = 'ventanaModalFechaPanelControl';
 
-$inputID = 'periodoPC';
+$titulo = 'Panel de Control';
+
+$inputID = 'PC';
 
 $divBtnPlus = 'btn-plusPC';
 
@@ -331,7 +333,9 @@ include 'modales/filtroMensualAnual.modal.php';
 
 $modalSeccion = 'ventanaModalResumenConversion';
 
-$inputID = 'periodoConv';
+$titulo = 'Resumen Conversión';
+
+$inputID = 'Conv';
 
 $divBtnPlus = 'btn-plusConv';
 

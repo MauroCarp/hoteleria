@@ -4,17 +4,30 @@ require_once "../modelos/conversion.modelo.php";
 
 class dataGraficos{
     
-    public $anio;
+    public $periodos;
     
     public function mostrarDataGraficos(){
         
-        $item = 'anio';
+        $item = 'periodo';
 
-        $valor = $this->anio;
+        $periodos = $this->periodos;
         
-        $datos = ControladorConversion::ctrMostrarDatos($item, $valor);
+        $datos = ControladorConversion::ctrMostrarDatos($item, $periodos);
 
         echo json_encode($datos);
+
+    }
+
+    public function mostrarDataGraficosAnual(){
+        
+        $item = 'periodoTime';
+
+        $periodos = $this->periodos;
+        
+        $datos = ControladorConversion::ctrMostrarDatosAnual($item, $periodos);
+
+        echo json_encode($datos);
+
     }
 
 }
@@ -22,11 +35,12 @@ class dataGraficos{
 /*=============================================
 DATA GRAFICOS ANUAL
 =============================================*/ 
-
 $dataGraficos = new dataGraficos();
-$dataGraficos -> anio = $_POST["anio"];
-$dataGraficos -> mostrarDataGraficos();
+$dataGraficos -> periodos = $_POST["periodos"];
 
-
+if($_POST['accion'] == 'filtros')
+    $dataGraficos -> mostrarDataGraficos();
+else    
+    $dataGraficos -> mostrarDataGraficosAnual();
 
 ?>

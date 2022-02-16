@@ -69,11 +69,21 @@ if( isset($_FILES["nuevosDatos"]) ){
                     if($rowValida == TRUE){   
                         
                         $mes = $Row[1];
+                        if($mes == 'promedio'){
+                            
+                            echo "<script>
+                            window.location.href = 'index.php?ruta=inicio';
+                            </script>";
+                            die();
 
+                        }
+                        
                         $mes = (array_search($mes,$meses) + 1 < 10) ? '0'.(array_search($mes,$meses) + 1) : array_search($mes,$meses) + 1  ;
 
                         $periodoTime = $anio."-".$mes."-01";
                         
+                        $periodo = $anio."-".$mes;
+
                         if(validarRegistro($conexion,$anio,$mes) == 0 AND $Row[2] != ''){
 
                             $kgIngCC = $Row[2];
@@ -104,7 +114,7 @@ if( isset($_FILES["nuevosDatos"]) ){
                             $adpvT = $Row[32];
                             $conversionT = $Row[33];
                         
-                            $sql = "INSERT INTO conversion(archivo,anio,mes,periodoTime,kgIngCC,kgEgrCC,kgProdCC,diasCC,adpvCC,convMsCC,kgIngRP,kgEgrRP,kgProdRP,diasRP,adpvRP,convMsRP,kgIngRC,kgEgrRC,kgProdRC,diasRC,adpvRC,convMsRC,kgIngT,kgEgrT,kgProdT,diasT,adpvT,convMsT) VALUES('$nombreArchivo','$anio','$mes','$periodoTime','$kgIngCC','$kgEgrCC','$kgProdCC','$diasCC','$adpvCC','$conversionCC','$kgIngRP','$kgEgrRP','$kgProdRP','$diasRP','$adpvRP','$conversionRP','$kgIngRC','$kgEgrRC','$kgProdRC','$diasRC','$adpvRC','$conversionRC','$kgIngT','$kgEgrT','$kgProdT','$diasT','$adpvT','$conversionT')";
+                            $sql = "INSERT INTO conversion(archivo,periodo,periodoTime,kgIngCC,kgEgrCC,kgProdCC,diasCC,adpvCC,convMsCC,kgIngRP,kgEgrRP,kgProdRP,diasRP,adpvRP,convMsRP,kgIngRC,kgEgrRC,kgProdRC,diasRC,adpvRC,convMsRC,kgIngT,kgEgrT,kgProdT,diasT,adpvT,convMsT) VALUES('$nombreArchivo','$periodo','$periodoTime','$kgIngCC','$kgEgrCC','$kgProdCC','$diasCC','$adpvCC','$conversionCC','$kgIngRP','$kgEgrRP','$kgProdRP','$diasRP','$adpvRP','$conversionRP','$kgIngRC','$kgEgrRC','$kgProdRC','$diasRC','$adpvRC','$conversionRC','$kgIngT','$kgEgrT','$kgProdT','$diasT','$adpvT','$conversionT')";
                     
                             mysqli_query($conexion,$sql);
 
@@ -132,7 +142,7 @@ if( isset($_FILES["nuevosDatos"]) ){
     }
 
     echo "<script>
-    window.location.href = 'index.php?ruta=resumenConversion&anio=$anio';
+    window.location.href = 'index.php?ruta=inicio';
     </script>";
 
 }

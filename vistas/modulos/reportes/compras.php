@@ -226,13 +226,6 @@ var confCantConsignatarioSexo = {
     data: [
       <?php echo $machosPorConsignatarioPorcentaje;?>
     ]
-  }, {
-    label: '% Hembra',
-    backgroundColor: window.chartColors.red,
-    stack: 'Stack 0',
-    data: [
-      <?php echo $hembrasPorConsignatarioPorcentaje;?>,
-    ]
   }, {  
     label: 'Cantidad Cabezas',
     backgroundColor: window.chartColors.green,

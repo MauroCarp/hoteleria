@@ -12,9 +12,7 @@ class ModeloConversion{
 
 		if($item != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY periodoTime ASC");
-
-			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item IN ($valor) ORDER BY periodoTime ASC");
 
 			$stmt -> execute();
 			
@@ -22,7 +20,38 @@ class ModeloConversion{
 			
 		}else{
 			
-			$stmt = Conexion::conectar()->prepare("SELECT $campo FROM $tabla");
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY periodoTime");
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+
+		}
+		
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+	/*=============================================
+	MOSTRAR Datos ANUAL
+	=============================================*/
+
+	static public function mdlMostrarDatosAnual($tabla, $item, $valor){
+
+		if($item != null){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE YEAR($item) IN ($valor)");
+
+			$stmt -> execute();
+			
+			return $stmt -> fetchAll();
+			
+		}else{
+			
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY periodoTime");
 
 			$stmt -> execute();
 

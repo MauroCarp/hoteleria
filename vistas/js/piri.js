@@ -4,56 +4,59 @@
  * 
  * */
 
- var btnPiri = document.getElementById('btn-piri');
- btnPiri.addEventListener('click',function(){
+ let btnPiri = document.getElementById('btn-piri');
 
-    $.ajax({
-        url: "ajax/piri.ajax.php",
-        // here
-        beforeSend: function() {
-            swal({
-                title: 'Verificando P.I.R.I',
-                allowEscapeKey: false,
-                allowOutsideClick: false,
-                onOpen: () => {
-                  swal.showLoading();
-                }
-              });
-        },
-        success: function(respuesta) {
-            if(respuesta){
+ if(btnPiri != null){
+    btnPiri.addEventListener('click',function(){
+
+        $.ajax({
+            url: "ajax/piri.ajax.php",
+            // here
+            beforeSend: function() {
                 swal({
-
-                    type: "success",
-                    title: "¡La tabla P.I.R.I fue actualizada correctamente!",
-                    showConfirmButton: true,
-                    confirmButtonText: "Cerrar"
-
-                }).then(function() {
-                    window.location = "piri";
-                })
-            }else{
-                swal({
-
-                    type: "error",
-                    title: "No se encontraro nuevos datos. La tabla P.I.R.I se encuentra actualizada.",
-                    showConfirmButton: true,
-                    confirmButtonText: "Cerrar"
-
+                    title: 'Verificando P.I.R.I',
+                    allowEscapeKey: false,
+                    allowOutsideClick: false,
+                    onOpen: () => {
+                    swal.showLoading();
+                    }
                 });
+            },
+            success: function(respuesta) {
+                if(respuesta){
+                    swal({
+
+                        type: "success",
+                        title: "¡La tabla P.I.R.I fue actualizada correctamente!",
+                        showConfirmButton: true,
+                        confirmButtonText: "Cerrar"
+
+                    }).then(function() {
+                        window.location = "piri";
+                    })
+                }else{
+                    swal({
+
+                        type: "error",
+                        title: "No se encontraro nuevos datos. La tabla P.I.R.I se encuentra actualizada.",
+                        showConfirmButton: true,
+                        confirmButtonText: "Cerrar"
+
+                    });
+                }
+
             }
 
-        }
-
+        });
     });
- });
 
+}
 /*=============================================
-ELIMINAR CLIENTE
+ELIMINAR PIRI
 =============================================*/
 $(".tablas").on("click", ".btnEliminarPiri", function(){
 
-	var idPiri = $(this).attr("idPiri");
+	let idPiri = $(this).attr("idPiri");
 	
 	swal({
         title: '¿Está seguro de borrar el Registro?',

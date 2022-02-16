@@ -12,62 +12,7 @@ if($_SESSION["perfil"] == "Vendedor"){
 
 }
 
-$meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
-
 ?>
-
-<script>
-
-  const generarConfigBarChart = (label,data,label2)=>{
-
-    let configuracion = {
-        labels: label,
-        datasets: [{
-        label: label2,
-        backgroundColor: color(window.chartColors.red).alpha(0.5).rgbString(),
-        borderColor: window.chartColors.red,
-        borderWidth: 1, 
-        data: data
-        }]
-
-    };
-            
-    return configuracion;
-            
-
-  }
-
-  const generarChartResumen = (idChart,config)=>{
-
-    let chart = document.getElementById(idChart).getContext('2d');
-
-    let generarChart = new Chart(chart, {
-        type: 'bar',
-        data: config,
-        options: {
-          responsive: true,
-          legend: {
-            position: 'top',
-          },
-          title: {
-            display: false,
-          },
-          plugins: {
-            labels: {
-              render: 'value'
-            }
-          }
-        }
-    });
-
-  }
-
-  // VARIBLES
-  const color = Chart.helpers.color;
-  
-  let data, label, label2, config, idChart 
-
-</script>
 
 <div class="content-wrapper">
   
@@ -85,87 +30,34 @@ $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto"
 
                         <div class="nav-tabs-custom">
 
-                            <ul class="nav nav-tabs" id="tabsMeses" style="font-size:1.em;">
-
-                                <?php
-
-                                    $item = 'anio';
-
-                                    $valor = $_GET['anio'];
-                                    
-                                    $registros = ControladorConversion::ctrMostrarDatos($item,$valor);
-
-                                    $first = true;
-                                    
-                                    $contador = 1;
-
-                                    foreach ($registros as $key => $registroMes) {
-
-                                      $monthNum  = $registroMes['mes'];
-
-                                      $monthName = $meses[$monthNum-1];
-
-                                      if($first){
-
-                                         echo "<li class='tabs active' id='".$monthName."'><a href='#tab_".$contador."' data-toggle='tab'>".$monthName."</a></li>";
-                                         
-                                      }else{
-                                          
-                                          echo "<li class='tabs' id='".$monthName."'><a href='#tab_".$contador."' data-toggle='tab'>".$monthName."</a></li>";
-
-                                      }
-
-                                      $first = false;
-
-                                      $contador++;
-
-                                    }
-
-                                ?>
-                       
-                                  <li class='tabs' id='stadistica'><a href='#tab_estadistica' data-toggle='tab' id="btnEstadistica">Estadistica Anual</a></li>
+                            <ul class="nav nav-tabs" id="tabsCiclos" style="font-size:1.em;">
+                     
+                                <li class='tabs active' id='cicloCompleto'><a href='#tab_1' data-toggle='tab' id="btnCC">Ciclo Completo</a></li>
+                                <li class='tabs' id='recriaPastoril'><a href='#tab_2' data-toggle='tab' id="btnRP">Recria Pastoril</a></li>
+                                <li class='tabs' id='recriaCorral'><a href='#tab_3' data-toggle='tab' id="btnRC">Recria Corral</a></li>
+                                <li class='tabs' id='terminacion'><a href='#tab_4' data-toggle='tab' id="btnT">Terminaci&oacute;n</a></li>
+                                <li class='tabs' id='anual'><a href='#tab_5' data-toggle='tab' id="btnAnual">Estadistica Anual</a></li>
 
                             </ul>
 
                             <div class="tab-content">
 
-                              <?php
 
-                                    $first = true;
-                                                                        
-                                    $contador = 1;
-
-                                    foreach ($registros as $key => $value) {
-
-                                      $mes = $value['mes'];
-
-                                      if($first){
-
-                                        echo "<div class='tab-pane active' id='tab_".$contador."'>";
-
-                                      }else{
-
-                                        echo "<div class='tab-pane' id='tab_".$contador."'>";
-
-                                      }
-                                          
-                                      include 'conversion/etapas.php';
-                                      
-                                      echo "</div>";
-
-                                      $first = false;
-                                                                        
-                                      $contador++;
-
-                                    }
-                                    
-                              ?>
-
-                              <div class='tab-pane' id='tab_estadistica'>
-                                    
-                                <?php
-                                  include 'conversion/etapasAnual.php';
-                                ?>
+                              <div class='tab-pane active' id='tab_1'>
+                                <?php include 'conversion/cicloCompleto.php';?>
+                              </div>
+                              <div class='tab-pane' id='tab_2'>
+                                <?php include 'conversion/recriaPastoril.php';?>
+                              </div>
+                              <div class='tab-pane' id='tab_3'>
+                                <?php include 'conversion/recriaCorral.php';?>
+                              </div>
+                              <div class='tab-pane' id='tab_4'>
+                                <?php include 'conversion/terminacion.php';?>
+                              </div>
+                              <div class='tab-pane' id='tab_5'>
+                                
+                                <?php include 'conversion/etapasAnual.php';?>
 
                               </div>
 

@@ -16,7 +16,7 @@
       
                 <div class="chart">
             
-                    <canvas id="kgIngChartRC" style="height:230px"></canvas>
+                    <canvas id="kgIngChartAnual" style="height:230px"></canvas>
             
                 </div>
       
@@ -42,7 +42,7 @@
 
                 <div class="chart">
 
-                    <canvas id="kgEgrChartRC" style="height:230px"></canvas>
+                    <canvas id="kgEgrChartAnual" style="height:230px"></canvas>
 
                 </div>
 
@@ -67,7 +67,7 @@
 
                 <div class="chart">
 
-                    <canvas id="kgProdChartRC" style="height:230px"></canvas>
+                    <canvas id="kgProdChartAnual" style="height:230px"></canvas>
 
                 </div>
 
@@ -96,7 +96,7 @@
 
                 <div class="chart">
 
-                    <canvas id="adpvChartRC" style="height:230px"></canvas>
+                    <canvas id="adpvChartAnual" style="height:230px"></canvas>
 
                 </div>
 
@@ -121,7 +121,7 @@
 
                 <div class="chart">
 
-                    <canvas id="diasChartRC" style="height:230px"></canvas>
+                    <canvas id="diasChartAnual" style="height:230px"></canvas>
 
                 </div>
 
@@ -146,7 +146,7 @@
 
                 <div class="chart">
 
-                    <canvas id="conversionChartRC" style="height:230px"></canvas>
+                    <canvas id="conversionChartAnual" style="height:230px"></canvas>
 
                 </div>
 
